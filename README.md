@@ -5,7 +5,7 @@
 > En este repositorio iremos subiendo el código, esquemas y documentación.  
 
 ### Sobre PSoC 5
-Es un dispositivo electrónico programable integrado capaz de captar señales de entrada tanto analógicas como digitales, procesarlas y proporcionar una salida acorde al diseño implementado..
+Es un dispositivo electrónico programable integrado capaz de captar señales de entrada tanto analógicas como digitales, procesarlas y proporcionar una salida acorde al diseño implementado.
 
 ### Sobre DSE
 Es una asignatura de tercero de Ingeniera Informtica, de la especialidad de Ingeniera de Computadores en la que se realizan varios proyectos y exposiciones relacionadas con el PSoC.
