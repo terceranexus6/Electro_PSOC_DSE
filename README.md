@@ -1,4 +1,7 @@
-# Proyecto final de Diseño de Sistemas Electrónicos
+# Prácticas de DSe y proyecto final 
+
+
+
 ## Sensor de ritmo cardaco con PSoC 5
 
 
