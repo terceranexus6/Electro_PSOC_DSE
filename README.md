@@ -6,6 +6,7 @@
 2. ecgSensor -> Contiene la estructura del proyecto final (electrocardiógrafo).
 3. ecgApp -> Contiene la estructura del proyecto android para la applicación del proyecto final.
 4. ecgBeamer -> Contiene la estructura de la presentación del proyecto.
+5. datasheetCypress -> Contiene los datasheet de cypress usados en el proyecto y las prácticas
 
 
 ## Sensor de ritmo cardaco con PSoC 5
