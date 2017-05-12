@@ -1,5 +1,11 @@
-# Prácticas de DSe y proyecto final 
+# Prácticas de DSE y proyecto final 
 
+
+## Contenido del repositorio
+1. LedJoselito -> Contiene el proyecto Psoc Creator 4.0 correspondiente a la práctica 1 de DSE.
+2. ecgSensor -> Contiene la estructura del proyecto final (electrocardiógrafo).
+3. ecgApp -> Contiene la estructura del proyecto android para la applicación del proyecto final.
+4. ecgBeamer -> Contiene la estructura de la presentación del proyecto.
 
 
 ## Sensor de ritmo cardaco con PSoC 5
