@@ -1,0 +1,36 @@
+\frametitle{Algoritmo Bruto - Implementación}
+	\lstset{language=C++,
+                basicstyle=\ttfamily,
+                tabsize=3,
+				showstringspaces=false,
+				extendedchars=true,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{yellow}\ttfamily,
+                basicstyle=\small,
+                morecomment=[l][\color{magenta}]{\#}
+     }
+			\vspace*{-0.1in}
+\begin{lstlisting}
+int unimodalDyV(vector<int> &v, int inicio, int final){
+    int posicionMedia = (inicio + final) / 2;
+    bool found = false;
+    if(posicionMedia > inicio){
+        if(v[posicionMedia-1] > v[posicionMedia]
+        && v[posicionMedia] > v[posicionMedia+1])
+             return unimodalDyV(v, inicio, posicionMedia);
+        else if(v[posicionMedia-1] < v[posicionMedia]
+        		&& v[posicionMedia] < v[posicionMedia+1])
+            return unimodalDyV(v, posicionMedia, final);
+        else if(v[posicionMedia] > v[posicionMedia-1]
+        		&& v[posicionMedia+1]<v[posicionMedia])
+            return posicionMedia;
+    }else{
+        if(v[inicio] <= v[final])
+            return final;
+        else
+            return inicio;
+    }
+}
+
+\end{lstlisting}

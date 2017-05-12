@@ -1,0 +1,36 @@
+%%
+% Please see https://bitbucket.org/rivanvx/beamer/wiki/Home for obtaining beamer.
+%%
+
+% La clase beamer requiere necesariamente la compilación mediante pdfLaTeX
+
+\documentclass[9pt]{beamer}
+
+% Incluir los paquetes
+\include{paquetes}
+
+\include{definiciones}
+
+\mode<presentation>{\usetheme{Madrid}
+} %Antibes-crane
+
+\setbeamercovered{transparent=20}
+
+
+\begin{document}
+	% Portada y tabla de contenido
+	\input{portada}
+	\begin{frame}{Tabla de Contenidos}
+		\tableofcontents
+	\end{frame}
+	
+	
+	% Contenido en sí
+	% Una archivo por transparencia ayuda a la compilación
+	%\logo{\includegraphics[height=0.8cm]{images/ugr}}%\vspace{200pt}}
+	\input{1}
+	\input{2}
+	\input{3}
+	\input{4}
+
+\end{document}
