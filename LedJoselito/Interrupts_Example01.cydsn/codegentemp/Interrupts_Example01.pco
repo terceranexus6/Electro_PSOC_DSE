@@ -1,0 +1,20 @@
+# Interrupts_Example01
+# 2017-05-12 10:27:24Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+# IO_3@[IOP=(1)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 3
+dont_use_location 0 0
+dont_use_location 1 0
+dont_use_location 2 0
+dont_use_location 3 0
+dont_use_location sarcell -1 -1 1
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_location "Pin_Sw" logicalport -1 -1 1
+set_io "Pin_Sw(0)" iocell 1 5
+set_io "LED_Isr(0)" iocell 0 2
+set_io "LED_Nested(0)" iocell 1 6
+set_location "isr_GPIO" interrupt -1 -1 5
