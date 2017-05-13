@@ -2,7 +2,7 @@
 --	Conversion of Practica2Parte3.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Sat May 13 20:08:13 2017
+--	Sat May 13 19:26:32 2017
 --
 
 USE cypress.cypress.all;
@@ -266,7 +266,6 @@ SIGNAL one : bit;
 SIGNAL \pantallaLCD:tmpINTERRUPT_0__LCDPort_net_0\ : bit;
 SIGNAL cmp_vv_vv_MODGEN_2 : bit;
 SIGNAL tmpOE__pin_net_0 : bit;
-SIGNAL Net_87 : bit;
 SIGNAL tmpIO_0__pin_net_0 : bit;
 TERMINAL tmpSIOVREF__pin_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__pin_net_0 : bit;
@@ -278,12 +277,6 @@ SIGNAL Net_19_3 : bit;
 SIGNAL Net_19_2 : bit;
 SIGNAL Net_19_1 : bit;
 SIGNAL Net_19_0 : bit;
-SIGNAL \Debouncer_1:op_clk\ : bit;
-SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_0\ : bit;
-SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : bit;
-SIGNAL Net_83 : bit;
-SIGNAL Net_4 : bit;
-SIGNAL Net_80 : bit;
 SIGNAL \MODULE_2:g1:a0:newa_7\ : bit;
 SIGNAL MODIN2_7 : bit;
 SIGNAL \MODULE_2:g1:a0:newa_6\ : bit;
@@ -414,7 +407,6 @@ ATTRIBUTE port_state_att of \MODULE_2:lte\:SIGNAL IS 2;
 SIGNAL \MODULE_2:neq\ : bit;
 ATTRIBUTE port_state_att of \MODULE_2:neq\:SIGNAL IS 2;
 SIGNAL \detector:last\\D\ : bit;
-SIGNAL Net_90D : bit;
 SIGNAL Net_74_7D : bit;
 SIGNAL Net_74_6D : bit;
 SIGNAL Net_74_5D : bit;
@@ -423,10 +415,6 @@ SIGNAL Net_74_3D : bit;
 SIGNAL Net_74_2D : bit;
 SIGNAL Net_74_1D : bit;
 SIGNAL Net_74_0D : bit;
-SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_0\\D\ : bit;
-SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_1\\D\ : bit;
-SIGNAL Net_4D : bit;
-SIGNAL Net_80D : bit;
 BEGIN
 
 Net_84 <= ((not Net_90 and \detector:last\));
@@ -490,8 +478,6 @@ zero <=  ('0') ;
 one <=  ('1') ;
 
 Net_7 <= ((not Net_74_7 and not Net_74_4 and not Net_74_3 and not Net_74_1 and not Net_74_0 and Net_74_6 and Net_74_5 and Net_74_2));
-
-Net_90D <= ((not \Debouncer_1:DEBOUNCER[0]:d_sync_1\ and \Debouncer_1:DEBOUNCER[0]:d_sync_0\));
 
 \MODULE_2:g1:a0:gx:u0:gt_7\ <= ((not Net_74_7 and not Net_74_6));
 
@@ -655,7 +641,7 @@ pin:cy_psoc3_pins_v1_10
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
 		y=>(zero),
-		fb=>Net_87,
+		fb=>Net_90,
 		analog=>(open),
 		io=>(tmpIO_0__pin_net_0),
 		siovref=>(tmpSIOVREF__pin_net_0),
@@ -677,11 +663,6 @@ reloj:cy_clock_v1_0
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_75,
 		dig_domain_out=>open);
-\Debouncer_1:ClkSync\:cy_psoc3_udb_clock_enable_v1_0
-	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_75,
-		enable=>one,
-		clock_out=>\Debouncer_1:op_clk\);
 \MODULE_2:g1:a0:gx:u0:gne(2):c4:c6:u1\:cy_buf
 	PORT MAP(x=>Net_74_7,
 		y=>\MODULE_2:g1:a0:gx:u0:lti_2\);
@@ -704,10 +685,6 @@ reloj:cy_clock_v1_0
 	PORT MAP(d=>Net_90,
 		clk=>Net_75,
 		q=>\detector:last\);
-Net_90:cy_dff
-	PORT MAP(d=>Net_90D,
-		clk=>\Debouncer_1:op_clk\,
-		q=>Net_90);
 Net_74_7:cy_dff
 	PORT MAP(d=>Net_74_7D,
 		clk=>Net_75,
@@ -740,21 +717,5 @@ Net_74_0:cy_dff
 	PORT MAP(d=>Net_74_0D,
 		clk=>Net_75,
 		q=>Net_74_0);
-\Debouncer_1:DEBOUNCER[0]:d_sync_0\:cy_dff
-	PORT MAP(d=>Net_87,
-		clk=>\Debouncer_1:op_clk\,
-		q=>\Debouncer_1:DEBOUNCER[0]:d_sync_0\);
-\Debouncer_1:DEBOUNCER[0]:d_sync_1\:cy_dff
-	PORT MAP(d=>\Debouncer_1:DEBOUNCER[0]:d_sync_0\,
-		clk=>\Debouncer_1:op_clk\,
-		q=>\Debouncer_1:DEBOUNCER[0]:d_sync_1\);
-Net_4:cy_dff
-	PORT MAP(d=>zero,
-		clk=>\Debouncer_1:op_clk\,
-		q=>Net_4);
-Net_80:cy_dff
-	PORT MAP(d=>zero,
-		clk=>\Debouncer_1:op_clk\,
-		q=>Net_80);
 
 END R_T_L;

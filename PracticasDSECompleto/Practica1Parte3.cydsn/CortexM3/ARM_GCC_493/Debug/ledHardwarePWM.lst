@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
   29:Generated_Source\PSoC5/ledHardwarePWM.c **** * \brief Writes the value to the physical port (data output register), masking
   30:Generated_Source\PSoC5/ledHardwarePWM.c **** *  and shifting the bits appropriately. 
   31:Generated_Source\PSoC5/ledHardwarePWM.c **** *
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 2
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 2
 
 
   32:Generated_Source\PSoC5/ledHardwarePWM.c **** * The data output register controls the signal applied to the physical pin in 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
   52              		.size	ledHardwarePWM_Write, .-ledHardwarePWM_Write
   53              		.section	.text.ledHardwarePWM_SetDriveMode,"ax",%progbits
   54              		.align	2
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 3
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 3
 
 
   55              		.global	ledHardwarePWM_SetDriveMode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
   77 0012 00BF     		.align	2
   78              	.L5:
   79 0014 17500040 		.word	1073762327
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 4
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 4
 
 
   80              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  110              		.align	2
  111              		.global	ledHardwarePWM_ReadDataReg
  112              		.thumb
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 5
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 5
 
 
  113              		.thumb_func
@@ -298,51 +298,51 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  139              	.Ldebug_info0:
  140 0000 1D010000 		.4byte	0x11d
  141 0004 0400     		.2byte	0x4
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 6
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 6
 
 
  142 0006 00000000 		.4byte	.Ldebug_abbrev0
  143 000a 04       		.byte	0x4
  144 000b 01       		.uleb128 0x1
- 145 000c D7000000 		.4byte	.LASF20
+ 145 000c E7000000 		.4byte	.LASF20
  146 0010 01       		.byte	0x1
- 147 0011 11000000 		.4byte	.LASF21
- 148 0015 93000000 		.4byte	.LASF22
+ 147 0011 49000000 		.4byte	.LASF21
+ 148 0015 11000000 		.4byte	.LASF22
  149 0019 00000000 		.4byte	.Ldebug_ranges0+0
  150 001d 00000000 		.4byte	0
  151 0021 00000000 		.4byte	.Ldebug_line0
  152 0025 02       		.uleb128 0x2
  153 0026 01       		.byte	0x1
  154 0027 06       		.byte	0x6
- 155 0028 CE010000 		.4byte	.LASF0
+ 155 0028 DE010000 		.4byte	.LASF0
  156 002c 02       		.uleb128 0x2
  157 002d 01       		.byte	0x1
  158 002e 08       		.byte	0x8
- 159 002f 5B000000 		.4byte	.LASF1
+ 159 002f 93000000 		.4byte	.LASF1
  160 0033 02       		.uleb128 0x2
  161 0034 02       		.byte	0x2
  162 0035 05       		.byte	0x5
- 163 0036 B5010000 		.4byte	.LASF2
+ 163 0036 C5010000 		.4byte	.LASF2
  164 003a 02       		.uleb128 0x2
  165 003b 02       		.byte	0x2
  166 003c 07       		.byte	0x7
- 167 003d 80000000 		.4byte	.LASF3
+ 167 003d B8000000 		.4byte	.LASF3
  168 0041 02       		.uleb128 0x2
  169 0042 04       		.byte	0x4
  170 0043 05       		.byte	0x5
- 171 0044 C5010000 		.4byte	.LASF4
+ 171 0044 D5010000 		.4byte	.LASF4
  172 0048 02       		.uleb128 0x2
  173 0049 04       		.byte	0x4
  174 004a 07       		.byte	0x7
- 175 004b 6E000000 		.4byte	.LASF5
+ 175 004b A6000000 		.4byte	.LASF5
  176 004f 02       		.uleb128 0x2
  177 0050 08       		.byte	0x8
  178 0051 05       		.byte	0x5
- 179 0052 A2010000 		.4byte	.LASF6
+ 179 0052 B2010000 		.4byte	.LASF6
  180 0056 02       		.uleb128 0x2
  181 0057 08       		.byte	0x8
  182 0058 07       		.byte	0x7
- 183 0059 86010000 		.4byte	.LASF7
+ 183 0059 96010000 		.4byte	.LASF7
  184 005d 03       		.uleb128 0x3
  185 005e 04       		.byte	0x4
  186 005f 05       		.byte	0x5
@@ -350,36 +350,36 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  188 0064 02       		.uleb128 0x2
  189 0065 04       		.byte	0x4
  190 0066 07       		.byte	0x7
- 191 0067 65010000 		.4byte	.LASF8
+ 191 0067 75010000 		.4byte	.LASF8
  192 006b 04       		.uleb128 0x4
- 193 006c BF010000 		.4byte	.LASF12
+ 193 006c CF010000 		.4byte	.LASF12
  194 0070 02       		.byte	0x2
  195 0071 9201     		.2byte	0x192
  196 0073 2C000000 		.4byte	0x2c
  197 0077 02       		.uleb128 0x2
  198 0078 04       		.byte	0x4
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 7
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 7
 
 
  199 0079 04       		.byte	0x4
- 200 007a 39000000 		.4byte	.LASF9
+ 200 007a 71000000 		.4byte	.LASF9
  201 007e 02       		.uleb128 0x2
  202 007f 08       		.byte	0x8
  203 0080 04       		.byte	0x4
- 204 0081 D0000000 		.4byte	.LASF10
+ 204 0081 E0000000 		.4byte	.LASF10
  205 0085 02       		.uleb128 0x2
  206 0086 01       		.byte	0x1
  207 0087 08       		.byte	0x8
- 208 0088 B0010000 		.4byte	.LASF11
+ 208 0088 C0010000 		.4byte	.LASF11
  209 008c 04       		.uleb128 0x4
- 210 008d 69000000 		.4byte	.LASF13
+ 210 008d A1000000 		.4byte	.LASF13
  211 0091 02       		.byte	0x2
  212 0092 3C02     		.2byte	0x23c
  213 0094 98000000 		.4byte	0x98
  214 0098 05       		.uleb128 0x5
  215 0099 6B000000 		.4byte	0x6b
  216 009d 06       		.uleb128 0x6
- 217 009e BB000000 		.4byte	.LASF14
+ 217 009e CB000000 		.4byte	.LASF14
  218 00a2 01       		.byte	0x1
  219 00a3 39       		.byte	0x39
  220 00a4 00000000 		.4byte	.LFB0
@@ -401,7 +401,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  236 00cc 21000000 		.4byte	.LLST1
  237 00d0 00       		.byte	0
  238 00d1 06       		.uleb128 0x6
- 239 00d2 3F000000 		.4byte	.LASF15
+ 239 00d2 77000000 		.4byte	.LASF15
  240 00d6 01       		.byte	0x1
  241 00d7 5A       		.byte	0x5a
  242 00d8 00000000 		.4byte	.LFB1
@@ -410,15 +410,15 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  245 00e1 9C       		.byte	0x9c
  246 00e2 F6000000 		.4byte	0xf6
  247 00e6 07       		.uleb128 0x7
- 248 00e7 9D010000 		.4byte	.LASF17
+ 248 00e7 AD010000 		.4byte	.LASF17
  249 00eb 01       		.byte	0x1
  250 00ec 5A       		.byte	0x5a
  251 00ed 6B000000 		.4byte	0x6b
  252 00f1 34000000 		.4byte	.LLST2
  253 00f5 00       		.byte	0
  254 00f6 09       		.uleb128 0x9
- 255 00f7 72010000 		.4byte	.LASF18
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 8
+ 255 00f7 82010000 		.4byte	.LASF18
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 8
 
 
  256 00fb 01       		.byte	0x1
@@ -429,7 +429,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  261 0109 01       		.uleb128 0x1
  262 010a 9C       		.byte	0x9c
  263 010b 09       		.uleb128 0x9
- 264 010c DA010000 		.4byte	.LASF19
+ 264 010c EA010000 		.4byte	.LASF19
  265 0110 01       		.byte	0x1
  266 0111 8D       		.byte	0x8d
  267 0112 6B000000 		.4byte	0x6b
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  310 0023 3E       		.uleb128 0x3e
  311 0024 0B       		.uleb128 0xb
  312 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 9
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 9
 
 
  313 0026 08       		.uleb128 0x8
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  367 005d 0B       		.uleb128 0xb
  368 005e 3B       		.uleb128 0x3b
  369 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 10
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 10
 
 
  370 0060 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  424 000b 0A000000 		.4byte	.LVL2
  425 000f 18000000 		.4byte	.LFE0
  426 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 11
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 11
 
 
  427 0015 F3       		.byte	0xf3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  481 001c 0C000000 		.4byte	.LFE3
  482 0020 00000000 		.4byte	0
  483 0024 00000000 		.4byte	0
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 12
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 12
 
 
  484              		.section	.debug_line,"",%progbits
@@ -675,125 +675,127 @@ ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 1
  490 0006 73746174 		.ascii	"staticBits\000"
  490      69634269 
  490      747300
- 491              	.LASF21:
- 492 0011 47656E65 		.ascii	"Generated_Source\\PSoC5\\ledHardwarePWM.c\000"
- 492      72617465 
- 492      645F536F 
- 492      75726365 
- 492      5C50536F 
- 493              	.LASF9:
- 494 0039 666C6F61 		.ascii	"float\000"
- 494      7400
- 495              	.LASF15:
- 496 003f 6C656448 		.ascii	"ledHardwarePWM_SetDriveMode\000"
- 496      61726477 
- 496      61726550 
- 496      574D5F53 
- 496      65744472 
- 497              	.LASF1:
- 498 005b 756E7369 		.ascii	"unsigned char\000"
- 498      676E6564 
- 498      20636861 
- 498      7200
- 499              	.LASF13:
- 500 0069 72656738 		.ascii	"reg8\000"
- 500      00
- 501              	.LASF5:
- 502 006e 6C6F6E67 		.ascii	"long unsigned int\000"
- 502      20756E73 
- 502      69676E65 
- 502      6420696E 
- 502      7400
- 503              	.LASF3:
- 504 0080 73686F72 		.ascii	"short unsigned int\000"
- 504      7420756E 
- 504      7369676E 
- 504      65642069 
- 504      6E7400
- 505              	.LASF22:
- 506 0093 433A5C50 		.ascii	"C:\\Practicas\\LedJoselito\\Design01.cydsn\000"
- 506      72616374 
- 506      69636173 
- 506      5C4C6564 
- 506      4A6F7365 
- 507              	.LASF14:
- 508 00bb 6C656448 		.ascii	"ledHardwarePWM_Write\000"
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 13
+ 491              	.LASF22:
+ 492 0011 433A5C50 		.ascii	"C:\\Practicas\\PracticasDSECompleto\\Practica1Parte"
+ 492      72616374 
+ 492      69636173 
+ 492      5C507261 
+ 492      63746963 
+ 493 0041 332E6379 		.ascii	"3.cydsn\000"
+ 493      64736E00 
+ 494              	.LASF21:
+ 495 0049 47656E65 		.ascii	"Generated_Source\\PSoC5\\ledHardwarePWM.c\000"
+ 495      72617465 
+ 495      645F536F 
+ 495      75726365 
+ 495      5C50536F 
+ 496              	.LASF9:
+ 497 0071 666C6F61 		.ascii	"float\000"
+ 497      7400
+ 498              	.LASF15:
+ 499 0077 6C656448 		.ascii	"ledHardwarePWM_SetDriveMode\000"
+ 499      61726477 
+ 499      61726550 
+ 499      574D5F53 
+ 499      65744472 
+ 500              	.LASF1:
+ 501 0093 756E7369 		.ascii	"unsigned char\000"
+ 501      676E6564 
+ 501      20636861 
+ 501      7200
+ 502              	.LASF13:
+ 503 00a1 72656738 		.ascii	"reg8\000"
+ 503      00
+ 504              	.LASF5:
+ 505 00a6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 505      20756E73 
+ 505      69676E65 
+ 505      6420696E 
+ 505      7400
+ 506              	.LASF3:
+ 507 00b8 73686F72 		.ascii	"short unsigned int\000"
+ 507      7420756E 
+ 507      7369676E 
+ 507      65642069 
+ 507      6E7400
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 13
 
 
- 508      61726477 
- 508      61726550 
- 508      574D5F57 
- 508      72697465 
- 509              	.LASF10:
- 510 00d0 646F7562 		.ascii	"double\000"
- 510      6C6500
- 511              	.LASF20:
- 512 00d7 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 512      4320342E 
- 512      392E3320 
- 512      32303135 
- 512      30333033 
- 513 010a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 513      20726576 
- 513      6973696F 
- 513      6E203232 
- 513      31323230 
- 514 013d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 514      66756E63 
- 514      74696F6E 
- 514      2D736563 
- 514      74696F6E 
- 515              	.LASF8:
- 516 0165 756E7369 		.ascii	"unsigned int\000"
- 516      676E6564 
- 516      20696E74 
- 516      00
- 517              	.LASF18:
- 518 0172 6C656448 		.ascii	"ledHardwarePWM_Read\000"
- 518      61726477 
- 518      61726550 
- 518      574D5F52 
- 518      65616400 
- 519              	.LASF7:
- 520 0186 6C6F6E67 		.ascii	"long long unsigned int\000"
- 520      206C6F6E 
- 520      6720756E 
- 520      7369676E 
- 520      65642069 
- 521              	.LASF17:
- 522 019d 6D6F6465 		.ascii	"mode\000"
- 522      00
- 523              	.LASF6:
- 524 01a2 6C6F6E67 		.ascii	"long long int\000"
- 524      206C6F6E 
- 524      6720696E 
- 524      7400
- 525              	.LASF11:
- 526 01b0 63686172 		.ascii	"char\000"
- 526      00
- 527              	.LASF2:
- 528 01b5 73686F72 		.ascii	"short int\000"
- 528      7420696E 
- 528      7400
- 529              	.LASF12:
- 530 01bf 75696E74 		.ascii	"uint8\000"
-ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccSTLvam.s 			page 14
+ 508              	.LASF14:
+ 509 00cb 6C656448 		.ascii	"ledHardwarePWM_Write\000"
+ 509      61726477 
+ 509      61726550 
+ 509      574D5F57 
+ 509      72697465 
+ 510              	.LASF10:
+ 511 00e0 646F7562 		.ascii	"double\000"
+ 511      6C6500
+ 512              	.LASF20:
+ 513 00e7 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 513      4320342E 
+ 513      392E3320 
+ 513      32303135 
+ 513      30333033 
+ 514 011a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 514      20726576 
+ 514      6973696F 
+ 514      6E203232 
+ 514      31323230 
+ 515 014d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 515      66756E63 
+ 515      74696F6E 
+ 515      2D736563 
+ 515      74696F6E 
+ 516              	.LASF8:
+ 517 0175 756E7369 		.ascii	"unsigned int\000"
+ 517      676E6564 
+ 517      20696E74 
+ 517      00
+ 518              	.LASF18:
+ 519 0182 6C656448 		.ascii	"ledHardwarePWM_Read\000"
+ 519      61726477 
+ 519      61726550 
+ 519      574D5F52 
+ 519      65616400 
+ 520              	.LASF7:
+ 521 0196 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 521      206C6F6E 
+ 521      6720756E 
+ 521      7369676E 
+ 521      65642069 
+ 522              	.LASF17:
+ 523 01ad 6D6F6465 		.ascii	"mode\000"
+ 523      00
+ 524              	.LASF6:
+ 525 01b2 6C6F6E67 		.ascii	"long long int\000"
+ 525      206C6F6E 
+ 525      6720696E 
+ 525      7400
+ 526              	.LASF11:
+ 527 01c0 63686172 		.ascii	"char\000"
+ 527      00
+ 528              	.LASF2:
+ 529 01c5 73686F72 		.ascii	"short int\000"
+ 529      7420696E 
+ 529      7400
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\cc5IxA9x.s 			page 14
 
 
- 530      3800
- 531              	.LASF4:
- 532 01c5 6C6F6E67 		.ascii	"long int\000"
- 532      20696E74 
- 532      00
- 533              	.LASF0:
- 534 01ce 7369676E 		.ascii	"signed char\000"
- 534      65642063 
- 534      68617200 
- 535              	.LASF19:
- 536 01da 6C656448 		.ascii	"ledHardwarePWM_ReadDataReg\000"
- 536      61726477 
- 536      61726550 
- 536      574D5F52 
- 536      65616444 
- 537              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 530              	.LASF12:
+ 531 01cf 75696E74 		.ascii	"uint8\000"
+ 531      3800
+ 532              	.LASF4:
+ 533 01d5 6C6F6E67 		.ascii	"long int\000"
+ 533      20696E74 
+ 533      00
+ 534              	.LASF0:
+ 535 01de 7369676E 		.ascii	"signed char\000"
+ 535      65642063 
+ 535      68617200 
+ 536              	.LASF19:
+ 537 01ea 6C656448 		.ascii	"ledHardwarePWM_ReadDataReg\000"
+ 537      61726477 
+ 537      61726550 
+ 537      574D5F52 
+ 537      65616444 
+ 538              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

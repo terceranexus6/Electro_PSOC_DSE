@@ -1,6 +1,6 @@
 // ======================================================================
 // Practica2Parte1y2.v generated from TopDesign.cysch
-// 05/13/2017 at 18:13
+// 05/13/2017 at 19:39
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 

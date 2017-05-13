@@ -1,5 +1,5 @@
--- Project:   C:\Practicas\LedJoselito\Practica2Parte3.cydsn\Practica2Parte3.cyprj
--- Generated: 05/13/2017 20:08:17
+-- Project:   C:\Practicas\PracticasDSECompleto\Practica2Parte3.cydsn\Practica2Parte3.cyprj
+-- Generated: 05/13/2017 19:26:36
 -- PSoC Creator  4.0 Update 1
 
 ENTITY Practica2Parte3 IS
@@ -27,7 +27,6 @@ ARCHITECTURE __DEFAULT__ OF Practica2Parte3 IS
     SIGNAL ClockBlock_1k : bit;
     SIGNAL ClockBlock_32k : bit;
     SIGNAL ClockBlock_BUS_CLK : bit;
-    ATTRIBUTE udbclken_assigned OF ClockBlock_BUS_CLK : SIGNAL IS "True";
     ATTRIBUTE global_signal OF ClockBlock_BUS_CLK : SIGNAL IS true;
     SIGNAL ClockBlock_BUS_CLK_local : bit;
     SIGNAL ClockBlock_ILO : bit;
@@ -58,13 +57,7 @@ ARCHITECTURE __DEFAULT__ OF Practica2Parte3 IS
     SIGNAL Net_84 : bit;
     ATTRIBUTE placement_force OF Net_84 : SIGNAL IS "U(0,4,A)1";
     ATTRIBUTE soft OF Net_84 : SIGNAL IS 1;
-    SIGNAL Net_87 : bit;
     SIGNAL Net_90 : bit;
-    ATTRIBUTE placement_force OF Net_90 : SIGNAL IS "U(0,4,A)3";
-    SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_0\ : bit;
-    ATTRIBUTE placement_force OF \Debouncer_1:DEBOUNCER[0]:d_sync_0\ : SIGNAL IS "U(0,4,B)1";
-    SIGNAL \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : bit;
-    ATTRIBUTE placement_force OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : SIGNAL IS "U(0,4,B)0";
     SIGNAL \detector:last\ : bit;
     ATTRIBUTE placement_force OF \detector:last\ : SIGNAL IS "U(0,4,A)2";
     SIGNAL \\\pantallaLCD:LCDPort(0)\\__PA\ : bit;
@@ -108,28 +101,22 @@ ARCHITECTURE __DEFAULT__ OF Practica2Parte3 IS
     ATTRIBUTE Location OF \registro:sts:sts_reg\ : LABEL IS "U(1,4)";
     ATTRIBUTE lib_model OF \detector:last\ : LABEL IS "macrocell3";
     ATTRIBUTE Location OF \detector:last\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF Net_90 : LABEL IS "macrocell4";
-    ATTRIBUTE Location OF Net_90 : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF Net_74_7 : LABEL IS "macrocell5";
+    ATTRIBUTE lib_model OF Net_74_7 : LABEL IS "macrocell4";
     ATTRIBUTE Location OF Net_74_7 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_6 : LABEL IS "macrocell6";
+    ATTRIBUTE lib_model OF Net_74_6 : LABEL IS "macrocell5";
     ATTRIBUTE Location OF Net_74_6 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_5 : LABEL IS "macrocell7";
+    ATTRIBUTE lib_model OF Net_74_5 : LABEL IS "macrocell6";
     ATTRIBUTE Location OF Net_74_5 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_4 : LABEL IS "macrocell8";
+    ATTRIBUTE lib_model OF Net_74_4 : LABEL IS "macrocell7";
     ATTRIBUTE Location OF Net_74_4 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_3 : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF Net_74_3 : LABEL IS "macrocell8";
     ATTRIBUTE Location OF Net_74_3 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_2 : LABEL IS "macrocell10";
+    ATTRIBUTE lib_model OF Net_74_2 : LABEL IS "macrocell9";
     ATTRIBUTE Location OF Net_74_2 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_1 : LABEL IS "macrocell11";
+    ATTRIBUTE lib_model OF Net_74_1 : LABEL IS "macrocell10";
     ATTRIBUTE Location OF Net_74_1 : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF Net_74_0 : LABEL IS "macrocell12";
+    ATTRIBUTE lib_model OF Net_74_0 : LABEL IS "macrocell11";
     ATTRIBUTE Location OF Net_74_0 : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \Debouncer_1:DEBOUNCER[0]:d_sync_0\ : LABEL IS "macrocell13";
-    ATTRIBUTE Location OF \Debouncer_1:DEBOUNCER[0]:d_sync_0\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : LABEL IS "macrocell14";
-    ATTRIBUTE Location OF \Debouncer_1:DEBOUNCER[0]:d_sync_1\ : LABEL IS "U(0,4)";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -603,7 +590,7 @@ BEGIN
         PORT MAP(
             pa_out => pin(0)__PA,
             oe => open,
-            fb => Net_87,
+            fb => Net_90,
             pad_in => pin(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
@@ -666,18 +653,6 @@ BEGIN
             q => \detector:last\,
             clock_0 => ClockBlock_BUS_CLK,
             main_0 => Net_90);
-
-    Net_90:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * !main_1)",
-            regmode => 1,
-            clk_inv => '0',
-            clken_mode => 1)
-        PORT MAP(
-            q => Net_90,
-            clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \Debouncer_1:DEBOUNCER[0]:d_sync_0\,
-            main_1 => \Debouncer_1:DEBOUNCER[0]:d_sync_1\);
 
     Net_74_7:macrocell
         GENERIC MAP(
@@ -810,27 +785,5 @@ BEGIN
             main_0 => Net_84,
             main_1 => Net_7,
             main_2 => Net_74_0);
-
-    \Debouncer_1:DEBOUNCER[0]:d_sync_0\:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0)",
-            regmode => 1,
-            clk_inv => '0',
-            clken_mode => 1)
-        PORT MAP(
-            q => \Debouncer_1:DEBOUNCER[0]:d_sync_0\,
-            clock_0 => ClockBlock_BUS_CLK,
-            main_0 => Net_87);
-
-    \Debouncer_1:DEBOUNCER[0]:d_sync_1\:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0)",
-            regmode => 1,
-            clk_inv => '0',
-            clken_mode => 1)
-        PORT MAP(
-            q => \Debouncer_1:DEBOUNCER[0]:d_sync_1\,
-            clock_0 => ClockBlock_BUS_CLK,
-            main_0 => \Debouncer_1:DEBOUNCER[0]:d_sync_0\);
 
 END __DEFAULT__;

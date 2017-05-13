@@ -765,7 +765,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3d85
+.debug_info     0x00000000     0x3d8e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x387 .\CortexM3\ARM_GCC_493\Debug\main.o
  .debug_info    0x00000387      0x13a .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
@@ -774,9 +774,9 @@ END GROUP
  .debug_info    0x00000d22      0x716 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(pantallaLCD.o)
  .debug_info    0x00001438     0x1385 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyLib.o)
  .debug_info    0x000027bd      0xa57 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(cyPm.o)
- .debug_info    0x00003214       0x7f .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyBootAsmGnu.o)
- .debug_info    0x00003293      0x608 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyFlash.o)
- .debug_info    0x0000389b      0x4ea .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CySpc.o)
+ .debug_info    0x00003214       0x88 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyBootAsmGnu.o)
+ .debug_info    0x0000329c      0x608 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyFlash.o)
+ .debug_info    0x000038a4      0x4ea .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CySpc.o)
 
 .debug_abbrev   0x00000000      0xf6c
  *(.debug_abbrev)
@@ -821,26 +821,26 @@ END GROUP
  .debug_frame   0x00001098       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
  .debug_frame   0x000010b8       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-strlen.o)
 
-.debug_str      0x00000000     0x14dc
+.debug_str      0x00000000     0x14e5
  *(.debug_str)
- .debug_str     0x00000000      0x219 .\CortexM3\ARM_GCC_493\Debug\main.o
-                                0x25a (size before relaxing)
- .debug_str     0x00000219       0x75 .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
-                                0x1d9 (size before relaxing)
- .debug_str     0x0000028e      0x15c .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o
-                                0x2ed (size before relaxing)
- .debug_str     0x000003ea      0x15b .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(cyfitter_cfg.o)
-                                0x2f2 (size before relaxing)
- .debug_str     0x00000545      0x1c3 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(pantallaLCD.o)
-                                0x3ae (size before relaxing)
- .debug_str     0x00000708      0x833 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyLib.o)
-                                0xa2a (size before relaxing)
- .debug_str     0x00000f3b      0x359 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(cyPm.o)
-                                0x70a (size before relaxing)
- .debug_str     0x00001294      0x19c .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyFlash.o)
-                                0x384 (size before relaxing)
- .debug_str     0x00001430       0xac .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CySpc.o)
-                                0x30d (size before relaxing)
+ .debug_str     0x00000000      0x222 .\CortexM3\ARM_GCC_493\Debug\main.o
+                                0x263 (size before relaxing)
+ .debug_str     0x00000222       0x75 .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
+                                0x1e2 (size before relaxing)
+ .debug_str     0x00000297      0x15c .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o
+                                0x2f6 (size before relaxing)
+ .debug_str     0x000003f3      0x15b .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(cyfitter_cfg.o)
+                                0x2fb (size before relaxing)
+ .debug_str     0x0000054e      0x1c3 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(pantallaLCD.o)
+                                0x3b7 (size before relaxing)
+ .debug_str     0x00000711      0x833 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyLib.o)
+                                0xa33 (size before relaxing)
+ .debug_str     0x00000f44      0x359 .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(cyPm.o)
+                                0x713 (size before relaxing)
+ .debug_str     0x0000129d      0x19c .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CyFlash.o)
+                                0x38d (size before relaxing)
+ .debug_str     0x00001439       0xac .\CortexM3\ARM_GCC_493\Debug\Practica2Parte1y2.a(CySpc.o)
+                                0x316 (size before relaxing)
 
 .debug_loc      0x00000000     0x1cba
  *(.debug_loc)

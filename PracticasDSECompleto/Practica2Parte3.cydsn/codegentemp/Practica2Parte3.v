@@ -1,6 +1,6 @@
 // ======================================================================
 // Practica2Parte3.v generated from TopDesign.cysch
-// 05/13/2017 at 20:08
+// 05/13/2017 at 19:26
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -259,27 +259,10 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
 `endif
 
-// Component: Debouncer_v1_0
-`ifdef CY_BLK_DIR
-`undef CY_BLK_DIR
-`endif
-
-`ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\Debouncer_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\Debouncer_v1_0\Debouncer_v1_0.v"
-`else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\Debouncer_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\Debouncer_v1_0\Debouncer_v1_0.v"
-`endif
-
 // top
 module top ;
 
-          wire  Net_80;
-          wire  Net_4;
-          wire  Net_83;
           wire  Net_27;
-          wire  Net_87;
           wire  Net_70;
           wire  Net_69;
           wire  Net_68;
@@ -399,7 +382,7 @@ module top ;
 		pin
 		 (.oe(tmpOE__pin_net),
 		  .y({1'b0}),
-		  .fb({Net_87}),
+		  .fb({Net_90}),
 		  .io({tmpIO_0__pin_net[0:0]}),
 		  .siovref(tmpSIOVREF__pin_net),
 		  .interrupt({tmpINTERRUPT_0__pin_net[0:0]}),
@@ -425,18 +408,6 @@ module top ;
 
 
     assign Net_19[7:0] = 8'h64;
-
-    Debouncer_v1_0 Debouncer_1 (
-        .d(Net_87),
-        .clock(Net_75),
-        .q(Net_83),
-        .neg(Net_4),
-        .either(Net_80),
-        .pos(Net_90));
-    defparam Debouncer_1.EitherEdgeDetect = 0;
-    defparam Debouncer_1.NegEdgeDetect = 0;
-    defparam Debouncer_1.PosEdgeDetect = 1;
-    defparam Debouncer_1.SignalWidth = 1;
 
 
 

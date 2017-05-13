@@ -145,10 +145,10 @@ CYPACKED typedef struct
 #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000018u)
 
 /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480000F0u)
+#define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x480000E0u)
 
 /* IOPINS0_2 Address: CYREG_PRT2_DR Size (bytes): 10 */
-#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480000F8u)
+#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x480000E8u)
 
 
 /*******************************************************************************

@@ -306,7 +306,7 @@
 #define BCLK__BUS_CLK__HZ 24000000U
 #define BCLK__BUS_CLK__KHZ 24000U
 #define BCLK__BUS_CLK__MHZ 24U
-#define CY_PROJECT_NAME "Design01"
+#define CY_PROJECT_NAME "Practica1Parte3"
 #define CY_VERSION "PSoC Creator  4.0 Update 1"
 #define CYDEV_CHIP_DIE_LEOPARD 1u
 #define CYDEV_CHIP_DIE_PSOC4A 12u
