@@ -361,7 +361,6 @@
 <v>PracticasDSECompleto\Practica2Parte4\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>PracticasDSECompleto\Practica2Parte4\Generated_Source\PSoC5\cymetadata.c</v>
 <v>PracticasDSECompleto\Practica2Parte4\Generated_Source\PSoC5\project.h</v>
-<v>PracticasDSECompleto\Practica2Parte5</v>
 <v>PracticasDSECompleto\Practica2Parte5\TopDesign</v>
 <v>PracticasDSECompleto\Practica2Parte5\Practica2Parte5.cydwr</v>
 <v>PracticasDSECompleto\Practica2Parte5\Practica2Parte5.cydwr\Pins</v>
@@ -459,8 +458,130 @@
 <v>PracticasDSECompleto\Practica2Parte5\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>PracticasDSECompleto\Practica2Parte5\Generated_Source\PSoC5\cymetadata.c</v>
 <v>PracticasDSECompleto\Practica2Parte5\Generated_Source\PSoC5\project.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\TopDesign</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Pins</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Analog</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Clocks</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Interrupts</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\DMA</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\System</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Directives</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Flash Security</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\EEPROM</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Header Files</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Header Files\cyapicallbacks.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Source Files</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Source Files\main.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital\convertidorAnalogicoDigital.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital\convertidorAnalogicoDigital.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital\convertidorAnalogicoDigital_INT.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital\convertidorAnalogicoDigital_PM.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_AMux</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_AMux\convertidorAnalogicoDigital_AMux.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_AMux\convertidorAnalogicoDigital_AMux.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_Ext_CP_Clk</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_Ext_CP_Clk\convertidorAnalogicoDigital_Ext_CP_Clk.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_Ext_CP_Clk\convertidorAnalogicoDigital_Ext_CP_Clk.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_IRQ</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_IRQ\convertidorAnalogicoDigital_IRQ.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_IRQ\convertidorAnalogicoDigital_IRQ.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_theACLK</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_theACLK\convertidorAnalogicoDigital_theACLK.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital_theACLK\convertidorAnalogicoDigital_theACLK.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cmsis_armcc.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cmsis_gcc.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\entradaMedicion</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\entradaMedicion\entradaMedicion.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\entradaMedicion\entradaMedicion.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\entradaMedicion\entradaMedicion_aliases.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD\pantallaLCD.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD\pantallaLCD.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD\pantallaLCD_PM.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD_LCDPort</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD_LCDPort\pantallaLCD_LCDPort.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD_LCDPort\pantallaLCD_LCDPort.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\pantallaLCD_LCDPort\pantallaLCD_LCDPort_aliases.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydevice.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cyfitter.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\cymetadata.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\project.h</v>
 </ExpandedNodeIds>
-<VisibleNodeIds />
+<VisibleNodeIds>
+<v>PracticasDSECompleto</v>
+<v>PracticasDSECompleto\Practica1Parte3</v>
+<v>PracticasDSECompleto\Practica2Parte1y2</v>
+<v>PracticasDSECompleto\Practica2Parte3</v>
+<v>PracticasDSECompleto\Practica2Parte4</v>
+<v>PracticasDSECompleto\Practica2Parte5</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\TopDesign</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Pins</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Analog</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Clocks</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Interrupts</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\DMA</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\System</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Directives</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\Flash Security</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.cydwr\EEPROM</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Header Files</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Header Files\cyapicallbacks.h</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Source Files</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Source Files\main.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital\convertidorAnalogicoDigital.c</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Generated_Source\PSoC5\convertidorAnalogicoDigital\convertidorAnalogicoDigital.h</v>
+</VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
@@ -480,8 +601,31 @@
 <v>PracticasDSECompleto\Practica2Parte5</v>
 <v>PracticasDSECompleto\Practica2Parte5\TopDesign</v>
 <v>PracticasDSECompleto\Practica2Parte5\TopDesign\TopDesign.cysch</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\TopDesign</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\TopDesign\TopDesign.cysch</v>
 </ExpandedNodeIds>
-<VisibleNodeIds />
+<VisibleNodeIds>
+<v>PracticasDSECompleto</v>
+<v>PracticasDSECompleto\Practica1Parte3</v>
+<v>PracticasDSECompleto\Practica1Parte3\TopDesign</v>
+<v>PracticasDSECompleto\Practica1Parte3\TopDesign\TopDesign.cysch</v>
+<v>PracticasDSECompleto\Practica2Parte1y2</v>
+<v>PracticasDSECompleto\Practica2Parte1y2\TopDesign</v>
+<v>PracticasDSECompleto\Practica2Parte1y2\TopDesign\TopDesign.cysch</v>
+<v>PracticasDSECompleto\Practica2Parte3</v>
+<v>PracticasDSECompleto\Practica2Parte3\TopDesign</v>
+<v>PracticasDSECompleto\Practica2Parte3\TopDesign\TopDesign.cysch</v>
+<v>PracticasDSECompleto\Practica2Parte4</v>
+<v>PracticasDSECompleto\Practica2Parte4\TopDesign</v>
+<v>PracticasDSECompleto\Practica2Parte4\TopDesign\TopDesign.cysch</v>
+<v>PracticasDSECompleto\Practica2Parte5</v>
+<v>PracticasDSECompleto\Practica2Parte5\TopDesign</v>
+<v>PracticasDSECompleto\Practica2Parte5\TopDesign\TopDesign.cysch</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\TopDesign</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
@@ -639,8 +783,69 @@
 <v>PracticasDSECompleto\Practica2Parte5\Practica2Parte5.gpdsc</v>
 <v>PracticasDSECompleto\Practica2Parte5\Practica2Parte5.rpt</v>
 <v>PracticasDSECompleto\Practica2Parte5\Practica2Parte5_timing.html</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital_AMux.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital_Ext_CP_Clk.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital_INT.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital_IRQ.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital_PM.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\convertidorAnalogicoDigital_theACLK.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\entradaMedicion.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\pantallaLCD.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\pantallaLCD_LCDPort.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Listing Files\pantallaLCD_PM.lst</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Practica4Parte1Voltimetro.elf</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Practica4Parte1Voltimetro.hex</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CortexM3\ARM_GCC_493\Debug\Practica4Parte1Voltimetro.map</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.gpdsc</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro.rpt</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\Practica4Parte1Voltimetro_timing.html</v>
 </ExpandedNodeIds>
-<VisibleNodeIds />
+<VisibleNodeIds>
+<v>PracticasDSECompleto</v>
+<v>PracticasDSECompleto\Practica1Parte3</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\botoncitoRegulador.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_2.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\generadorPulsosPWM.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\generadorPulsosPWM_PM.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\isr_GPIO.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\ledHardwarePWM.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\ledSoftwareInterrupcionPWM.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\Timer_1.lst</v>
+<v>PracticasDSECompleto\Practica1Parte3\CortexM3\ARM_GCC_493\Debug\Listing Files\Timer_1_PM.lst</v>
+</VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
 <TreeKeysV2>
@@ -654,79 +859,54 @@
 <v>PracticasDSECompleto\Practica1Parte3\PSoC 5LP Architecture TRM</v>
 <v>PracticasDSECompleto\Practica1Parte3\CY8C58LP Family Datasheet</v>
 <v>PracticasDSECompleto\Practica1Parte3\System Reference Guides</v>
-<v>PracticasDSECompleto\Practica1Parte3\System Reference Guides\cy_boot_v5_50</v>
-<v>PracticasDSECompleto\Practica1Parte3\cy_clock_v2_20</v>
-<v>PracticasDSECompleto\Practica1Parte3\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\cy_constant_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\cy_isr_v1_70.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\cy_pins_v2_20</v>
-<v>PracticasDSECompleto\Practica1Parte3\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\mux_v1_10.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\PWM_v3_30.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\Timer_v2_70.pdf</v>
-<v>PracticasDSECompleto\Practica1Parte3\ZeroTerminal.pdf</v>
 <v>PracticasDSECompleto\Practica2Parte1y2</v>
 <v>PracticasDSECompleto\Practica2Parte1y2\PSoC 5LP Architecture TRM</v>
 <v>PracticasDSECompleto\Practica2Parte1y2\CY8C58LP Family Datasheet</v>
 <v>PracticasDSECompleto\Practica2Parte1y2\System Reference Guides</v>
-<v>PracticasDSECompleto\Practica2Parte1y2\System Reference Guides\cy_boot_v5_50</v>
-<v>PracticasDSECompleto\Practica2Parte1y2\CharLCD_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte1y2\cy_pins_v2_20</v>
-<v>PracticasDSECompleto\Practica2Parte1y2\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte1y2\xor_v1_0.pdf</v>
 <v>PracticasDSECompleto\Practica2Parte3</v>
 <v>PracticasDSECompleto\Practica2Parte3\PSoC 5LP Architecture TRM</v>
 <v>PracticasDSECompleto\Practica2Parte3\CY8C58LP Family Datasheet</v>
 <v>PracticasDSECompleto\Practica2Parte3\System Reference Guides</v>
-<v>PracticasDSECompleto\Practica2Parte3\System Reference Guides\cy_boot_v5_50</v>
-<v>PracticasDSECompleto\Practica2Parte3\BasicCounter_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\CharLCD_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\cy_clock_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\cy_constant_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\cy_pins_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\CyStatusReg_v1_90.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\DigitalComp_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte3\EdgeDetect_v1_0.pdf</v>
 <v>PracticasDSECompleto\Practica2Parte4</v>
 <v>PracticasDSECompleto\Practica2Parte4\PSoC 5LP Architecture TRM</v>
 <v>PracticasDSECompleto\Practica2Parte4\CY8C58LP Family Datasheet</v>
 <v>PracticasDSECompleto\Practica2Parte4\System Reference Guides</v>
-<v>PracticasDSECompleto\Practica2Parte4\System Reference Guides\cy_boot_v5_50</v>
-<v>PracticasDSECompleto\Practica2Parte4\and_v1_0</v>
-<v>PracticasDSECompleto\Practica2Parte4\and_v1_0\and_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\CharLCD_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\cy_clock_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\cy_pins_v2_20</v>
-<v>PracticasDSECompleto\Practica2Parte4\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\CyControlReg_v1_80.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\CyStatusReg_v1_90.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\not_v1_0</v>
-<v>PracticasDSECompleto\Practica2Parte4\not_v1_0\not_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte4\or_v1_0</v>
-<v>PracticasDSECompleto\Practica2Parte4\or_v1_0\or_v1_0.pdf</v>
 <v>PracticasDSECompleto\Practica2Parte5</v>
 <v>PracticasDSECompleto\Practica2Parte5\PSoC 5LP Architecture TRM</v>
 <v>PracticasDSECompleto\Practica2Parte5\CY8C58LP Family Datasheet</v>
 <v>PracticasDSECompleto\Practica2Parte5\System Reference Guides</v>
-<v>PracticasDSECompleto\Practica2Parte5\System Reference Guides\cy_boot_v5_50</v>
-<v>PracticasDSECompleto\Practica2Parte5\and_v1_0</v>
-<v>PracticasDSECompleto\Practica2Parte5\and_v1_0\and_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\CharLCD_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\cy_pins_v2_20</v>
-<v>PracticasDSECompleto\Practica2Parte5\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\CyControlReg_v1_80</v>
-<v>PracticasDSECompleto\Practica2Parte5\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\cydff_v1_30</v>
-<v>PracticasDSECompleto\Practica2Parte5\cydff_v1_30\cydff_v1_30.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\CyStatusReg_v1_90</v>
-<v>PracticasDSECompleto\Practica2Parte5\CyStatusReg_v1_90\CyStatusReg_v1_90.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\LUT_v1_50.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\not_v1_0</v>
-<v>PracticasDSECompleto\Practica2Parte5\not_v1_0\not_v1_0.pdf</v>
-<v>PracticasDSECompleto\Practica2Parte5\or_v1_0</v>
-<v>PracticasDSECompleto\Practica2Parte5\or_v1_0\or_v1_0.pdf</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\System Reference Guides</v>
 </ExpandedNodeIds>
-<VisibleNodeIds />
+<VisibleNodeIds>
+<v>PracticasDSECompleto</v>
+<v>PracticasDSECompleto\Practica1Parte3</v>
+<v>PracticasDSECompleto\Practica1Parte3\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica1Parte3\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica1Parte3\System Reference Guides</v>
+<v>PracticasDSECompleto\Practica2Parte1y2</v>
+<v>PracticasDSECompleto\Practica2Parte1y2\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica2Parte1y2\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica2Parte1y2\System Reference Guides</v>
+<v>PracticasDSECompleto\Practica2Parte3</v>
+<v>PracticasDSECompleto\Practica2Parte3\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica2Parte3\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica2Parte3\System Reference Guides</v>
+<v>PracticasDSECompleto\Practica2Parte4</v>
+<v>PracticasDSECompleto\Practica2Parte4\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica2Parte4\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica2Parte4\System Reference Guides</v>
+<v>PracticasDSECompleto\Practica2Parte5</v>
+<v>PracticasDSECompleto\Practica2Parte5\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica2Parte5\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica2Parte5\System Reference Guides</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\PSoC 5LP Architecture TRM</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\CY8C58LP Family Datasheet</v>
+<v>PracticasDSECompleto\Practica4Parte1Voltimetro\System Reference Guides</v>
+</VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
 </CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
@@ -748,6 +928,11 @@
 <name v=".\Practica2Parte3.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Practica2Parte1y2.cydsn\main.c" />
 <name v=".\Practica2Parte5.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Practica2Parte5.cydsn\main.c" />
+<name v=".\Practica2Parte5.cydsn\Practica2Parte5.cydwr" />
+<name v=".\Practica4Parte1Voltimetro.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Practica4Parte1Voltimetro.cydsn\main.c" />
+<name v=".\Practica4Parte1Voltimetro.cydsn\Practica4Parte1Voltimetro.cydwr" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -755,7 +940,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1128, 698" SelectedTabbedMdiWindow="c810751d-005e-4d2f-ac94-4a66bde10855"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="59db1e5a-6538-43d3-a30c-bea115674cbb" /><DocumentWindow Key="4755fd05-06bd-4ad9-90db-d4f92094c39a" Guid="8466526c-c00e-4cb2-bb64-2d248e16de86" /><DocumentWindow Key="dea83e0f-12f5-4c01-931b-10bfea3291ce" Guid="1b7dc34d-204b-45ec-8cd4-323fc194a845" /><DocumentWindow Key="471d956b-f495-4729-9476-caf250d4a8ba" Guid="080c4f83-d6df-47f2-86f1-662d895ea5ef" /><DocumentWindow Key="f639bcda-9829-484e-8160-96c0bf6c3b81" Guid="96b9ba39-ea38-40e3-ade2-0f5df9db9b86" /><DocumentWindow Key="482b1a4d-1d4d-4d9c-8f95-cc1aec3adac6" Guid="3088a0a1-4cc6-4aaa-b1d7-f63cb8f496c1" /><DocumentWindow Key="44f4bcd2-275e-46fc-a686-8a8773fc6840" Guid="9dcf2d82-5d79-4e87-8325-1347dd3a43bc" /><DocumentWindow Key="6670bc3d-b007-4ee8-be28-10e77d8a6932" Guid="d57ace74-a616-4164-b28b-63d4543785dd" /><DocumentWindow Key="07e9f00d-1b28-41f1-b65f-80cad8353d9d" Guid="c810751d-005e-4d2f-ac94-4a66bde10855" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1128, 698" SelectedTabbedMdiWindow="4dac805b-2321-4402-accd-102ef20d9d6a"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="59db1e5a-6538-43d3-a30c-bea115674cbb" /><DocumentWindow Key="ce621950-acb2-4c18-9d18-bc18618acb28" Guid="8ce0edd7-455f-43d1-b6af-2fdd26b5890a" /><DocumentWindow Key="3124fbce-3e55-456c-8bd7-80d8ec957f32" Guid="156c7857-440a-4d7b-8623-a34fbede189f" /><DocumentWindow Key="77cccf88-4923-4224-a99f-e2d32e896564" Guid="61123050-40e3-4f72-9330-4af751c0a556" /><DocumentWindow Key="5bb8fa86-fb31-429e-a8b8-9c5a3dced04d" Guid="b4264e6f-2366-4f84-806f-e224dc0cbd02" /><DocumentWindow Key="6ffce727-8494-4613-9f92-016ce66fbedb" Guid="ac65d7d5-a0e9-46f3-84a1-98d558afd36b" /><DocumentWindow Key="b919b340-b37a-46a5-872d-aac1a28b19a7" Guid="e95bf484-ed7c-4a9d-afee-4f918d3e5702" /><DocumentWindow Key="2cde2772-d9fa-466a-ba56-ba4e1a7a7be8" Guid="5fb4df02-5692-4675-bb9c-307b5dbf0212" /><DocumentWindow Key="ad7d2775-e3ff-429a-9299-e7a74ec7d800" Guid="1446caea-63a5-42a3-a61f-05c9aabf1f35" /><DocumentWindow Key="5256475b-3326-45dd-8672-a25c5fe7f98e" Guid="9c52b62e-06ae-49f8-b2c9-183a06b46c06" /><DocumentWindow Key="a0ce0f6a-3b1f-4ca5-850b-2490fca4df3f" Guid="679a82d3-596e-405a-aeb0-24ac5778f285" /><DocumentWindow Key="179f66b1-d3c2-483f-9fb8-e699a5c2a603" Guid="4dac805b-2321-4402-accd-102ef20d9d6a" /><DocumentWindow Key="b1ffac64-7419-4b0f-91c2-30742c0fcb7e" Guid="d6f05395-4520-4aec-b1dd-473f1e5e2850" /><DocumentWindow Key="16f9a604-1dfd-4d2e-9539-06bb277b2669" Guid="91bc3b62-ccd2-4b33-9ad8-31b6b1d57bb2" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
