@@ -1,0 +1,182 @@
+XH
+H 3 areas 3D global symbols
+M adcinc.asm
+S ADCINC_bState Ref0000
+S ADCINC_bNumSamples Ref0000
+S ADCINC_iResult Ref0000
+S ADCINC_fStatus Ref0000
+S ADCINC_fMode Ref0000
+A text size 0 flags 0
+dbfile lib/adcinc.asm
+dbfunc 0 ? 0 I
+dbfile ADCINC.inc
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ADCINC.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.4/Common/CY110F~1/tools/include/CY8C27~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/ADCINC.inc
+dbfunc 0 ? 0 I
+dbfile lib/adcinc.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/adcinc.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~2/5.4/Common/CY110F~1/tools/include/CY8C27~1/m8c.inc
+dbfunc 0 ? 0 I
+A bss size 0 flags 20
+A UserModules size 96 flags 0
+dbfile lib/adcinc.asm
+dbfunc 0 ? 0 I
+dbline 5E 0
+dbline 5F 3
+dbline 2 5
+dbline 3 8
+dbline 4 B
+dbline 5 E
+dbline 61 11
+dbline 62 14
+dbline 64 17
+dbline 7A 18
+dbline 7B 1A
+dbline 7C 1B
+dbline 7D 1C
+dbline 7E 1D
+dbline 7F 1F
+dbline 80 21
+dbline 81 23
+dbline 82 25
+dbline 83 27
+dbline 84 29
+dbline 85 2A
+dbline 86 2C
+dbline 87 2D
+dbline 89 2F
+dbline 3 30
+dbline A1 33
+dbline A2 36
+dbline A3 39
+dbline A5 3C
+dbline 2 3D
+dbline 3 40
+dbline 4 43
+dbline 5 46
+dbline BD 49
+dbline BE 4C
+dbline BF 4F
+dbline C0 51
+dbline C1 53
+dbline C2 55
+dbline 3 58
+dbline 4 5B
+dbline C6 5E
+dbline 3 5F
+dbline 2 62
+dbline 3 65
+dbline 4 68
+dbline 5 6B
+dbline E1 6E
+dbline 3 6F
+dbline F8 71
+dbline 4 72
+dbline 5 75
+dbline 6 77
+dbline 7 79
+dbline 8 7C
+dbline 114 7E
+dbline 3 7F
+dbline 4 82
+dbline 12F 84
+dbline 3 85
+dbline 4 87
+dbline 14A 89
+dbline 3 8A
+dbline 165 8C
+dbline 3 8D
+dbline 4 8F
+dbline 17E 92
+dbline 2 93
+dbline 197 95
+S ADCINC_iGetData Def0085
+S _ADCINC_Stop Def0030
+S ADCINC_Start Def0000
+S ADCINC_wGetData Def0085
+S $sb$ADCINC_GetSamples Def003D
+S ADCINC_WritePulseWidth Def0093
+S $se$ADCINC_GetSamples Def005F
+S $sb$ADCINC_bGetData Def008A
+S $se$ADCINC_bGetData Def008D
+S ADCINC_fIsDataAvailable Def006F
+S $sb$ADCINC_iGetData Def0085
+S $se$ADCINC_iGetData Def008A
+S _ADCINC_fClearFlag Def008D
+S $sb$ADCINC_Start Def0000
+S $se$ADCINC_Start Def0018
+S $sb$ADCINC_WritePulseWidth Def0093
+S $se$ADCINC_WritePulseWidth Def0096
+S ADCINC_SetPower Def0018
+S $sb$ADCINC_fIsDataAvailable Def006F
+S $se$ADCINC_fIsDataAvailable Def0072
+S _ADCINC_GetSamples Def003D
+S $sb$ADCINC_SetPower Def0018
+S $se$ADCINC_SetPower Def0030
+S _ADCINC_bGetData Def008A
+S _ADCINC_cGetData Def008A
+S ADCINC_bClearFlagGetData Def007F
+S ADCINC_cClearFlagGetData Def007F
+S _ADCINC_iGetData Def0085
+S ADCINC_iClearFlagGetData Def0072
+S _ADCINC_Start Def0000
+S ADCINC_StopADC Def005F
+S _ADCINC_wGetData Def0085
+S ADCINC_wClearFlagGetData Def0072
+S _ADCINC_WritePulseWidth Def0093
+S $sb$ADCINC_cClearFlagGetData Def007F
+S _ADCINC_fIsDataAvailable Def006F
+S $se$ADCINC_cClearFlagGetData Def0085
+S $sb$ADCINC_iClearFlagGetData Def0072
+S $se$ADCINC_iClearFlagGetData Def007F
+S $sb$ADCINC_StopADC Def005F
+S $se$ADCINC_StopADC Def006F
+S _ADCINC_SetPower Def0018
+S ADCINC_Stop Def0030
+S _ADCINC_bClearFlagGetData Def007F
+S _ADCINC_cClearFlagGetData Def007F
+S $sb$ADCINC_Stop Def0030
+S _ADCINC_iClearFlagGetData Def0072
+S $se$ADCINC_Stop Def003D
+S ADCINC_fClearFlag Def008D
+S _ADCINC_StopADC Def005F
+S _ADCINC_wClearFlagGetData Def0072
+S $sb$ADCINC_fClearFlag Def008D
+S $se$ADCINC_fClearFlag Def0093
+S ADCINC_GetSamples Def003D
+S ADCINC_bGetData Def008A
+S ADCINC_cGetData Def008A
+T 00 00 43 E7 C0 90 13 43 82 20 43 83 10 43 92 20
+R 00 00 00 02
+T 00 0E 43 93 10 62 25 FF 43 27 01 7F 21 03 08 08
+R 00 00 00 02
+T 00 1C 4F 5D 83 21 FC 2D FE 5D 93 21 FC 2D FF 18
+R 00 00 00 02
+T 00 2A 60 93 18 60 83 7F 41 E1 FD 41 83 FC 41 93
+R 00 00 00 02
+T 00 38 FC 41 27 FE 7F 41 83 EF 41 82 DF 41 93 EF
+R 00 00 00 02
+T 00 46 41 92 DF 55 00 00 00 55 00 00 00 53 00 00
+R 00 00 00 02 03 06 00 04 03 0A 00 00 03 0E 00 01
+T 00 51 5D 26 B0 04 62 26 01 62 DB FD 43 E1 02 7F
+R 00 00 00 02
+T 00 5F 41 E1 FD 43 82 20 43 83 10 43 92 20 43 93
+R 00 00 00 02
+T 00 6D 10 7F 51 00 00 7F 55 00 00 00 58 00 00 51
+R 00 00 00 02 03 05 00 03 03 09 00 03 03 0D 00 02
+T 00 78 00 01 3C 00 00 00 BF F5 7F 55 00 00 00 51
+R 00 00 00 02 03 02 00 02 03 05 00 03 03 0C 00 03
+T 00 83 00 01 7F 58 00 00 51 00 01 7F 51
+R 00 00 00 02 03 02 00 02 03 06 00 02 03 09 00 02
+T 00 8B 00 01 7F 51 00 00 55 00 00 00 7F 60 26 7F
+R 00 00 00 02 03 02 00 02 03 06 00 03 03 09 00 03

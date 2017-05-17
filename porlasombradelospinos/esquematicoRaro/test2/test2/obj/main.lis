@@ -1,0 +1,2348 @@
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _first_af::
+ 0000                   .blkb 2
+                        .area idata(rom,lit)
+ 0000 0001              .word 1
+                        .area data(ram, con, rel)
+ 0002                   .dbfile ./main.c
+ 0002                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0002                   .dbsym e first_af _first_af I
+                        .area bss(ram, con, rel)
+ 0000                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0000           L2:
+ 0000                   .blkb 4
+ 0004           L3:
+ 0004                   .blkb 4
+ 0008           L4:
+ 0008                   .blkb 4
+ 000C           L5:
+ 000C                   .blkb 4
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0000                   .dbfunc e nf_50 _nf_50 fI
+ 0000                   .dbsym s yn_2 L5 L
+ 0000                   .dbsym s yn_1 L4 L
+ 0000                   .dbsym s xn_2 L3 L
+ 0000                   .dbsym s xn_1 L2 L
+ 0000           ;              y -> X+4
+ 0000           ;          diff1 -> X+0
+ 0000           ;              x -> X-5
+ 0000           _nf_50::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 380A              add SP,10
+ 0004                   .dbline 14
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // C main line
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; #include "delay.h" 
+ 0004           ; #include "stdlib.h"
+ 0004           ; 
+ 0004           ; INT  iData; 
+ 0004           ; int nADCdata, nf_50_data, nf_50_data1, nf_50_data2, nf_50_data3, nf_50_data4, nf_50_data5, hpf_data; 
+ 0004           ; first_af = TRUE;
+ 0004           ; int nf_50 (int x) // second order nitch filter f = 50 hz 
+ 0004           ; { 
+ 0004                   .dbline 18
+ 0004           ;   static long xn_1, xn_2, yn_1, yn_2;
+ 0004           ;   long diff1;
+ 0004           ;   int y;
+ 0004           ;   diff1 = (x + xn_2) <<16;   // 0.5 + 0.25  * 65536
+ 0004 52FC              mov A,[X-4]
+ 0006 5300              mov [__r3],A
+ 0008 52FB              mov A,[X-5]
+ 000A 5300              mov [__r2],A
+ 000C 470080            tst [__r2],-128
+ 000F A009              jz X0
+ 0011 5500FF            mov [__r1],-1
+ 0014 5500FF            mov [__r0],-1
+ 0017 8007              jmp X1
+ 0019           X0:
+ 0019 550000            mov [__r1],0
+ 001C 550000            mov [__r0],0
+ 001F           X1:
+ 001F 5107              mov A,[L3+3]
+ 0021 0400              add [__r3],A
+ 0023 5106              mov A,[L3+2]
+ 0025 0C00              adc [__r2],A
+ 0027 5105              mov A,[L3+1]
+ 0029 0C00              adc [__r1],A
+ 002B 5104              mov A,[L3]
+ 002D 0C00              adc [__r0],A
+ 002F 5010              mov A,16
+ 0031           X2:
+ 0031 6500              asl [__r3]
+ 0033 6B00              rlc [__r2]
+ 0035 6B00              rlc [__r1]
+ 0037 6B00              rlc [__r0]
+ 0039 78                dec A
+ 003A BFF6              jnz X2
+ 003C 5100              mov A,[__r0]
+ 003E 5400              mov [X+0],A
+ 0040 5100              mov A,[__r1]
+ 0042 5401              mov [X+1],A
+ 0044 5100              mov A,[__r2]
+ 0046 5402              mov [X+2],A
+ 0048 5100              mov A,[__r3]
+ 004A 5403              mov [X+3],A
+ 004C                   .dbline 19
+ 004C           ;   y = ((diff1>>1) + (diff1>>2) + 87301*(xn_1 - yn_1) - ((yn_2<<16)>>1) )>>16;
+ 004C 5F000C            mov [__r0],[L5]
+ 004F 5F000D            mov [__r1],[L5+1]
+ 0052 5F000E            mov [__r2],[L5+2]
+ 0055 5F000F            mov [__r3],[L5+3]
+ 0058 5010              mov A,16
+ 005A           X3:
+ 005A 6500              asl [__r3]
+ 005C 6B00              rlc [__r2]
+ 005E 6B00              rlc [__r1]
+ 0060 6B00              rlc [__r0]
+ 0062 78                dec A
+ 0063 BFF6              jnz X3
+ 0065 6800              asr [__r0]
+ 0067 6E00              rrc [__r1]
+ 0069 6E00              rrc [__r2]
+ 006B 6E00              rrc [__r3]
+ 006D 5100              mov A,[__r0]
+ 006F 5406              mov [X+6],A
+ 0071 5100              mov A,[__r1]
+ 0073 5407              mov [X+7],A
+ 0075 5100              mov A,[__r2]
+ 0077 5408              mov [X+8],A
+ 0079 5100              mov A,[__r3]
+ 007B 5409              mov [X+9],A
+ 007D 5103              mov A,[L2+3]
+ 007F 120B              sub A,[L4+3]
+ 0081 5300              mov [__r7],A
+ 0083 5102              mov A,[L2+2]
+ 0085 1A0A              sbb A,[L4+2]
+ 0087 5300              mov [__r6],A
+ 0089 5101              mov A,[L2+1]
+ 008B 1A09              sbb A,[L4+1]
+ 008D 5300              mov [__r5],A
+ 008F 5100              mov A,[L2]
+ 0091 1A08              sbb A,[L4]
+ 0093 08                push A
+ 0094 5100              mov A,[__r5]
+ 0096 08                push A
+ 0097 5100              mov A,[__r6]
+ 0099 08                push A
+ 009A 5100              mov A,[__r7]
+ 009C 08                push A
+ 009D 5000              mov A,0
+ 009F 08                push A
+ 00A0 5001              mov A,1
+ 00A2 08                push A
+ 00A3 5055              mov A,85
+ 00A5 08                push A
+ 00A6 5005              mov A,5
+ 00A8 08                push A
+ 00A9 7C0000            xcall __mul_32X32_32
+ 00AC 38FC              add SP,-4
+ 00AE 18                pop A
+ 00AF 5300              mov [__r7],A
+ 00B1 18                pop A
+ 00B2 5300              mov [__r6],A
+ 00B4 18                pop A
+ 00B5 5300              mov [__r5],A
+ 00B7 18                pop A
+ 00B8 5300              mov [__r4],A
+ 00BA 5200              mov A,[X+0]
+ 00BC 5300              mov [__r8],A
+ 00BE 5201              mov A,[X+1]
+ 00C0 5300              mov [__r9],A
+ 00C2 5202              mov A,[X+2]
+ 00C4 5300              mov [__r10],A
+ 00C6 5203              mov A,[X+3]
+ 00C8 5300              mov [__r11],A
+ 00CA 5002              mov A,2
+ 00CC           X4:
+ 00CC 6800              asr [__r8]
+ 00CE 6E00              rrc [__r9]
+ 00D0 6E00              rrc [__r10]
+ 00D2 6E00              rrc [__r11]
+ 00D4 78                dec A
+ 00D5 BFF6              jnz X4
+ 00D7 5200              mov A,[X+0]
+ 00D9 5300              mov [__r0],A
+ 00DB 5201              mov A,[X+1]
+ 00DD 5300              mov [__r1],A
+ 00DF 5202              mov A,[X+2]
+ 00E1 5300              mov [__r2],A
+ 00E3 5203              mov A,[X+3]
+ 00E5 5300              mov [__r3],A
+ 00E7 6800              asr [__r0]
+ 00E9 6E00              rrc [__r1]
+ 00EB 6E00              rrc [__r2]
+ 00ED 6E00              rrc [__r3]
+ 00EF 5100              mov A,[__r11]
+ 00F1 0400              add [__r3],A
+ 00F3 5100              mov A,[__r10]
+ 00F5 0C00              adc [__r2],A
+ 00F7 5100              mov A,[__r9]
+ 00F9 0C00              adc [__r1],A
+ 00FB 5100              mov A,[__r8]
+ 00FD 0C00              adc [__r0],A
+ 00FF 5100              mov A,[__r7]
+ 0101 0400              add [__r3],A
+ 0103 5100              mov A,[__r6]
+ 0105 0C00              adc [__r2],A
+ 0107 5100              mov A,[__r5]
+ 0109 0C00              adc [__r1],A
+ 010B 5100              mov A,[__r4]
+ 010D 0C00              adc [__r0],A
+ 010F 5209              mov A,[X+9]
+ 0111 1400              sub [__r3],A
+ 0113 5208              mov A,[X+8]
+ 0115 1C00              sbb [__r2],A
+ 0117 5207              mov A,[X+7]
+ 0119 1C00              sbb [__r1],A
+ 011B 5206              mov A,[X+6]
+ 011D 1C00              sbb [__r0],A
+ 011F 5010              mov A,16
+ 0121           X5:
+ 0121 6800              asr [__r0]
+ 0123 6E00              rrc [__r1]
+ 0125 6E00              rrc [__r2]
+ 0127 6E00              rrc [__r3]
+ 0129 78                dec A
+ 012A BFF6              jnz X5
+ 012C 5100              mov A,[__r3]
+ 012E 5405              mov [X+5],A
+ 0130 5100              mov A,[__r2]
+ 0132 5404              mov [X+4],A
+ 0134                   .dbline 20
+ 0134           ;   xn_2 = xn_1;
+ 0134 5F0400            mov [L3],[L2]
+ 0137 5F0501            mov [L3+1],[L2+1]
+ 013A 5F0602            mov [L3+2],[L2+2]
+ 013D 5F0703            mov [L3+3],[L2+3]
+ 0140                   .dbline 21
+ 0140           ;   xn_1 = x;
+ 0140 52FC              mov A,[X-4]
+ 0142 5303              mov [L2+3],A
+ 0144 52FB              mov A,[X-5]
+ 0146 5302              mov [L2+2],A
+ 0148 470280            tst [L2+2],-128
+ 014B A009              jz X6
+ 014D 5501FF            mov [L2+1],-1
+ 0150 5500FF            mov [L2],-1
+ 0153 8007              jmp X7
+ 0155           X6:
+ 0155 550100            mov [L2+1],0
+ 0158 550000            mov [L2],0
+ 015B           X7:
+ 015B                   .dbline 22
+ 015B           ;   yn_2 = yn_1;
+ 015B 5F0C08            mov [L5],[L4]
+ 015E 5F0D09            mov [L5+1],[L4+1]
+ 0161 5F0E0A            mov [L5+2],[L4+2]
+ 0164 5F0F0B            mov [L5+3],[L4+3]
+ 0167                   .dbline 23
+ 0167           ;   yn_1 = y;
+ 0167 5205              mov A,[X+5]
+ 0169 530B              mov [L4+3],A
+ 016B 5204              mov A,[X+4]
+ 016D 530A              mov [L4+2],A
+ 016F 470A80            tst [L4+2],-128
+ 0172 A009              jz X8
+ 0174 5509FF            mov [L4+1],-1
+ 0177 5508FF            mov [L4],-1
+ 017A 8007              jmp X9
+ 017C           X8:
+ 017C 550900            mov [L4+1],0
+ 017F 550800            mov [L4],0
+ 0182           X9:
+ 0182                   .dbline 24
+ 0182           ;   return y;
+ 0182 5205              mov A,[X+5]
+ 0184 5300              mov [__r1],A
+ 0186 5204              mov A,[X+4]
+ 0188 5300              mov [__r0],A
+ 018A                   .dbline -2
+ 018A           L1:
+ 018A 38F6              add SP,-10
+ 018C 20                pop X
+ 018D                   .dbline 0 ; func end
+ 018D 7F                ret
+ 018E                   .dbsym l y 4 I
+ 018E                   .dbsym l diff1 0 L
+ 018E                   .dbsym l x -5 I
+ 018E                   .dbend
+                        .area bss(ram, con, rel)
+ 0010                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0010           L7:
+ 0010                   .blkb 4
+ 0014           L8:
+ 0014                   .blkb 4
+ 0018           L9:
+ 0018                   .blkb 4
+ 001C           L10:
+ 001C                   .blkb 4
+                        .area text(rom, con, rel)
+ 018E                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 018E                   .dbfunc e nf1_50 _nf1_50 fI
+ 018E                   .dbsym s yn1_2 L10 L
+ 018E                   .dbsym s yn1_1 L9 L
+ 018E                   .dbsym s xn1_2 L8 L
+ 018E                   .dbsym s xn1_1 L7 L
+ 018E           ;              y -> X+4
+ 018E           ;          diff1 -> X+0
+ 018E           ;              x -> X-5
+ 018E           _nf1_50::
+ 018E                   .dbline -1
+ 018E 10                push X
+ 018F 4F                mov X,SP
+ 0190 380A              add SP,10
+ 0192                   .dbline 29
+ 0192           ; }
+ 0192           ; 
+ 0192           ; //----------------------------------------------------------
+ 0192           ; int nf1_50 (int x) // second order nitch filter f = 50 hz 
+ 0192           ; { 
+ 0192                   .dbline 33
+ 0192           ;   static long xn1_1, xn1_2, yn1_1, yn1_2;
+ 0192           ;   long diff1;
+ 0192           ;   int y;
+ 0192           ;   diff1 = (x + xn1_2) <<16;   // 0.5 + 0.25  * 65536
+ 0192 52FC              mov A,[X-4]
+ 0194 5300              mov [__r3],A
+ 0196 52FB              mov A,[X-5]
+ 0198 5300              mov [__r2],A
+ 019A 470080            tst [__r2],-128
+ 019D A009              jz X10
+ 019F 5500FF            mov [__r1],-1
+ 01A2 5500FF            mov [__r0],-1
+ 01A5 8007              jmp X11
+ 01A7           X10:
+ 01A7 550000            mov [__r1],0
+ 01AA 550000            mov [__r0],0
+ 01AD           X11:
+ 01AD 5117              mov A,[L8+3]
+ 01AF 0400              add [__r3],A
+ 01B1 5116              mov A,[L8+2]
+ 01B3 0C00              adc [__r2],A
+ 01B5 5115              mov A,[L8+1]
+ 01B7 0C00              adc [__r1],A
+ 01B9 5114              mov A,[L8]
+ 01BB 0C00              adc [__r0],A
+ 01BD 5010              mov A,16
+ 01BF           X12:
+ 01BF 6500              asl [__r3]
+ 01C1 6B00              rlc [__r2]
+ 01C3 6B00              rlc [__r1]
+ 01C5 6B00              rlc [__r0]
+ 01C7 78                dec A
+ 01C8 BFF6              jnz X12
+ 01CA 5100              mov A,[__r0]
+ 01CC 5400              mov [X+0],A
+ 01CE 5100              mov A,[__r1]
+ 01D0 5401              mov [X+1],A
+ 01D2 5100              mov A,[__r2]
+ 01D4 5402              mov [X+2],A
+ 01D6 5100              mov A,[__r3]
+ 01D8 5403              mov [X+3],A
+ 01DA                   .dbline 34
+ 01DA           ;   y = ((diff1>>1) + (diff1>>2) + 87301*(xn1_1 - yn1_1) - ((yn1_2<<16)>>1) )>>16;
+ 01DA 5F001C            mov [__r0],[L10]
+ 01DD 5F001D            mov [__r1],[L10+1]
+ 01E0 5F001E            mov [__r2],[L10+2]
+ 01E3 5F001F            mov [__r3],[L10+3]
+ 01E6 5010              mov A,16
+ 01E8           X13:
+ 01E8 6500              asl [__r3]
+ 01EA 6B00              rlc [__r2]
+ 01EC 6B00              rlc [__r1]
+ 01EE 6B00              rlc [__r0]
+ 01F0 78                dec A
+ 01F1 BFF6              jnz X13
+ 01F3 6800              asr [__r0]
+ 01F5 6E00              rrc [__r1]
+ 01F7 6E00              rrc [__r2]
+ 01F9 6E00              rrc [__r3]
+ 01FB 5100              mov A,[__r0]
+ 01FD 5406              mov [X+6],A
+ 01FF 5100              mov A,[__r1]
+ 0201 5407              mov [X+7],A
+ 0203 5100              mov A,[__r2]
+ 0205 5408              mov [X+8],A
+ 0207 5100              mov A,[__r3]
+ 0209 5409              mov [X+9],A
+ 020B 5113              mov A,[L7+3]
+ 020D 121B              sub A,[L9+3]
+ 020F 5300              mov [__r7],A
+ 0211 5112              mov A,[L7+2]
+ 0213 1A1A              sbb A,[L9+2]
+ 0215 5300              mov [__r6],A
+ 0217 5111              mov A,[L7+1]
+ 0219 1A19              sbb A,[L9+1]
+ 021B 5300              mov [__r5],A
+ 021D 5110              mov A,[L7]
+ 021F 1A18              sbb A,[L9]
+ 0221 08                push A
+ 0222 5100              mov A,[__r5]
+ 0224 08                push A
+ 0225 5100              mov A,[__r6]
+ 0227 08                push A
+ 0228 5100              mov A,[__r7]
+ 022A 08                push A
+ 022B 5000              mov A,0
+ 022D 08                push A
+ 022E 5001              mov A,1
+ 0230 08                push A
+ 0231 5055              mov A,85
+ 0233 08                push A
+ 0234 5005              mov A,5
+ 0236 08                push A
+ 0237 7C0000            xcall __mul_32X32_32
+ 023A 38FC              add SP,-4
+ 023C 18                pop A
+ 023D 5300              mov [__r7],A
+ 023F 18                pop A
+ 0240 5300              mov [__r6],A
+ 0242 18                pop A
+ 0243 5300              mov [__r5],A
+ 0245 18                pop A
+ 0246 5300              mov [__r4],A
+ 0248 5200              mov A,[X+0]
+ 024A 5300              mov [__r8],A
+ 024C 5201              mov A,[X+1]
+ 024E 5300              mov [__r9],A
+ 0250 5202              mov A,[X+2]
+ 0252 5300              mov [__r10],A
+ 0254 5203              mov A,[X+3]
+ 0256 5300              mov [__r11],A
+ 0258 5002              mov A,2
+ 025A           X14:
+ 025A 6800              asr [__r8]
+ 025C 6E00              rrc [__r9]
+ 025E 6E00              rrc [__r10]
+ 0260 6E00              rrc [__r11]
+ 0262 78                dec A
+ 0263 BFF6              jnz X14
+ 0265 5200              mov A,[X+0]
+ 0267 5300              mov [__r0],A
+ 0269 5201              mov A,[X+1]
+ 026B 5300              mov [__r1],A
+ 026D 5202              mov A,[X+2]
+ 026F 5300              mov [__r2],A
+ 0271 5203              mov A,[X+3]
+ 0273 5300              mov [__r3],A
+ 0275 6800              asr [__r0]
+ 0277 6E00              rrc [__r1]
+ 0279 6E00              rrc [__r2]
+ 027B 6E00              rrc [__r3]
+ 027D 5100              mov A,[__r11]
+ 027F 0400              add [__r3],A
+ 0281 5100              mov A,[__r10]
+ 0283 0C00              adc [__r2],A
+ 0285 5100              mov A,[__r9]
+ 0287 0C00              adc [__r1],A
+ 0289 5100              mov A,[__r8]
+ 028B 0C00              adc [__r0],A
+ 028D 5100              mov A,[__r7]
+ 028F 0400              add [__r3],A
+ 0291 5100              mov A,[__r6]
+ 0293 0C00              adc [__r2],A
+ 0295 5100              mov A,[__r5]
+ 0297 0C00              adc [__r1],A
+ 0299 5100              mov A,[__r4]
+ 029B 0C00              adc [__r0],A
+ 029D 5209              mov A,[X+9]
+ 029F 1400              sub [__r3],A
+ 02A1 5208              mov A,[X+8]
+ 02A3 1C00              sbb [__r2],A
+ 02A5 5207              mov A,[X+7]
+ 02A7 1C00              sbb [__r1],A
+ 02A9 5206              mov A,[X+6]
+ 02AB 1C00              sbb [__r0],A
+ 02AD 5010              mov A,16
+ 02AF           X15:
+ 02AF 6800              asr [__r0]
+ 02B1 6E00              rrc [__r1]
+ 02B3 6E00              rrc [__r2]
+ 02B5 6E00              rrc [__r3]
+ 02B7 78                dec A
+ 02B8 BFF6              jnz X15
+ 02BA 5100              mov A,[__r3]
+ 02BC 5405              mov [X+5],A
+ 02BE 5100              mov A,[__r2]
+ 02C0 5404              mov [X+4],A
+ 02C2                   .dbline 35
+ 02C2           ;   xn1_2 = xn1_1;
+ 02C2 5F1410            mov [L8],[L7]
+ 02C5 5F1511            mov [L8+1],[L7+1]
+ 02C8 5F1612            mov [L8+2],[L7+2]
+ 02CB 5F1713            mov [L8+3],[L7+3]
+ 02CE                   .dbline 36
+ 02CE           ;   xn1_1 = x;
+ 02CE 52FC              mov A,[X-4]
+ 02D0 5313              mov [L7+3],A
+ 02D2 52FB              mov A,[X-5]
+ 02D4 5312              mov [L7+2],A
+ 02D6 471280            tst [L7+2],-128
+ 02D9 A009              jz X16
+ 02DB 5511FF            mov [L7+1],-1
+ 02DE 5510FF            mov [L7],-1
+ 02E1 8007              jmp X17
+ 02E3           X16:
+ 02E3 551100            mov [L7+1],0
+ 02E6 551000            mov [L7],0
+ 02E9           X17:
+ 02E9                   .dbline 37
+ 02E9           ;   yn1_2 = yn1_1;
+ 02E9 5F1C18            mov [L10],[L9]
+ 02EC 5F1D19            mov [L10+1],[L9+1]
+ 02EF 5F1E1A            mov [L10+2],[L9+2]
+ 02F2 5F1F1B            mov [L10+3],[L9+3]
+ 02F5                   .dbline 38
+ 02F5           ;   yn1_1 = y;
+ 02F5 5205              mov A,[X+5]
+ 02F7 531B              mov [L9+3],A
+ 02F9 5204              mov A,[X+4]
+ 02FB 531A              mov [L9+2],A
+ 02FD 471A80            tst [L9+2],-128
+ 0300 A009              jz X18
+ 0302 5519FF            mov [L9+1],-1
+ 0305 5518FF            mov [L9],-1
+ 0308 8007              jmp X19
+ 030A           X18:
+ 030A 551900            mov [L9+1],0
+ 030D 551800            mov [L9],0
+ 0310           X19:
+ 0310                   .dbline 39
+ 0310           ;   return y;
+ 0310 5205              mov A,[X+5]
+ 0312 5300              mov [__r1],A
+ 0314 5204              mov A,[X+4]
+ 0316 5300              mov [__r0],A
+ 0318                   .dbline -2
+ 0318           L6:
+ 0318 38F6              add SP,-10
+ 031A 20                pop X
+ 031B                   .dbline 0 ; func end
+ 031B 7F                ret
+ 031C                   .dbsym l y 4 I
+ 031C                   .dbsym l diff1 0 L
+ 031C                   .dbsym l x -5 I
+ 031C                   .dbend
+                        .area bss(ram, con, rel)
+ 0020                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0020           L12:
+ 0020                   .blkb 4
+ 0024           L13:
+ 0024                   .blkb 4
+ 0028           L14:
+ 0028                   .blkb 4
+ 002C           L15:
+ 002C                   .blkb 4
+                        .area text(rom, con, rel)
+ 031C                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 031C                   .dbfunc e nf2_50 _nf2_50 fI
+ 031C                   .dbsym s yn2_2 L15 L
+ 031C                   .dbsym s yn2_1 L14 L
+ 031C                   .dbsym s xn2_2 L13 L
+ 031C                   .dbsym s xn2_1 L12 L
+ 031C           ;              y -> X+4
+ 031C           ;          diff1 -> X+0
+ 031C           ;              x -> X-5
+ 031C           _nf2_50::
+ 031C                   .dbline -1
+ 031C 10                push X
+ 031D 4F                mov X,SP
+ 031E 380A              add SP,10
+ 0320                   .dbline 44
+ 0320           ; }
+ 0320           ; 
+ 0320           ; //----------------------------------------------------------
+ 0320           ; int nf2_50 (int x) // second order nitch filter f = 50 hz 
+ 0320           ; { 
+ 0320                   .dbline 48
+ 0320           ;   static long xn2_1, xn2_2, yn2_1, yn2_2;
+ 0320           ;    long diff1;
+ 0320           ;   int y;
+ 0320           ;   diff1 = (x + xn2_2) <<16;   
+ 0320 52FC              mov A,[X-4]
+ 0322 5300              mov [__r3],A
+ 0324 52FB              mov A,[X-5]
+ 0326 5300              mov [__r2],A
+ 0328 470080            tst [__r2],-128
+ 032B A009              jz X20
+ 032D 5500FF            mov [__r1],-1
+ 0330 5500FF            mov [__r0],-1
+ 0333 8007              jmp X21
+ 0335           X20:
+ 0335 550000            mov [__r1],0
+ 0338 550000            mov [__r0],0
+ 033B           X21:
+ 033B 5127              mov A,[L13+3]
+ 033D 0400              add [__r3],A
+ 033F 5126              mov A,[L13+2]
+ 0341 0C00              adc [__r2],A
+ 0343 5125              mov A,[L13+1]
+ 0345 0C00              adc [__r1],A
+ 0347 5124              mov A,[L13]
+ 0349 0C00              adc [__r0],A
+ 034B 5010              mov A,16
+ 034D           X22:
+ 034D 6500              asl [__r3]
+ 034F 6B00              rlc [__r2]
+ 0351 6B00              rlc [__r1]
+ 0353 6B00              rlc [__r0]
+ 0355 78                dec A
+ 0356 BFF6              jnz X22
+ 0358 5100              mov A,[__r0]
+ 035A 5400              mov [X+0],A
+ 035C 5100              mov A,[__r1]
+ 035E 5401              mov [X+1],A
+ 0360 5100              mov A,[__r2]
+ 0362 5402              mov [X+2],A
+ 0364 5100              mov A,[__r3]
+ 0366 5403              mov [X+3],A
+ 0368                   .dbline 49
+ 0368           ;   y = ((diff1>>1) + (diff1>>2) + 87301*(xn2_1 - yn2_1) - ((yn2_2<<16)>>1) )>>16;
+ 0368 5F002C            mov [__r0],[L15]
+ 036B 5F002D            mov [__r1],[L15+1]
+ 036E 5F002E            mov [__r2],[L15+2]
+ 0371 5F002F            mov [__r3],[L15+3]
+ 0374 5010              mov A,16
+ 0376           X23:
+ 0376 6500              asl [__r3]
+ 0378 6B00              rlc [__r2]
+ 037A 6B00              rlc [__r1]
+ 037C 6B00              rlc [__r0]
+ 037E 78                dec A
+ 037F BFF6              jnz X23
+ 0381 6800              asr [__r0]
+ 0383 6E00              rrc [__r1]
+ 0385 6E00              rrc [__r2]
+ 0387 6E00              rrc [__r3]
+ 0389 5100              mov A,[__r0]
+ 038B 5406              mov [X+6],A
+ 038D 5100              mov A,[__r1]
+ 038F 5407              mov [X+7],A
+ 0391 5100              mov A,[__r2]
+ 0393 5408              mov [X+8],A
+ 0395 5100              mov A,[__r3]
+ 0397 5409              mov [X+9],A
+ 0399 5123              mov A,[L12+3]
+ 039B 122B              sub A,[L14+3]
+ 039D 5300              mov [__r7],A
+ 039F 5122              mov A,[L12+2]
+ 03A1 1A2A              sbb A,[L14+2]
+ 03A3 5300              mov [__r6],A
+ 03A5 5121              mov A,[L12+1]
+ 03A7 1A29              sbb A,[L14+1]
+ 03A9 5300              mov [__r5],A
+ 03AB 5120              mov A,[L12]
+ 03AD 1A28              sbb A,[L14]
+ 03AF 08                push A
+ 03B0 5100              mov A,[__r5]
+ 03B2 08                push A
+ 03B3 5100              mov A,[__r6]
+ 03B5 08                push A
+ 03B6 5100              mov A,[__r7]
+ 03B8 08                push A
+ 03B9 5000              mov A,0
+ 03BB 08                push A
+ 03BC 5001              mov A,1
+ 03BE 08                push A
+ 03BF 5055              mov A,85
+ 03C1 08                push A
+ 03C2 5005              mov A,5
+ 03C4 08                push A
+ 03C5 7C0000            xcall __mul_32X32_32
+ 03C8 38FC              add SP,-4
+ 03CA 18                pop A
+ 03CB 5300              mov [__r7],A
+ 03CD 18                pop A
+ 03CE 5300              mov [__r6],A
+ 03D0 18                pop A
+ 03D1 5300              mov [__r5],A
+ 03D3 18                pop A
+ 03D4 5300              mov [__r4],A
+ 03D6 5200              mov A,[X+0]
+ 03D8 5300              mov [__r8],A
+ 03DA 5201              mov A,[X+1]
+ 03DC 5300              mov [__r9],A
+ 03DE 5202              mov A,[X+2]
+ 03E0 5300              mov [__r10],A
+ 03E2 5203              mov A,[X+3]
+ 03E4 5300              mov [__r11],A
+ 03E6 5002              mov A,2
+ 03E8           X24:
+ 03E8 6800              asr [__r8]
+ 03EA 6E00              rrc [__r9]
+ 03EC 6E00              rrc [__r10]
+ 03EE 6E00              rrc [__r11]
+ 03F0 78                dec A
+ 03F1 BFF6              jnz X24
+ 03F3 5200              mov A,[X+0]
+ 03F5 5300              mov [__r0],A
+ 03F7 5201              mov A,[X+1]
+ 03F9 5300              mov [__r1],A
+ 03FB 5202              mov A,[X+2]
+ 03FD 5300              mov [__r2],A
+ 03FF 5203              mov A,[X+3]
+ 0401 5300              mov [__r3],A
+ 0403 6800              asr [__r0]
+ 0405 6E00              rrc [__r1]
+ 0407 6E00              rrc [__r2]
+ 0409 6E00              rrc [__r3]
+ 040B 5100              mov A,[__r11]
+ 040D 0400              add [__r3],A
+ 040F 5100              mov A,[__r10]
+ 0411 0C00              adc [__r2],A
+ 0413 5100              mov A,[__r9]
+ 0415 0C00              adc [__r1],A
+ 0417 5100              mov A,[__r8]
+ 0419 0C00              adc [__r0],A
+ 041B 5100              mov A,[__r7]
+ 041D 0400              add [__r3],A
+ 041F 5100              mov A,[__r6]
+ 0421 0C00              adc [__r2],A
+ 0423 5100              mov A,[__r5]
+ 0425 0C00              adc [__r1],A
+ 0427 5100              mov A,[__r4]
+ 0429 0C00              adc [__r0],A
+ 042B 5209              mov A,[X+9]
+ 042D 1400              sub [__r3],A
+ 042F 5208              mov A,[X+8]
+ 0431 1C00              sbb [__r2],A
+ 0433 5207              mov A,[X+7]
+ 0435 1C00              sbb [__r1],A
+ 0437 5206              mov A,[X+6]
+ 0439 1C00              sbb [__r0],A
+ 043B 5010              mov A,16
+ 043D           X25:
+ 043D 6800              asr [__r0]
+ 043F 6E00              rrc [__r1]
+ 0441 6E00              rrc [__r2]
+ 0443 6E00              rrc [__r3]
+ 0445 78                dec A
+ 0446 BFF6              jnz X25
+ 0448 5100              mov A,[__r3]
+ 044A 5405              mov [X+5],A
+ 044C 5100              mov A,[__r2]
+ 044E 5404              mov [X+4],A
+ 0450                   .dbline 50
+ 0450           ;   xn2_2 = xn2_1;
+ 0450 5F2420            mov [L13],[L12]
+ 0453 5F2521            mov [L13+1],[L12+1]
+ 0456 5F2622            mov [L13+2],[L12+2]
+ 0459 5F2723            mov [L13+3],[L12+3]
+ 045C                   .dbline 51
+ 045C           ;   xn2_1 = x;
+ 045C 52FC              mov A,[X-4]
+ 045E 5323              mov [L12+3],A
+ 0460 52FB              mov A,[X-5]
+ 0462 5322              mov [L12+2],A
+ 0464 472280            tst [L12+2],-128
+ 0467 A009              jz X26
+ 0469 5521FF            mov [L12+1],-1
+ 046C 5520FF            mov [L12],-1
+ 046F 8007              jmp X27
+ 0471           X26:
+ 0471 552100            mov [L12+1],0
+ 0474 552000            mov [L12],0
+ 0477           X27:
+ 0477                   .dbline 52
+ 0477           ;   yn2_2 = yn2_1;
+ 0477 5F2C28            mov [L15],[L14]
+ 047A 5F2D29            mov [L15+1],[L14+1]
+ 047D 5F2E2A            mov [L15+2],[L14+2]
+ 0480 5F2F2B            mov [L15+3],[L14+3]
+ 0483                   .dbline 53
+ 0483           ;   yn2_1 = y;
+ 0483 5205              mov A,[X+5]
+ 0485 532B              mov [L14+3],A
+ 0487 5204              mov A,[X+4]
+ 0489 532A              mov [L14+2],A
+ 048B 472A80            tst [L14+2],-128
+ 048E A009              jz X28
+ 0490 5529FF            mov [L14+1],-1
+ 0493 5528FF            mov [L14],-1
+ 0496 8007              jmp X29
+ 0498           X28:
+ 0498 552900            mov [L14+1],0
+ 049B 552800            mov [L14],0
+ 049E           X29:
+ 049E                   .dbline 54
+ 049E           ;   return y;
+ 049E 5205              mov A,[X+5]
+ 04A0 5300              mov [__r1],A
+ 04A2 5204              mov A,[X+4]
+ 04A4 5300              mov [__r0],A
+ 04A6                   .dbline -2
+ 04A6           L11:
+ 04A6 38F6              add SP,-10
+ 04A8 20                pop X
+ 04A9                   .dbline 0 ; func end
+ 04A9 7F                ret
+ 04AA                   .dbsym l y 4 I
+ 04AA                   .dbsym l diff1 0 L
+ 04AA                   .dbsym l x -5 I
+ 04AA                   .dbend
+                        .area bss(ram, con, rel)
+ 0030                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0030           L17:
+ 0030                   .blkb 4
+ 0034           L18:
+ 0034                   .blkb 4
+ 0038           L19:
+ 0038                   .blkb 4
+ 003C           L20:
+ 003C                   .blkb 4
+                        .area text(rom, con, rel)
+ 04AA                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 04AA                   .dbfunc e nf3_50 _nf3_50 fI
+ 04AA                   .dbsym s yn3_2 L20 L
+ 04AA                   .dbsym s yn3_1 L19 L
+ 04AA                   .dbsym s xn3_2 L18 L
+ 04AA                   .dbsym s xn3_1 L17 L
+ 04AA           ;              y -> X+4
+ 04AA           ;          diff1 -> X+0
+ 04AA           ;              x -> X-5
+ 04AA           _nf3_50::
+ 04AA                   .dbline -1
+ 04AA 10                push X
+ 04AB 4F                mov X,SP
+ 04AC 380A              add SP,10
+ 04AE                   .dbline 58
+ 04AE           ; }
+ 04AE           ; //----------------------------------------------------------
+ 04AE           ; int nf3_50 (int x) // second order nitch filter f = 50 hz 
+ 04AE           ; { 
+ 04AE                   .dbline 62
+ 04AE           ;   static long xn3_1, xn3_2, yn3_1, yn3_2;
+ 04AE           ;    long diff1;
+ 04AE           ;   int y;
+ 04AE           ;   diff1 = (x + xn3_2) <<16;   
+ 04AE 52FC              mov A,[X-4]
+ 04B0 5300              mov [__r3],A
+ 04B2 52FB              mov A,[X-5]
+ 04B4 5300              mov [__r2],A
+ 04B6 470080            tst [__r2],-128
+ 04B9 A009              jz X30
+ 04BB 5500FF            mov [__r1],-1
+ 04BE 5500FF            mov [__r0],-1
+ 04C1 8007              jmp X31
+ 04C3           X30:
+ 04C3 550000            mov [__r1],0
+ 04C6 550000            mov [__r0],0
+ 04C9           X31:
+ 04C9 5137              mov A,[L18+3]
+ 04CB 0400              add [__r3],A
+ 04CD 5136              mov A,[L18+2]
+ 04CF 0C00              adc [__r2],A
+ 04D1 5135              mov A,[L18+1]
+ 04D3 0C00              adc [__r1],A
+ 04D5 5134              mov A,[L18]
+ 04D7 0C00              adc [__r0],A
+ 04D9 5010              mov A,16
+ 04DB           X32:
+ 04DB 6500              asl [__r3]
+ 04DD 6B00              rlc [__r2]
+ 04DF 6B00              rlc [__r1]
+ 04E1 6B00              rlc [__r0]
+ 04E3 78                dec A
+ 04E4 BFF6              jnz X32
+ 04E6 5100              mov A,[__r0]
+ 04E8 5400              mov [X+0],A
+ 04EA 5100              mov A,[__r1]
+ 04EC 5401              mov [X+1],A
+ 04EE 5100              mov A,[__r2]
+ 04F0 5402              mov [X+2],A
+ 04F2 5100              mov A,[__r3]
+ 04F4 5403              mov [X+3],A
+ 04F6                   .dbline 63
+ 04F6           ;   y = ((diff1>>1) + (diff1>>2) + 87301*(xn3_1 - yn3_1) - ((yn3_2<<16)>>1) )>>16;
+ 04F6 5F003C            mov [__r0],[L20]
+ 04F9 5F003D            mov [__r1],[L20+1]
+ 04FC 5F003E            mov [__r2],[L20+2]
+ 04FF 5F003F            mov [__r3],[L20+3]
+ 0502 5010              mov A,16
+ 0504           X33:
+ 0504 6500              asl [__r3]
+ 0506 6B00              rlc [__r2]
+ 0508 6B00              rlc [__r1]
+ 050A 6B00              rlc [__r0]
+ 050C 78                dec A
+ 050D BFF6              jnz X33
+ 050F 6800              asr [__r0]
+ 0511 6E00              rrc [__r1]
+ 0513 6E00              rrc [__r2]
+ 0515 6E00              rrc [__r3]
+ 0517 5100              mov A,[__r0]
+ 0519 5406              mov [X+6],A
+ 051B 5100              mov A,[__r1]
+ 051D 5407              mov [X+7],A
+ 051F 5100              mov A,[__r2]
+ 0521 5408              mov [X+8],A
+ 0523 5100              mov A,[__r3]
+ 0525 5409              mov [X+9],A
+ 0527 5133              mov A,[L17+3]
+ 0529 123B              sub A,[L19+3]
+ 052B 5300              mov [__r7],A
+ 052D 5132              mov A,[L17+2]
+ 052F 1A3A              sbb A,[L19+2]
+ 0531 5300              mov [__r6],A
+ 0533 5131              mov A,[L17+1]
+ 0535 1A39              sbb A,[L19+1]
+ 0537 5300              mov [__r5],A
+ 0539 5130              mov A,[L17]
+ 053B 1A38              sbb A,[L19]
+ 053D 08                push A
+ 053E 5100              mov A,[__r5]
+ 0540 08                push A
+ 0541 5100              mov A,[__r6]
+ 0543 08                push A
+ 0544 5100              mov A,[__r7]
+ 0546 08                push A
+ 0547 5000              mov A,0
+ 0549 08                push A
+ 054A 5001              mov A,1
+ 054C 08                push A
+ 054D 5055              mov A,85
+ 054F 08                push A
+ 0550 5005              mov A,5
+ 0552 08                push A
+ 0553 7C0000            xcall __mul_32X32_32
+ 0556 38FC              add SP,-4
+ 0558 18                pop A
+ 0559 5300              mov [__r7],A
+ 055B 18                pop A
+ 055C 5300              mov [__r6],A
+ 055E 18                pop A
+ 055F 5300              mov [__r5],A
+ 0561 18                pop A
+ 0562 5300              mov [__r4],A
+ 0564 5200              mov A,[X+0]
+ 0566 5300              mov [__r8],A
+ 0568 5201              mov A,[X+1]
+ 056A 5300              mov [__r9],A
+ 056C 5202              mov A,[X+2]
+ 056E 5300              mov [__r10],A
+ 0570 5203              mov A,[X+3]
+ 0572 5300              mov [__r11],A
+ 0574 5002              mov A,2
+ 0576           X34:
+ 0576 6800              asr [__r8]
+ 0578 6E00              rrc [__r9]
+ 057A 6E00              rrc [__r10]
+ 057C 6E00              rrc [__r11]
+ 057E 78                dec A
+ 057F BFF6              jnz X34
+ 0581 5200              mov A,[X+0]
+ 0583 5300              mov [__r0],A
+ 0585 5201              mov A,[X+1]
+ 0587 5300              mov [__r1],A
+ 0589 5202              mov A,[X+2]
+ 058B 5300              mov [__r2],A
+ 058D 5203              mov A,[X+3]
+ 058F 5300              mov [__r3],A
+ 0591 6800              asr [__r0]
+ 0593 6E00              rrc [__r1]
+ 0595 6E00              rrc [__r2]
+ 0597 6E00              rrc [__r3]
+ 0599 5100              mov A,[__r11]
+ 059B 0400              add [__r3],A
+ 059D 5100              mov A,[__r10]
+ 059F 0C00              adc [__r2],A
+ 05A1 5100              mov A,[__r9]
+ 05A3 0C00              adc [__r1],A
+ 05A5 5100              mov A,[__r8]
+ 05A7 0C00              adc [__r0],A
+ 05A9 5100              mov A,[__r7]
+ 05AB 0400              add [__r3],A
+ 05AD 5100              mov A,[__r6]
+ 05AF 0C00              adc [__r2],A
+ 05B1 5100              mov A,[__r5]
+ 05B3 0C00              adc [__r1],A
+ 05B5 5100              mov A,[__r4]
+ 05B7 0C00              adc [__r0],A
+ 05B9 5209              mov A,[X+9]
+ 05BB 1400              sub [__r3],A
+ 05BD 5208              mov A,[X+8]
+ 05BF 1C00              sbb [__r2],A
+ 05C1 5207              mov A,[X+7]
+ 05C3 1C00              sbb [__r1],A
+ 05C5 5206              mov A,[X+6]
+ 05C7 1C00              sbb [__r0],A
+ 05C9 5010              mov A,16
+ 05CB           X35:
+ 05CB 6800              asr [__r0]
+ 05CD 6E00              rrc [__r1]
+ 05CF 6E00              rrc [__r2]
+ 05D1 6E00              rrc [__r3]
+ 05D3 78                dec A
+ 05D4 BFF6              jnz X35
+ 05D6 5100              mov A,[__r3]
+ 05D8 5405              mov [X+5],A
+ 05DA 5100              mov A,[__r2]
+ 05DC 5404              mov [X+4],A
+ 05DE                   .dbline 64
+ 05DE           ;   xn3_2 = xn3_1;
+ 05DE 5F3430            mov [L18],[L17]
+ 05E1 5F3531            mov [L18+1],[L17+1]
+ 05E4 5F3632            mov [L18+2],[L17+2]
+ 05E7 5F3733            mov [L18+3],[L17+3]
+ 05EA                   .dbline 65
+ 05EA           ;   xn3_1 = x;
+ 05EA 52FC              mov A,[X-4]
+ 05EC 5333              mov [L17+3],A
+ 05EE 52FB              mov A,[X-5]
+ 05F0 5332              mov [L17+2],A
+ 05F2 473280            tst [L17+2],-128
+ 05F5 A009              jz X36
+ 05F7 5531FF            mov [L17+1],-1
+ 05FA 5530FF            mov [L17],-1
+ 05FD 8007              jmp X37
+ 05FF           X36:
+ 05FF 553100            mov [L17+1],0
+ 0602 553000            mov [L17],0
+ 0605           X37:
+ 0605                   .dbline 66
+ 0605           ;   yn3_2 = yn3_1;
+ 0605 5F3C38            mov [L20],[L19]
+ 0608 5F3D39            mov [L20+1],[L19+1]
+ 060B 5F3E3A            mov [L20+2],[L19+2]
+ 060E 5F3F3B            mov [L20+3],[L19+3]
+ 0611                   .dbline 67
+ 0611           ;   yn3_1 = y;
+ 0611 5205              mov A,[X+5]
+ 0613 533B              mov [L19+3],A
+ 0615 5204              mov A,[X+4]
+ 0617 533A              mov [L19+2],A
+ 0619 473A80            tst [L19+2],-128
+ 061C A009              jz X38
+ 061E 5539FF            mov [L19+1],-1
+ 0621 5538FF            mov [L19],-1
+ 0624 8007              jmp X39
+ 0626           X38:
+ 0626 553900            mov [L19+1],0
+ 0629 553800            mov [L19],0
+ 062C           X39:
+ 062C                   .dbline 68
+ 062C           ;   return y;
+ 062C 5205              mov A,[X+5]
+ 062E 5300              mov [__r1],A
+ 0630 5204              mov A,[X+4]
+ 0632 5300              mov [__r0],A
+ 0634                   .dbline -2
+ 0634           L16:
+ 0634 38F6              add SP,-10
+ 0636 20                pop X
+ 0637                   .dbline 0 ; func end
+ 0637 7F                ret
+ 0638                   .dbsym l y 4 I
+ 0638                   .dbsym l diff1 0 L
+ 0638                   .dbsym l x -5 I
+ 0638                   .dbend
+                        .area bss(ram, con, rel)
+ 0040                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0040           L22:
+ 0040                   .blkb 4
+ 0044           L23:
+ 0044                   .blkb 4
+ 0048           L24:
+ 0048                   .blkb 4
+ 004C           L25:
+ 004C                   .blkb 4
+                        .area text(rom, con, rel)
+ 0638                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0638                   .dbfunc e nf4_50 _nf4_50 fI
+ 0638                   .dbsym s yn4_2 L25 L
+ 0638                   .dbsym s yn4_1 L24 L
+ 0638                   .dbsym s xn4_2 L23 L
+ 0638                   .dbsym s xn4_1 L22 L
+ 0638           ;              y -> X+4
+ 0638           ;          diff1 -> X+0
+ 0638           ;              x -> X-5
+ 0638           _nf4_50::
+ 0638                   .dbline -1
+ 0638 10                push X
+ 0639 4F                mov X,SP
+ 063A 380A              add SP,10
+ 063C                   .dbline 72
+ 063C           ; }
+ 063C           ; 
+ 063C           ; int nf4_50 (int x) // second order nitch filter f = 50 hz 
+ 063C           ; { 
+ 063C                   .dbline 76
+ 063C           ;   static long xn4_1, xn4_2, yn4_1, yn4_2;
+ 063C           ;    long diff1;
+ 063C           ;   int y;
+ 063C           ;   diff1 = (x + xn4_2) <<16;   
+ 063C 52FC              mov A,[X-4]
+ 063E 5300              mov [__r3],A
+ 0640 52FB              mov A,[X-5]
+ 0642 5300              mov [__r2],A
+ 0644 470080            tst [__r2],-128
+ 0647 A009              jz X40
+ 0649 5500FF            mov [__r1],-1
+ 064C 5500FF            mov [__r0],-1
+ 064F 8007              jmp X41
+ 0651           X40:
+ 0651 550000            mov [__r1],0
+ 0654 550000            mov [__r0],0
+ 0657           X41:
+ 0657 5147              mov A,[L23+3]
+ 0659 0400              add [__r3],A
+ 065B 5146              mov A,[L23+2]
+ 065D 0C00              adc [__r2],A
+ 065F 5145              mov A,[L23+1]
+ 0661 0C00              adc [__r1],A
+ 0663 5144              mov A,[L23]
+ 0665 0C00              adc [__r0],A
+ 0667 5010              mov A,16
+ 0669           X42:
+ 0669 6500              asl [__r3]
+ 066B 6B00              rlc [__r2]
+ 066D 6B00              rlc [__r1]
+ 066F 6B00              rlc [__r0]
+ 0671 78                dec A
+ 0672 BFF6              jnz X42
+ 0674 5100              mov A,[__r0]
+ 0676 5400              mov [X+0],A
+ 0678 5100              mov A,[__r1]
+ 067A 5401              mov [X+1],A
+ 067C 5100              mov A,[__r2]
+ 067E 5402              mov [X+2],A
+ 0680 5100              mov A,[__r3]
+ 0682 5403              mov [X+3],A
+ 0684                   .dbline 77
+ 0684           ;   y = ((diff1>>1) + (diff1>>2) + 87301*(xn4_1 - yn4_1) - ((yn4_2<<16)>>1) )>>16;
+ 0684 5F004C            mov [__r0],[L25]
+ 0687 5F004D            mov [__r1],[L25+1]
+ 068A 5F004E            mov [__r2],[L25+2]
+ 068D 5F004F            mov [__r3],[L25+3]
+ 0690 5010              mov A,16
+ 0692           X43:
+ 0692 6500              asl [__r3]
+ 0694 6B00              rlc [__r2]
+ 0696 6B00              rlc [__r1]
+ 0698 6B00              rlc [__r0]
+ 069A 78                dec A
+ 069B BFF6              jnz X43
+ 069D 6800              asr [__r0]
+ 069F 6E00              rrc [__r1]
+ 06A1 6E00              rrc [__r2]
+ 06A3 6E00              rrc [__r3]
+ 06A5 5100              mov A,[__r0]
+ 06A7 5406              mov [X+6],A
+ 06A9 5100              mov A,[__r1]
+ 06AB 5407              mov [X+7],A
+ 06AD 5100              mov A,[__r2]
+ 06AF 5408              mov [X+8],A
+ 06B1 5100              mov A,[__r3]
+ 06B3 5409              mov [X+9],A
+ 06B5 5143              mov A,[L22+3]
+ 06B7 124B              sub A,[L24+3]
+ 06B9 5300              mov [__r7],A
+ 06BB 5142              mov A,[L22+2]
+ 06BD 1A4A              sbb A,[L24+2]
+ 06BF 5300              mov [__r6],A
+ 06C1 5141              mov A,[L22+1]
+ 06C3 1A49              sbb A,[L24+1]
+ 06C5 5300              mov [__r5],A
+ 06C7 5140              mov A,[L22]
+ 06C9 1A48              sbb A,[L24]
+ 06CB 08                push A
+ 06CC 5100              mov A,[__r5]
+ 06CE 08                push A
+ 06CF 5100              mov A,[__r6]
+ 06D1 08                push A
+ 06D2 5100              mov A,[__r7]
+ 06D4 08                push A
+ 06D5 5000              mov A,0
+ 06D7 08                push A
+ 06D8 5001              mov A,1
+ 06DA 08                push A
+ 06DB 5055              mov A,85
+ 06DD 08                push A
+ 06DE 5005              mov A,5
+ 06E0 08                push A
+ 06E1 7C0000            xcall __mul_32X32_32
+ 06E4 38FC              add SP,-4
+ 06E6 18                pop A
+ 06E7 5300              mov [__r7],A
+ 06E9 18                pop A
+ 06EA 5300              mov [__r6],A
+ 06EC 18                pop A
+ 06ED 5300              mov [__r5],A
+ 06EF 18                pop A
+ 06F0 5300              mov [__r4],A
+ 06F2 5200              mov A,[X+0]
+ 06F4 5300              mov [__r8],A
+ 06F6 5201              mov A,[X+1]
+ 06F8 5300              mov [__r9],A
+ 06FA 5202              mov A,[X+2]
+ 06FC 5300              mov [__r10],A
+ 06FE 5203              mov A,[X+3]
+ 0700 5300              mov [__r11],A
+ 0702 5002              mov A,2
+ 0704           X44:
+ 0704 6800              asr [__r8]
+ 0706 6E00              rrc [__r9]
+ 0708 6E00              rrc [__r10]
+ 070A 6E00              rrc [__r11]
+ 070C 78                dec A
+ 070D BFF6              jnz X44
+ 070F 5200              mov A,[X+0]
+ 0711 5300              mov [__r0],A
+ 0713 5201              mov A,[X+1]
+ 0715 5300              mov [__r1],A
+ 0717 5202              mov A,[X+2]
+ 0719 5300              mov [__r2],A
+ 071B 5203              mov A,[X+3]
+ 071D 5300              mov [__r3],A
+ 071F 6800              asr [__r0]
+ 0721 6E00              rrc [__r1]
+ 0723 6E00              rrc [__r2]
+ 0725 6E00              rrc [__r3]
+ 0727 5100              mov A,[__r11]
+ 0729 0400              add [__r3],A
+ 072B 5100              mov A,[__r10]
+ 072D 0C00              adc [__r2],A
+ 072F 5100              mov A,[__r9]
+ 0731 0C00              adc [__r1],A
+ 0733 5100              mov A,[__r8]
+ 0735 0C00              adc [__r0],A
+ 0737 5100              mov A,[__r7]
+ 0739 0400              add [__r3],A
+ 073B 5100              mov A,[__r6]
+ 073D 0C00              adc [__r2],A
+ 073F 5100              mov A,[__r5]
+ 0741 0C00              adc [__r1],A
+ 0743 5100              mov A,[__r4]
+ 0745 0C00              adc [__r0],A
+ 0747 5209              mov A,[X+9]
+ 0749 1400              sub [__r3],A
+ 074B 5208              mov A,[X+8]
+ 074D 1C00              sbb [__r2],A
+ 074F 5207              mov A,[X+7]
+ 0751 1C00              sbb [__r1],A
+ 0753 5206              mov A,[X+6]
+ 0755 1C00              sbb [__r0],A
+ 0757 5010              mov A,16
+ 0759           X45:
+ 0759 6800              asr [__r0]
+ 075B 6E00              rrc [__r1]
+ 075D 6E00              rrc [__r2]
+ 075F 6E00              rrc [__r3]
+ 0761 78                dec A
+ 0762 BFF6              jnz X45
+ 0764 5100              mov A,[__r3]
+ 0766 5405              mov [X+5],A
+ 0768 5100              mov A,[__r2]
+ 076A 5404              mov [X+4],A
+ 076C                   .dbline 78
+ 076C           ;   xn4_2 = xn4_1;
+ 076C 5F4440            mov [L23],[L22]
+ 076F 5F4541            mov [L23+1],[L22+1]
+ 0772 5F4642            mov [L23+2],[L22+2]
+ 0775 5F4743            mov [L23+3],[L22+3]
+ 0778                   .dbline 79
+ 0778           ;   xn4_1 = x;
+ 0778 52FC              mov A,[X-4]
+ 077A 5343              mov [L22+3],A
+ 077C 52FB              mov A,[X-5]
+ 077E 5342              mov [L22+2],A
+ 0780 474280            tst [L22+2],-128
+ 0783 A009              jz X46
+ 0785 5541FF            mov [L22+1],-1
+ 0788 5540FF            mov [L22],-1
+ 078B 8007              jmp X47
+ 078D           X46:
+ 078D 554100            mov [L22+1],0
+ 0790 554000            mov [L22],0
+ 0793           X47:
+ 0793                   .dbline 80
+ 0793           ;   yn4_2 = yn4_1;
+ 0793 5F4C48            mov [L25],[L24]
+ 0796 5F4D49            mov [L25+1],[L24+1]
+ 0799 5F4E4A            mov [L25+2],[L24+2]
+ 079C 5F4F4B            mov [L25+3],[L24+3]
+ 079F                   .dbline 81
+ 079F           ;   yn4_1 = y;
+ 079F 5205              mov A,[X+5]
+ 07A1 534B              mov [L24+3],A
+ 07A3 5204              mov A,[X+4]
+ 07A5 534A              mov [L24+2],A
+ 07A7 474A80            tst [L24+2],-128
+ 07AA A009              jz X48
+ 07AC 5549FF            mov [L24+1],-1
+ 07AF 5548FF            mov [L24],-1
+ 07B2 8007              jmp X49
+ 07B4           X48:
+ 07B4 554900            mov [L24+1],0
+ 07B7 554800            mov [L24],0
+ 07BA           X49:
+ 07BA                   .dbline 82
+ 07BA           ;   return y;
+ 07BA 5205              mov A,[X+5]
+ 07BC 5300              mov [__r1],A
+ 07BE 5204              mov A,[X+4]
+ 07C0 5300              mov [__r0],A
+ 07C2                   .dbline -2
+ 07C2           L21:
+ 07C2 38F6              add SP,-10
+ 07C4 20                pop X
+ 07C5                   .dbline 0 ; func end
+ 07C5 7F                ret
+ 07C6                   .dbsym l y 4 I
+ 07C6                   .dbsym l diff1 0 L
+ 07C6                   .dbsym l x -5 I
+ 07C6                   .dbend
+                        .area bss(ram, con, rel)
+ 0050                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0050           L27:
+ 0050                   .blkb 4
+ 0054           L28:
+ 0054                   .blkb 4
+ 0058           L29:
+ 0058                   .blkb 4
+ 005C           L30:
+ 005C                   .blkb 4
+                        .area text(rom, con, rel)
+ 07C6                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 07C6                   .dbfunc e nf5_50 _nf5_50 fI
+ 07C6                   .dbsym s yn5_2 L30 L
+ 07C6                   .dbsym s yn5_1 L29 L
+ 07C6                   .dbsym s xn5_2 L28 L
+ 07C6                   .dbsym s xn5_1 L27 L
+ 07C6           ;              y -> X+4
+ 07C6           ;          diff1 -> X+0
+ 07C6           ;              x -> X-5
+ 07C6           _nf5_50::
+ 07C6                   .dbline -1
+ 07C6 10                push X
+ 07C7 4F                mov X,SP
+ 07C8 380A              add SP,10
+ 07CA                   .dbline 86
+ 07CA           ; }
+ 07CA           ; 
+ 07CA           ; int nf5_50 (int x) // second order nitch filter f = 50 hz 
+ 07CA           ; { 
+ 07CA                   .dbline 90
+ 07CA           ;   static long xn5_1, xn5_2, yn5_1, yn5_2;
+ 07CA           ;    long diff1;
+ 07CA           ;   int y;
+ 07CA           ;   diff1 = (x + xn5_2) <<16;   
+ 07CA 52FC              mov A,[X-4]
+ 07CC 5300              mov [__r3],A
+ 07CE 52FB              mov A,[X-5]
+ 07D0 5300              mov [__r2],A
+ 07D2 470080            tst [__r2],-128
+ 07D5 A009              jz X50
+ 07D7 5500FF            mov [__r1],-1
+ 07DA 5500FF            mov [__r0],-1
+ 07DD 8007              jmp X51
+ 07DF           X50:
+ 07DF 550000            mov [__r1],0
+ 07E2 550000            mov [__r0],0
+ 07E5           X51:
+ 07E5 5157              mov A,[L28+3]
+ 07E7 0400              add [__r3],A
+ 07E9 5156              mov A,[L28+2]
+ 07EB 0C00              adc [__r2],A
+ 07ED 5155              mov A,[L28+1]
+ 07EF 0C00              adc [__r1],A
+ 07F1 5154              mov A,[L28]
+ 07F3 0C00              adc [__r0],A
+ 07F5 5010              mov A,16
+ 07F7           X52:
+ 07F7 6500              asl [__r3]
+ 07F9 6B00              rlc [__r2]
+ 07FB 6B00              rlc [__r1]
+ 07FD 6B00              rlc [__r0]
+ 07FF 78                dec A
+ 0800 BFF6              jnz X52
+ 0802 5100              mov A,[__r0]
+ 0804 5400              mov [X+0],A
+ 0806 5100              mov A,[__r1]
+ 0808 5401              mov [X+1],A
+ 080A 5100              mov A,[__r2]
+ 080C 5402              mov [X+2],A
+ 080E 5100              mov A,[__r3]
+ 0810 5403              mov [X+3],A
+ 0812                   .dbline 91
+ 0812           ;   y = ((diff1>>1) + (diff1>>2) + 87301*(xn5_1 - yn5_1) - ((yn5_2<<16)>>1) )>>16;
+ 0812 5F005C            mov [__r0],[L30]
+ 0815 5F005D            mov [__r1],[L30+1]
+ 0818 5F005E            mov [__r2],[L30+2]
+ 081B 5F005F            mov [__r3],[L30+3]
+ 081E 5010              mov A,16
+ 0820           X53:
+ 0820 6500              asl [__r3]
+ 0822 6B00              rlc [__r2]
+ 0824 6B00              rlc [__r1]
+ 0826 6B00              rlc [__r0]
+ 0828 78                dec A
+ 0829 BFF6              jnz X53
+ 082B 6800              asr [__r0]
+ 082D 6E00              rrc [__r1]
+ 082F 6E00              rrc [__r2]
+ 0831 6E00              rrc [__r3]
+ 0833 5100              mov A,[__r0]
+ 0835 5406              mov [X+6],A
+ 0837 5100              mov A,[__r1]
+ 0839 5407              mov [X+7],A
+ 083B 5100              mov A,[__r2]
+ 083D 5408              mov [X+8],A
+ 083F 5100              mov A,[__r3]
+ 0841 5409              mov [X+9],A
+ 0843 5153              mov A,[L27+3]
+ 0845 125B              sub A,[L29+3]
+ 0847 5300              mov [__r7],A
+ 0849 5152              mov A,[L27+2]
+ 084B 1A5A              sbb A,[L29+2]
+ 084D 5300              mov [__r6],A
+ 084F 5151              mov A,[L27+1]
+ 0851 1A59              sbb A,[L29+1]
+ 0853 5300              mov [__r5],A
+ 0855 5150              mov A,[L27]
+ 0857 1A58              sbb A,[L29]
+ 0859 08                push A
+ 085A 5100              mov A,[__r5]
+ 085C 08                push A
+ 085D 5100              mov A,[__r6]
+ 085F 08                push A
+ 0860 5100              mov A,[__r7]
+ 0862 08                push A
+ 0863 5000              mov A,0
+ 0865 08                push A
+ 0866 5001              mov A,1
+ 0868 08                push A
+ 0869 5055              mov A,85
+ 086B 08                push A
+ 086C 5005              mov A,5
+ 086E 08                push A
+ 086F 7C0000            xcall __mul_32X32_32
+ 0872 38FC              add SP,-4
+ 0874 18                pop A
+ 0875 5300              mov [__r7],A
+ 0877 18                pop A
+ 0878 5300              mov [__r6],A
+ 087A 18                pop A
+ 087B 5300              mov [__r5],A
+ 087D 18                pop A
+ 087E 5300              mov [__r4],A
+ 0880 5200              mov A,[X+0]
+ 0882 5300              mov [__r8],A
+ 0884 5201              mov A,[X+1]
+ 0886 5300              mov [__r9],A
+ 0888 5202              mov A,[X+2]
+ 088A 5300              mov [__r10],A
+ 088C 5203              mov A,[X+3]
+ 088E 5300              mov [__r11],A
+ 0890 5002              mov A,2
+ 0892           X54:
+ 0892 6800              asr [__r8]
+ 0894 6E00              rrc [__r9]
+ 0896 6E00              rrc [__r10]
+ 0898 6E00              rrc [__r11]
+ 089A 78                dec A
+ 089B BFF6              jnz X54
+ 089D 5200              mov A,[X+0]
+ 089F 5300              mov [__r0],A
+ 08A1 5201              mov A,[X+1]
+ 08A3 5300              mov [__r1],A
+ 08A5 5202              mov A,[X+2]
+ 08A7 5300              mov [__r2],A
+ 08A9 5203              mov A,[X+3]
+ 08AB 5300              mov [__r3],A
+ 08AD 6800              asr [__r0]
+ 08AF 6E00              rrc [__r1]
+ 08B1 6E00              rrc [__r2]
+ 08B3 6E00              rrc [__r3]
+ 08B5 5100              mov A,[__r11]
+ 08B7 0400              add [__r3],A
+ 08B9 5100              mov A,[__r10]
+ 08BB 0C00              adc [__r2],A
+ 08BD 5100              mov A,[__r9]
+ 08BF 0C00              adc [__r1],A
+ 08C1 5100              mov A,[__r8]
+ 08C3 0C00              adc [__r0],A
+ 08C5 5100              mov A,[__r7]
+ 08C7 0400              add [__r3],A
+ 08C9 5100              mov A,[__r6]
+ 08CB 0C00              adc [__r2],A
+ 08CD 5100              mov A,[__r5]
+ 08CF 0C00              adc [__r1],A
+ 08D1 5100              mov A,[__r4]
+ 08D3 0C00              adc [__r0],A
+ 08D5 5209              mov A,[X+9]
+ 08D7 1400              sub [__r3],A
+ 08D9 5208              mov A,[X+8]
+ 08DB 1C00              sbb [__r2],A
+ 08DD 5207              mov A,[X+7]
+ 08DF 1C00              sbb [__r1],A
+ 08E1 5206              mov A,[X+6]
+ 08E3 1C00              sbb [__r0],A
+ 08E5 5010              mov A,16
+ 08E7           X55:
+ 08E7 6800              asr [__r0]
+ 08E9 6E00              rrc [__r1]
+ 08EB 6E00              rrc [__r2]
+ 08ED 6E00              rrc [__r3]
+ 08EF 78                dec A
+ 08F0 BFF6              jnz X55
+ 08F2 5100              mov A,[__r3]
+ 08F4 5405              mov [X+5],A
+ 08F6 5100              mov A,[__r2]
+ 08F8 5404              mov [X+4],A
+ 08FA                   .dbline 92
+ 08FA           ;   xn5_2 = xn5_1;
+ 08FA 5F5450            mov [L28],[L27]
+ 08FD 5F5551            mov [L28+1],[L27+1]
+ 0900 5F5652            mov [L28+2],[L27+2]
+ 0903 5F5753            mov [L28+3],[L27+3]
+ 0906                   .dbline 93
+ 0906           ;   xn5_1 = x;
+ 0906 52FC              mov A,[X-4]
+ 0908 5353              mov [L27+3],A
+ 090A 52FB              mov A,[X-5]
+ 090C 5352              mov [L27+2],A
+ 090E 475280            tst [L27+2],-128
+ 0911 A009              jz X56
+ 0913 5551FF            mov [L27+1],-1
+ 0916 5550FF            mov [L27],-1
+ 0919 8007              jmp X57
+ 091B           X56:
+ 091B 555100            mov [L27+1],0
+ 091E 555000            mov [L27],0
+ 0921           X57:
+ 0921                   .dbline 94
+ 0921           ;   yn5_2 = yn5_1;
+ 0921 5F5C58            mov [L30],[L29]
+ 0924 5F5D59            mov [L30+1],[L29+1]
+ 0927 5F5E5A            mov [L30+2],[L29+2]
+ 092A 5F5F5B            mov [L30+3],[L29+3]
+ 092D                   .dbline 95
+ 092D           ;   yn5_1 = y;
+ 092D 5205              mov A,[X+5]
+ 092F 535B              mov [L29+3],A
+ 0931 5204              mov A,[X+4]
+ 0933 535A              mov [L29+2],A
+ 0935 475A80            tst [L29+2],-128
+ 0938 A009              jz X58
+ 093A 5559FF            mov [L29+1],-1
+ 093D 5558FF            mov [L29],-1
+ 0940 8007              jmp X59
+ 0942           X58:
+ 0942 555900            mov [L29+1],0
+ 0945 555800            mov [L29],0
+ 0948           X59:
+ 0948                   .dbline 96
+ 0948           ;   return y;
+ 0948 5205              mov A,[X+5]
+ 094A 5300              mov [__r1],A
+ 094C 5204              mov A,[X+4]
+ 094E 5300              mov [__r0],A
+ 0950                   .dbline -2
+ 0950           L26:
+ 0950 38F6              add SP,-10
+ 0952 20                pop X
+ 0953                   .dbline 0 ; func end
+ 0953 7F                ret
+ 0954                   .dbsym l y 4 I
+ 0954                   .dbsym l diff1 0 L
+ 0954                   .dbsym l x -5 I
+ 0954                   .dbend
+ 0954                   .dbfunc e median_filter _median_filter fI
+ 0954           ;        changed -> X+4
+ 0954           ;            buf -> X+2
+ 0954           ;              k -> X+0
+ 0954           ;              x -> X-5
+ 0954           _median_filter::
+ 0954                   .dbline -1
+ 0954 10                push X
+ 0955 4F                mov X,SP
+ 0956 3805              add SP,5
+ 0958                   .dbline 100
+ 0958           ; }
+ 0958           ; 
+ 0958           ; int median_filter(unsigned int *x)
+ 0958           ; {
+ 0958                   .dbline 103
+ 0958           ; unsigned int k; // current element of array
+ 0958           ; unsigned int buf;// buffer for rearrangements of elements of array 
+ 0958           ; BOOL changed = TRUE; // TRUE, if in the current cycle the rearrangements are occured
+ 0958 560401            mov [X+4],1
+ 095B 8090              xjmp L33
+ 095D           L32:
+ 095D                   .dbline 106
+ 095D           ; // array sorting
+ 095D           ; 
+ 095D           ; while (changed){
+ 095D                   .dbline 107
+ 095D           ;                               changed = FALSE; // let there are no rearrangements in the current cycle
+ 095D 560400            mov [X+4],0
+ 0960                   .dbline 108
+ 0960           ;                               for (k=0; k<=9; k++)
+ 0960 560100            mov [X+1],0
+ 0963 560000            mov [X+0],0
+ 0966 807B              xjmp L38
+ 0968           L35:
+ 0968                   .dbline 109
+ 0968           ;                                                                       {  
+ 0968                   .dbline 110
+ 0968           ;                                                                       if (x[k+1] < x[k]) {  // rearrangement of k and k+1 elements
+ 0968 5201              mov A,[X+1]
+ 096A 64                asl A
+ 096B 5300              mov [__r1],A
+ 096D 52FC              mov A,[X-4]
+ 096F 0400              add [__r1],A
+ 0971 3E00              mvi A,[__r1]
+ 0973 5300              mov [__r0],A
+ 0975 3E00              mvi A,[__r1]
+ 0977 5300              mov [__r1],A
+ 0979 5201              mov A,[X+1]
+ 097B 0101              add A,1
+ 097D 64                asl A
+ 097E 5300              mov [__r3],A
+ 0980 52FC              mov A,[X-4]
+ 0982 0400              add [__r3],A
+ 0984 3E00              mvi A,[__r3]
+ 0986 5300              mov [__r2],A
+ 0988 3E00              mvi A,[__r3]
+ 098A 1200              sub A,[__r1]
+ 098C 5100              mov A,[__r2]
+ 098E 1A00              sbb A,[__r0]
+ 0990 D04C              jnc L39
+ 0992           X60:
+ 0992                   .dbline 111
+ 0992           ;                                                                                                               buf = x[k];
+ 0992                   .dbline 111
+ 0992 5201              mov A,[X+1]
+ 0994 64                asl A
+ 0995 5300              mov [__r1],A
+ 0997 52FC              mov A,[X-4]
+ 0999 0400              add [__r1],A
+ 099B 3E00              mvi A,[__r1]
+ 099D 5402              mov [X+2],A
+ 099F 3E00              mvi A,[__r1]
+ 09A1 5403              mov [X+3],A
+ 09A3                   .dbline 112
+ 09A3           ;                                                                                                               x[k] = x[k+1];
+ 09A3 5201              mov A,[X+1]
+ 09A5 0101              add A,1
+ 09A7 64                asl A
+ 09A8 5300              mov [__r1],A
+ 09AA 52FC              mov A,[X-4]
+ 09AC 0400              add [__r1],A
+ 09AE 3E00              mvi A,[__r1]
+ 09B0 5300              mov [__r0],A
+ 09B2 3E00              mvi A,[__r1]
+ 09B4 5300              mov [__r1],A
+ 09B6 5201              mov A,[X+1]
+ 09B8 64                asl A
+ 09B9 5300              mov [__r3],A
+ 09BB 52FC              mov A,[X-4]
+ 09BD 0400              add [__r3],A
+ 09BF 5100              mov A,[__r0]
+ 09C1 3F00              mvi [__r3],A
+ 09C3 5100              mov A,[__r1]
+ 09C5 3F00              mvi [__r3],A
+ 09C7                   .dbline 113
+ 09C7           ;                                                                                                               x[k+1] = buf;
+ 09C7 5201              mov A,[X+1]
+ 09C9 0101              add A,1
+ 09CB 64                asl A
+ 09CC 5300              mov [__r1],A
+ 09CE 52FC              mov A,[X-4]
+ 09D0 0400              add [__r1],A
+ 09D2 5202              mov A,[X+2]
+ 09D4 3F00              mvi [__r1],A
+ 09D6 5203              mov A,[X+3]
+ 09D8 3F00              mvi [__r1],A
+ 09DA                   .dbline 114
+ 09DA           ;                                                                                                               changed = TRUE;
+ 09DA 560401            mov [X+4],1
+ 09DD                   .dbline 115
+ 09DD           ;                                                                                                               }
+ 09DD           L39:
+ 09DD                   .dbline 116
+ 09DD           ;                                                                       }
+ 09DD           L36:
+ 09DD                   .dbline 108
+ 09DD 7701              inc [X+1]
+ 09DF 0F0000            adc [X+0],0
+ 09E2           L38:
+ 09E2                   .dbline 108
+ 09E2 5009              mov A,9
+ 09E4 1301              sub A,[X+1]
+ 09E6 5000              mov A,0
+ 09E8 1B00              sbb A,[X+0]
+ 09EA DF7D              jnc L35
+ 09EC           X61:
+ 09EC                   .dbline 117
+ 09EC           ;                               }
+ 09EC           L33:
+ 09EC                   .dbline 106
+ 09EC 3D0400            cmp [X+4],0
+ 09EF BF6D              jnz L32
+ 09F1                   .dbline 119
+ 09F1           ;                       
+ 09F1           ; return (x[5]);
+ 09F1 52FC              mov A,[X-4]
+ 09F3 010A              add A,10
+ 09F5 5300              mov [__r1],A
+ 09F7 3E00              mvi A,[__r1]
+ 09F9 5300              mov [__r0],A
+ 09FB 3E00              mvi A,[__r1]
+ 09FD 5300              mov [__r1],A
+ 09FF                   .dbline -2
+ 09FF           L31:
+ 09FF 38FB              add SP,-5
+ 0A01 20                pop X
+ 0A02                   .dbline 0 ; func end
+ 0A02 7F                ret
+ 0A03                   .dbsym l changed 4 c
+ 0A03                   .dbsym l buf 2 i
+ 0A03                   .dbsym l k 0 i
+ 0A03                   .dbsym l x -5 pi
+ 0A03                   .dbend
+                        .area bss(ram, con, rel)
+ 0060                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0060           L42:
+ 0060                   .blkb 2
+                        .area text(rom, con, rel)
+ 0A03                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0A03                   .dbfunc e af _af fI
+ 0A03                   .dbsym s x_af_1 L42 i
+ 0A03           ;             ya -> X+0
+ 0A03           ;             xa -> X-5
+ 0A03           _af::
+ 0A03                   .dbline -1
+ 0A03 10                push X
+ 0A04 4F                mov X,SP
+ 0A05 3802              add SP,2
+ 0A07                   .dbline 124
+ 0A07           ; }
+ 0A07           ; 
+ 0A07           ; //----------------------------------------------------------
+ 0A07           ; int af (int xa) // four order averaging filter   
+ 0A07           ; { 
+ 0A07                   .dbline 125
+ 0A07           ;   unsigned int ya = 0;
+ 0A07 560100            mov [X+1],0
+ 0A0A 560000            mov [X+0],0
+ 0A0D                   .dbline 127
+ 0A0D           ;   static unsigned int x_af_1;
+ 0A0D           ;   if (first_af) { x_af_1 = xa; first_af = FALSE;}
+ 0A0D 3C0000            cmp [_first_af],0
+ 0A10 B006              jnz X62
+ 0A12 3C0100            cmp [_first_af+1],0
+ 0A15 A00F              jz L43
+ 0A17           X62:
+ 0A17                   .dbline 127
+ 0A17                   .dbline 127
+ 0A17 52FC              mov A,[X-4]
+ 0A19 5361              mov [L42+1],A
+ 0A1B 52FB              mov A,[X-5]
+ 0A1D 5360              mov [L42],A
+ 0A1F                   .dbline 127
+ 0A1F 550100            mov [_first_af+1],0
+ 0A22 550000            mov [_first_af],0
+ 0A25                   .dbline 127
+ 0A25           L43:
+ 0A25                   .dbline 128
+ 0A25           ;   ya = (xa + x_af_1) >> 1;
+ 0A25 52FC              mov A,[X-4]
+ 0A27 0261              add A,[L42+1]
+ 0A29 5300              mov [__r1],A
+ 0A2B 52FB              mov A,[X-5]
+ 0A2D 0A60              adc A,[L42]
+ 0A2F 5300              mov [__r0],A
+ 0A31 70FB              and F,-5
+ 0A33 6E00              rrc [__r0]
+ 0A35 6E00              rrc [__r1]
+ 0A37 5100              mov A,[__r1]
+ 0A39 5401              mov [X+1],A
+ 0A3B 5100              mov A,[__r0]
+ 0A3D 5400              mov [X+0],A
+ 0A3F                   .dbline 129
+ 0A3F           ;   x_af_1 = xa;
+ 0A3F 52FC              mov A,[X-4]
+ 0A41 5361              mov [L42+1],A
+ 0A43 52FB              mov A,[X-5]
+ 0A45 5360              mov [L42],A
+ 0A47                   .dbline 130
+ 0A47           ;   return ya;
+ 0A47 5201              mov A,[X+1]
+ 0A49 5300              mov [__r1],A
+ 0A4B 5200              mov A,[X+0]
+ 0A4D 5300              mov [__r0],A
+ 0A4F                   .dbline -2
+ 0A4F           L41:
+ 0A4F 38FE              add SP,-2
+ 0A51 20                pop X
+ 0A52                   .dbline 0 ; func end
+ 0A52 7F                ret
+ 0A53                   .dbsym l ya 0 i
+ 0A53                   .dbsym l xa -5 I
+ 0A53                   .dbend
+                        .area bss(ram, con, rel)
+ 0062                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0062           L46:
+ 0062                   .blkb 2
+                        .area text(rom, con, rel)
+ 0A53                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0A53                   .dbfunc e af2 _af2 fI
+ 0A53                   .dbsym s x_af2_1 L46 i
+ 0A53           ;             ya -> X+0
+ 0A53           ;             xa -> X-5
+ 0A53           _af2::
+ 0A53                   .dbline -1
+ 0A53 10                push X
+ 0A54 4F                mov X,SP
+ 0A55 3802              add SP,2
+ 0A57                   .dbline 135
+ 0A57           ; }
+ 0A57           ; 
+ 0A57           ; //----------------------------------------------------------
+ 0A57           ; int af2 (int xa) // two order averaging filter   
+ 0A57           ; { 
+ 0A57                   .dbline 136
+ 0A57           ;  unsigned int ya = 0;
+ 0A57 560100            mov [X+1],0
+ 0A5A 560000            mov [X+0],0
+ 0A5D                   .dbline 138
+ 0A5D           ;  static unsigned int x_af2_1;
+ 0A5D           ;  ya = (xa + x_af2_1) >> 1;
+ 0A5D 52FC              mov A,[X-4]
+ 0A5F 0263              add A,[L46+1]
+ 0A61 5300              mov [__r1],A
+ 0A63 52FB              mov A,[X-5]
+ 0A65 0A62              adc A,[L46]
+ 0A67 5300              mov [__r0],A
+ 0A69 70FB              and F,-5
+ 0A6B 6E00              rrc [__r0]
+ 0A6D 6E00              rrc [__r1]
+ 0A6F 5100              mov A,[__r1]
+ 0A71 5401              mov [X+1],A
+ 0A73 5100              mov A,[__r0]
+ 0A75 5400              mov [X+0],A
+ 0A77                   .dbline 139
+ 0A77           ;  x_af2_1 = xa;
+ 0A77 52FC              mov A,[X-4]
+ 0A79 5363              mov [L46+1],A
+ 0A7B 52FB              mov A,[X-5]
+ 0A7D 5362              mov [L46],A
+ 0A7F                   .dbline 140
+ 0A7F           ;  return ya;
+ 0A7F 5201              mov A,[X+1]
+ 0A81 5300              mov [__r1],A
+ 0A83 5200              mov A,[X+0]
+ 0A85 5300              mov [__r0],A
+ 0A87                   .dbline -2
+ 0A87           L45:
+ 0A87 38FE              add SP,-2
+ 0A89 20                pop X
+ 0A8A                   .dbline 0 ; func end
+ 0A8A 7F                ret
+ 0A8B                   .dbsym l ya 0 i
+ 0A8B                   .dbsym l xa -5 I
+ 0A8B                   .dbend
+                        .area bss(ram, con, rel)
+ 0064                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0064           L48:
+ 0064                   .blkb 4
+ 0068           L49:
+ 0068                   .blkb 4
+                        .area text(rom, con, rel)
+ 0A8B                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 0A8B                   .dbfunc e hpf1 _hpf1 fI
+ 0A8B                   .dbsym s y_hpf1_1 L49 L
+ 0A8B                   .dbsym s x_hpf1_1 L48 L
+ 0A8B           ;              y -> X+4
+ 0A8B           ;          diff1 -> X+0
+ 0A8B           ;              x -> X-5
+ 0A8B           _hpf1::
+ 0A8B                   .dbline -1
+ 0A8B 10                push X
+ 0A8C 4F                mov X,SP
+ 0A8D 3806              add SP,6
+ 0A8F                   .dbline 144
+ 0A8F           ; }
+ 0A8F           ; 
+ 0A8F           ; int hpf1 (int x) // first order high pass filter f = 30 hz  (differentiator)
+ 0A8F           ; { 
+ 0A8F                   .dbline 148
+ 0A8F           ;   static long x_hpf1_1, y_hpf1_1;
+ 0A8F           ;   long diff1;
+ 0A8F           ;   int y;
+ 0A8F           ;   diff1 = (x - x_hpf1_1 ) << 16;
+ 0A8F 52FC              mov A,[X-4]
+ 0A91 5300              mov [__r3],A
+ 0A93 52FB              mov A,[X-5]
+ 0A95 5300              mov [__r2],A
+ 0A97 470080            tst [__r2],-128
+ 0A9A A009              jz X63
+ 0A9C 5500FF            mov [__r1],-1
+ 0A9F 5500FF            mov [__r0],-1
+ 0AA2 8007              jmp X64
+ 0AA4           X63:
+ 0AA4 550000            mov [__r1],0
+ 0AA7 550000            mov [__r0],0
+ 0AAA           X64:
+ 0AAA 5167              mov A,[L48+3]
+ 0AAC 1400              sub [__r3],A
+ 0AAE 5166              mov A,[L48+2]
+ 0AB0 1C00              sbb [__r2],A
+ 0AB2 5165              mov A,[L48+1]
+ 0AB4 1C00              sbb [__r1],A
+ 0AB6 5164              mov A,[L48]
+ 0AB8 1C00              sbb [__r0],A
+ 0ABA 5010              mov A,16
+ 0ABC           X65:
+ 0ABC 6500              asl [__r3]
+ 0ABE 6B00              rlc [__r2]
+ 0AC0 6B00              rlc [__r1]
+ 0AC2 6B00              rlc [__r0]
+ 0AC4 78                dec A
+ 0AC5 BFF6              jnz X65
+ 0AC7 5100              mov A,[__r0]
+ 0AC9 5400              mov [X+0],A
+ 0ACB 5100              mov A,[__r1]
+ 0ACD 5401              mov [X+1],A
+ 0ACF 5100              mov A,[__r2]
+ 0AD1 5402              mov [X+2],A
+ 0AD3 5100              mov A,[__r3]
+ 0AD5 5403              mov [X+3],A
+ 0AD7                   .dbline 149
+ 0AD7           ;   diff1 = diff1 >> 1;
+ 0AD7 6900              asr [X+0]
+ 0AD9 6F01              rrc [X+1]
+ 0ADB 6F02              rrc [X+2]
+ 0ADD 6F03              rrc [X+3]
+ 0ADF                   .dbline 150
+ 0ADF           ;   y = (diff1 + (y_hpf1_1 << 10)) >> 16;
+ 0ADF 5F0068            mov [__r0],[L49]
+ 0AE2 5F0069            mov [__r1],[L49+1]
+ 0AE5 5F006A            mov [__r2],[L49+2]
+ 0AE8 5F006B            mov [__r3],[L49+3]
+ 0AEB 500A              mov A,10
+ 0AED           X66:
+ 0AED 6500              asl [__r3]
+ 0AEF 6B00              rlc [__r2]
+ 0AF1 6B00              rlc [__r1]
+ 0AF3 6B00              rlc [__r0]
+ 0AF5 78                dec A
+ 0AF6 BFF6              jnz X66
+ 0AF8 5203              mov A,[X+3]
+ 0AFA 0200              add A,[__r3]
+ 0AFC 5300              mov [__r3],A
+ 0AFE 5202              mov A,[X+2]
+ 0B00 0A00              adc A,[__r2]
+ 0B02 5300              mov [__r2],A
+ 0B04 5201              mov A,[X+1]
+ 0B06 0A00              adc A,[__r1]
+ 0B08 5300              mov [__r1],A
+ 0B0A 5200              mov A,[X+0]
+ 0B0C 0A00              adc A,[__r0]
+ 0B0E 5300              mov [__r0],A
+ 0B10 5010              mov A,16
+ 0B12           X67:
+ 0B12 6800              asr [__r0]
+ 0B14 6E00              rrc [__r1]
+ 0B16 6E00              rrc [__r2]
+ 0B18 6E00              rrc [__r3]
+ 0B1A 78                dec A
+ 0B1B BFF6              jnz X67
+ 0B1D 5100              mov A,[__r3]
+ 0B1F 5405              mov [X+5],A
+ 0B21 5100              mov A,[__r2]
+ 0B23 5404              mov [X+4],A
+ 0B25                   .dbline 151
+ 0B25           ;   x_hpf1_1 = x;
+ 0B25 52FC              mov A,[X-4]
+ 0B27 5367              mov [L48+3],A
+ 0B29 52FB              mov A,[X-5]
+ 0B2B 5366              mov [L48+2],A
+ 0B2D 476680            tst [L48+2],-128
+ 0B30 A009              jz X68
+ 0B32 5565FF            mov [L48+1],-1
+ 0B35 5564FF            mov [L48],-1
+ 0B38 8007              jmp X69
+ 0B3A           X68:
+ 0B3A 556500            mov [L48+1],0
+ 0B3D 556400            mov [L48],0
+ 0B40           X69:
+ 0B40                   .dbline 152
+ 0B40           ;   y_hpf1_1 = y;
+ 0B40 5205              mov A,[X+5]
+ 0B42 536B              mov [L49+3],A
+ 0B44 5204              mov A,[X+4]
+ 0B46 536A              mov [L49+2],A
+ 0B48 476A80            tst [L49+2],-128
+ 0B4B A009              jz X70
+ 0B4D 5569FF            mov [L49+1],-1
+ 0B50 5568FF            mov [L49],-1
+ 0B53 8007              jmp X71
+ 0B55           X70:
+ 0B55 556900            mov [L49+1],0
+ 0B58 556800            mov [L49],0
+ 0B5B           X71:
+ 0B5B                   .dbline 153
+ 0B5B           ;   return y;
+ 0B5B 5205              mov A,[X+5]
+ 0B5D 5300              mov [__r1],A
+ 0B5F 5204              mov A,[X+4]
+ 0B61 5300              mov [__r0],A
+ 0B63                   .dbline -2
+ 0B63           L47:
+ 0B63 38FA              add SP,-6
+ 0B65 20                pop X
+ 0B66                   .dbline 0 ; func end
+ 0B66 7F                ret
+ 0B67                   .dbsym l y 4 I
+ 0B67                   .dbsym l diff1 0 L
+ 0B67                   .dbsym l x -5 I
+ 0B67                   .dbend
+ 0B67                   .dbfunc e main _main fV
+ 0B67           _main::
+ 0B67                   .dbline -1
+ 0B67                   .dbline 162
+ 0B67           ; }
+ 0B67           ; 
+ 0B67           ; float fVolts;                 // Variable that stores the converted voltage value
+ 0B67           ; float fScaleFactor;           // Variable that stores the volts/count scale factor
+ 0B67           ; char *pResult;                        // Pointer used to store the result returned by ftoa function
+ 0B67           ; int iStatus;
+ 0B67           ; 
+ 0B67           ; void main(void)
+ 0B67           ; {
+ 0B67                   .dbline 163
+ 0B67           ;       LED_Start();
+ 0B67 10                push X
+ 0B68 7C0000            xcall _LED_Start
+ 0B6B                   .dbline 165
+ 0B6B           ; 
+ 0B6B           ;    LED_Switch(1); 
+ 0B6B 5001              mov A,1
+ 0B6D 7C0000            xcall _LED_Switch
+ 0B70                   .dbline 167
+ 0B70           ;       
+ 0B70           ;     UART_CmdReset();                      // Initialize receiver/cmd  
+ 0B70 7C0000            xcall _UART_CmdReset
+ 0B73                   .dbline 169
+ 0B73           ;                                           // buffer  
+ 0B73           ;     UART_IntCntl(UART_ENABLE_RX_INT);     // Enable RX interrupts  
+ 0B73 5001              mov A,1
+ 0B75 7C0000            xcall _UART_IntCntl
+ 0B78                   .dbline 171
+ 0B78           ;           
+ 0B78           ;     UART_Start(UART_PARITY_NONE);         // Enable UART  
+ 0B78 5000              mov A,0
+ 0B7A 7C0000            xcall _UART_Start
+ 0B7D 20                pop X
+ 0B7E                   .dbline 173
+ 0B7E           ;       
+ 0B7E           ;     M8C_EnableGInt ;                      // Enable Global Interrupts   
+ 0B7E 7101                      or  F, 01h
+ 0B80           
+ 0B80                   .dbline 175
+ 0B80           ;       
+ 0B80           ;       PGA_1_Start(PGA_1_HIGHPOWER);
+ 0B80 10                push X
+ 0B81 5003              mov A,3
+ 0B83 7C0000            xcall _PGA_1_Start
+ 0B86                   .dbline 177
+ 0B86           ;       
+ 0B86           ;    ADCINC_Start(ADCINC_HIGHPOWER);       // Apply power to the SC Block   
+ 0B86 5003              mov A,3
+ 0B88 7C0000            xcall _ADCINC_Start
+ 0B8B                   .dbline 178
+ 0B8B           ;    ADCINC_GetSamples(0);
+ 0B8B 5000              mov A,0
+ 0B8D 7C0000            xcall _ADCINC_GetSamples
+ 0B90                   .dbline 180
+ 0B90           ;          
+ 0B90           ;  UART_CPutString("uruchomienie");
+ 0B90 5004              mov A,>L51
+ 0B92 08                push A
+ 0B93 5004              mov A,<L51
+ 0B95 5C                mov X,A
+ 0B96 18                pop A
+ 0B97 7C0000            xcall _UART_CPutString
+ 0B9A 20                pop X
+ 0B9B                   .dbline 181
+ 0B9B           ;  fScaleFactor = (float)5/(float)16384;
+ 0B9B 557039            mov [_fScaleFactor],57
+ 0B9E 5571A0            mov [_fScaleFactor+1],-96
+ 0BA1 557200            mov [_fScaleFactor+2],0
+ 0BA4 557300            mov [_fScaleFactor+3],0
+ 0BA7                   .dbline 182
+ 0BA7           ;     for(;;) {  
+ 0BA7                   .dbline 182
+ 0BA7 800D              xjmp L57
+ 0BA9           L56:
+ 0BA9                   .dbline 185
+ 0BA9           ;        
+ 0BA9           ;      while(ADCINC_fIsDataAvailable() == 0)  // Loop until value ready   
+ 0BA9           ;               nADCdata=ADCINC_iGetData();                   
+ 0BA9 10                push X
+ 0BAA 7C0000            xcall _ADCINC_iGetData
+ 0BAD 5A00              mov [__r0],X
+ 0BAF 20                pop X
+ 0BB0 5387              mov [_nADCdata+1],A
+ 0BB2 5F8600            mov [_nADCdata],[__r0]
+ 0BB5           L57:
+ 0BB5                   .dbline 184
+ 0BB5 10                push X
+ 0BB6 7C0000            xcall _ADCINC_fIsDataAvailable
+ 0BB9 20                pop X
+ 0BBA 3900              cmp A,0
+ 0BBC AFEC              jz L56
+ 0BBE                   .dbline 186
+ 0BBE           ;        nf_50_data = nf_50(nADCdata); // 50 Hz suppression 
+ 0BBE 5186              mov A,[_nADCdata]
+ 0BC0 08                push A
+ 0BC1 5187              mov A,[_nADCdata+1]
+ 0BC3 08                push A
+ 0BC4 7C0000            xcall _nf_50
+ 0BC7 5F8500            mov [_nf_50_data+1],[__r1]
+ 0BCA 5F8400            mov [_nf_50_data],[__r0]
+ 0BCD                   .dbline 187
+ 0BCD           ;    nf_50_data1 = nf1_50(nf_50_data); 
+ 0BCD 5184              mov A,[_nf_50_data]
+ 0BCF 08                push A
+ 0BD0 5185              mov A,[_nf_50_data+1]
+ 0BD2 08                push A
+ 0BD3 7C018E            xcall _nf1_50
+ 0BD6 38FC              add SP,-4
+ 0BD8 5F8300            mov [_nf_50_data1+1],[__r1]
+ 0BDB 5F8200            mov [_nf_50_data1],[__r0]
+ 0BDE                   .dbline 188
+ 0BDE           ;    nf_50_data2 = nf2_50(nf_50_data1);
+ 0BDE 5182              mov A,[_nf_50_data1]
+ 0BE0 08                push A
+ 0BE1 5183              mov A,[_nf_50_data1+1]
+ 0BE3 08                push A
+ 0BE4 7C031C            xcall _nf2_50
+ 0BE7 5F8100            mov [_nf_50_data2+1],[__r1]
+ 0BEA 5F8000            mov [_nf_50_data2],[__r0]
+ 0BED                   .dbline 189
+ 0BED           ;    nf_50_data3 = nf3_50(nf_50_data2);
+ 0BED 5180              mov A,[_nf_50_data2]
+ 0BEF 08                push A
+ 0BF0 5181              mov A,[_nf_50_data2+1]
+ 0BF2 08                push A
+ 0BF3 98B5              xcall _nf3_50
+ 0BF5 38FC              add SP,-4
+ 0BF7 5F7F00            mov [_nf_50_data3+1],[__r1]
+ 0BFA 5F7E00            mov [_nf_50_data3],[__r0]
+ 0BFD                   .dbline 190
+ 0BFD           ;    nf_50_data4 = nf4_50(nf_50_data3);
+ 0BFD 517E              mov A,[_nf_50_data3]
+ 0BFF 08                push A
+ 0C00 517F              mov A,[_nf_50_data3+1]
+ 0C02 08                push A
+ 0C03 9A33              xcall _nf4_50
+ 0C05 5F7D00            mov [_nf_50_data4+1],[__r1]
+ 0C08 5F7C00            mov [_nf_50_data4],[__r0]
+ 0C0B                   .dbline 191
+ 0C0B           ;    nf_50_data5 = nf5_50(nf_50_data4);          
+ 0C0B 517C              mov A,[_nf_50_data4]
+ 0C0D 08                push A
+ 0C0E 517D              mov A,[_nf_50_data4+1]
+ 0C10 08                push A
+ 0C11 9BB3              xcall _nf5_50
+ 0C13 38FC              add SP,-4
+ 0C15 5F7B00            mov [_nf_50_data5+1],[__r1]
+ 0C18 5F7A00            mov [_nf_50_data5],[__r0]
+ 0C1B                   .dbline 194
+ 0C1B           ;                               
+ 0C1B           ;                               
+ 0C1B           ;               ADCINC_fClearFlag();            
+ 0C1B 10                push X
+ 0C1C 7C0000            xcall _ADCINC_fClearFlag
+ 0C1F 20                pop X
+ 0C20                   .dbline 196
+ 0C20           ;                               
+ 0C20           ;               fVolts = fScaleFactor*(float)hpf1(af(nf_50_data5));
+ 0C20 517A              mov A,[_nf_50_data5]
+ 0C22 08                push A
+ 0C23 517B              mov A,[_nf_50_data5+1]
+ 0C25 08                push A
+ 0C26 9DDB              xcall _af
+ 0C28 5100              mov A,[__r0]
+ 0C2A 08                push A
+ 0C2B 5100              mov A,[__r1]
+ 0C2D 08                push A
+ 0C2E 9E5B              xcall _hpf1
+ 0C30 38FC              add SP,-4
+ 0C32 5F0000            mov [__r3],[__r1]
+ 0C35 5F0000            mov [__r2],[__r0]
+ 0C38 470080            tst [__r2],-128
+ 0C3B A009              jz X73
+ 0C3D 5500FF            mov [__r1],-1
+ 0C40 5500FF            mov [__r0],-1
+ 0C43 8007              jmp X74
+ 0C45           X73:
+ 0C45 550000            mov [__r1],0
+ 0C48 550000            mov [__r0],0
+ 0C4B           X74:
+ 0C4B 5100              mov A,[__r0]
+ 0C4D 08                push A
+ 0C4E 5100              mov A,[__r1]
+ 0C50 08                push A
+ 0C51 5100              mov A,[__r2]
+ 0C53 08                push A
+ 0C54 5100              mov A,[__r3]
+ 0C56 08                push A
+ 0C57 7C0000            xcall __long2fp
+ 0C5A 18                pop A
+ 0C5B 5300              mov [__r3],A
+ 0C5D 18                pop A
+ 0C5E 5300              mov [__r2],A
+ 0C60 18                pop A
+ 0C61 5300              mov [__r1],A
+ 0C63 18                pop A
+ 0C64 08                push A
+ 0C65 5100              mov A,[__r1]
+ 0C67 08                push A
+ 0C68 5100              mov A,[__r2]
+ 0C6A 08                push A
+ 0C6B 5100              mov A,[__r3]
+ 0C6D 08                push A
+ 0C6E 5170              mov A,[_fScaleFactor]
+ 0C70 08                push A
+ 0C71 5171              mov A,[_fScaleFactor+1]
+ 0C73 08                push A
+ 0C74 5172              mov A,[_fScaleFactor+2]
+ 0C76 08                push A
+ 0C77 5173              mov A,[_fScaleFactor+3]
+ 0C79 08                push A
+ 0C7A 7C0000            xcall __fpmul
+ 0C7D 18                pop A
+ 0C7E 5377              mov [_fVolts+3],A
+ 0C80 18                pop A
+ 0C81 5376              mov [_fVolts+2],A
+ 0C83 18                pop A
+ 0C84 5375              mov [_fVolts+1],A
+ 0C86 18                pop A
+ 0C87 5374              mov [_fVolts],A
+ 0C89 38FC              add SP,-4
+ 0C8B                   .dbline 197
+ 0C8B           ;               pResult = ftoa(fVolts,&iStatus );
+ 0C8B 506C              mov A,>_iStatus
+ 0C8D 08                push A
+ 0C8E 506C              mov A,<_iStatus
+ 0C90 08                push A
+ 0C91 5174              mov A,[_fVolts]
+ 0C93 08                push A
+ 0C94 5175              mov A,[_fVolts+1]
+ 0C96 08                push A
+ 0C97 5176              mov A,[_fVolts+2]
+ 0C99 08                push A
+ 0C9A 5177              mov A,[_fVolts+3]
+ 0C9C 08                push A
+ 0C9D 7C0000            xcall _ftoa
+ 0CA0 38FA              add SP,-6
+ 0CA2 5F6F00            mov [_pResult+1],[__r1]
+ 0CA5 5F6E00            mov [_pResult],[__r0]
+ 0CA8                   .dbline 200
+ 0CA8           ;                               
+ 0CA8           ;             // UART_PutSHexInt(nf_50_data5);
+ 0CA8           ;       UART_CPutString("E");
+ 0CA8 10                push X
+ 0CA9 5002              mov A,>L59
+ 0CAB 08                push A
+ 0CAC 5002              mov A,<L59
+ 0CAE 5C                mov X,A
+ 0CAF 18                pop A
+ 0CB0 7C0000            xcall _UART_CPutString
+ 0CB3                   .dbline 201
+ 0CB3           ;                       UART_PutString(pResult);
+ 0CB3 516E              mov A,[_pResult]
+ 0CB5 08                push A
+ 0CB6 516F              mov A,[_pResult+1]
+ 0CB8 5C                mov X,A
+ 0CB9 18                pop A
+ 0CBA 7C0000            xcall _UART_PutString
+ 0CBD                   .dbline 202
+ 0CBD           ;       UART_CPutString("\n");
+ 0CBD 5000              mov A,>L60
+ 0CBF 08                push A
+ 0CC0 5000              mov A,<L60
+ 0CC2 5C                mov X,A
+ 0CC3 18                pop A
+ 0CC4 7C0000            xcall _UART_CPutString
+ 0CC7 20                pop X
+ 0CC8                   .dbline 208
+ 0CC8           ;                       // UART_CPutString("\n\r");
+ 0CC8           ; 
+ 0CC8           ;        
+ 0CC8           ;               
+ 0CC8           ;       
+ 0CC8           ;    }  
+ 0CC8                   .dbline 182
+ 0CC8                   .dbline 182
+ 0CC8 8EEC              xjmp L57
+ 0CCA           X72:
+ 0CCA                   .dbline -2
+ 0CCA           L50:
+ 0CCA                   .dbline 0 ; func end
+ 0CCA 8FFF              jmp .
+ 0CCC                   .dbend
+                        .area bss(ram, con, rel)
+ 006C                   .dbfile C:\Users\ser\DOCUME~1\test2\test2\main.c
+ 006C           _iStatus::
+ 006C                   .blkb 2
+ 006E                   .dbsym e iStatus _iStatus I
+ 006E           _pResult::
+ 006E                   .blkb 2
+ 0070                   .dbsym e pResult _pResult pc
+ 0070           _fScaleFactor::
+ 0070                   .blkb 4
+ 0074                   .dbsym e fScaleFactor _fScaleFactor D
+ 0074           _fVolts::
+ 0074                   .blkb 4
+ 0078                   .dbsym e fVolts _fVolts D
+ 0078           _hpf_data::
+ 0078                   .blkb 2
+ 007A                   .dbsym e hpf_data _hpf_data I
+ 007A           _nf_50_data5::
+ 007A                   .blkb 2
+ 007C                   .dbsym e nf_50_data5 _nf_50_data5 I
+ 007C           _nf_50_data4::
+ 007C                   .blkb 2
+ 007E                   .dbsym e nf_50_data4 _nf_50_data4 I
+ 007E           _nf_50_data3::
+ 007E                   .blkb 2
+ 0080                   .dbsym e nf_50_data3 _nf_50_data3 I
+ 0080           _nf_50_data2::
+ 0080                   .blkb 2
+ 0082                   .dbsym e nf_50_data2 _nf_50_data2 I
+ 0082           _nf_50_data1::
+ 0082                   .blkb 2
+ 0084                   .dbsym e nf_50_data1 _nf_50_data1 I
+ 0084           _nf_50_data::
+ 0084                   .blkb 2
+ 0086                   .dbsym e nf_50_data _nf_50_data I
+ 0086           _nADCdata::
+ 0086                   .blkb 2
+ 0088                   .dbsym e nADCdata _nADCdata I
+ 0088           _iData::
+ 0088                   .blkb 2
+ 008A                   .dbsym e iData _iData I
+                        .area lit(rom, con, rel, lit)
+ 0000           L60:
+ 0000 0A00              .byte 10,0
+ 0002           L59:
+ 0002 4500              .byte 'E,0
+ 0004           L51:
+ 0004 75727563686F6D69656E696500        .byte 'u,'r,'u,'c,'h,'o,'m,'i,'e,'n,'i,'e,0
