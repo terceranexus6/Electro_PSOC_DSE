@@ -1,0 +1,1372 @@
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	soundBuffer,320,4
+  19              		.global	outIndex
+  20              		.bss
+  21              		.align	1
+  22              		.type	outIndex, %object
+  23              		.size	outIndex, 2
+  24              	outIndex:
+  25 0000 0000     		.space	2
+  26              		.global	inIndex
+  27              		.align	1
+  28              		.type	inIndex, %object
+  29              		.size	inIndex, 2
+  30              	inIndex:
+  31 0002 0000     		.space	2
+  32              		.global	syncDMA
+  33              		.type	syncDMA, %object
+  34              		.size	syncDMA, 1
+  35              	syncDMA:
+  36 0004 00       		.space	1
+  37              		.global	syncDMA_counter
+  38              		.type	syncDMA_counter, %object
+  39              		.size	syncDMA_counter, 1
+  40              	syncDMA_counter:
+  41 0005 00       		.space	1
+  42              		.comm	VDACoutDMA_Chan,1,1
+  43              		.comm	VDACoutDMA_TD,10,4
+  44              		.section	.text.DMA_done,"ax",%progbits
+  45              		.align	2
+  46              		.global	DMA_done
+  47              		.thumb
+  48              		.thumb_func
+  49              		.type	DMA_done, %function
+  50              	DMA_done:
+  51              	.LFB56:
+  52              		.file 1 "main.c"
+   1:main.c        **** #include <device.h>
+   2:main.c        **** 
+   3:main.c        **** 
+   4:main.c        **** // DMA = Direct Memory Access
+   5:main.c        **** #define AUDIO_INTERFACE (1u)
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 2
+
+
+   6:main.c        **** #define OUT_EP          (2u)
+   7:main.c        **** 
+   8:main.c        **** #define NUM_BUF         (10u)   // Elementos del buffer
+   9:main.c        **** #define TRANS_SIZE      (32u)   // Tamanio de la transferencia
+  10:main.c        **** #define BUFSIZE         (TRANS_SIZE*NUM_BUF)    // Tamanio del buffer
+  11:main.c        **** 
+  12:main.c        **** uint8 soundBuffer[BUFSIZE]; // Buffer del sonido
+  13:main.c        **** volatile uint16 outIndex = 0u;  // Indice de fin del buffer (trozo)
+  14:main.c        **** volatile uint16 inIndex = 0u;   // Indice del incio del buffer (trozo
+  15:main.c        **** 
+  16:main.c        **** volatile uint8 syncDMA = 0u;
+  17:main.c        **** volatile uint8 syncDMA_counter = 0u; 
+  18:main.c        **** 
+  19:main.c        **** uint8 VDACoutDMA_Chan;
+  20:main.c        **** uint8 VDACoutDMA_TD[NUM_BUF];
+  21:main.c        ****   
+  22:main.c        **** extern uint8 USBFS_DmaChan[];
+  23:main.c        **** extern uint8 USBFS_DmaTd[];
+  24:main.c        **** 
+  25:main.c        **** 
+  26:main.c        **** // rutina de tratamiento de interrupcion para incrementar 
+  27:main.c        **** // el puntero del buffer de salida y la sincronizacion con el DMA
+  28:main.c        **** 
+  29:main.c        **** CY_ISR(DMA_done)
+  30:main.c        **** {
+  53              		.loc 1 30 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 1, uses_anonymous_args = 0
+  57 0000 80B5     		push	{r7, lr}
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 7, -8
+  60              		.cfi_offset 14, -4
+  61 0002 00AF     		add	r7, sp, #0
+  62              		.cfi_def_cfa_register 7
+  31:main.c        ****     if(++outIndex >= NUM_BUF)
+  63              		.loc 1 31 0
+  64 0004 104B     		ldr	r3, .L4
+  65 0006 1B88     		ldrh	r3, [r3]	@ movhi
+  66 0008 9BB2     		uxth	r3, r3
+  67 000a 0133     		adds	r3, r3, #1
+  68 000c 9BB2     		uxth	r3, r3
+  69 000e 0E4A     		ldr	r2, .L4
+  70 0010 1946     		mov	r1, r3	@ movhi
+  71 0012 1180     		strh	r1, [r2]	@ movhi
+  72 0014 092B     		cmp	r3, #9
+  73 0016 02D9     		bls	.L2
+  32:main.c        ****     {
+  33:main.c        ****         outIndex = 0u;
+  74              		.loc 1 33 0
+  75 0018 0B4B     		ldr	r3, .L4
+  76 001a 0022     		movs	r2, #0
+  77 001c 1A80     		strh	r2, [r3]	@ movhi
+  78              	.L2:
+  34:main.c        ****     }
+  35:main.c        ****     
+  36:main.c        ****     // Si el reloj interno es mas rapido que las transacciones del PC
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 3
+
+
+  37:main.c        ****     //se desabilita el canal del VDAC para que no saque nada
+  38:main.c        ****     
+  39:main.c        ****     if(outIndex == inIndex)
+  79              		.loc 1 39 0
+  80 001e 0A4B     		ldr	r3, .L4
+  81 0020 1B88     		ldrh	r3, [r3]	@ movhi
+  82 0022 9AB2     		uxth	r2, r3
+  83 0024 094B     		ldr	r3, .L4+4
+  84 0026 1B88     		ldrh	r3, [r3]	@ movhi
+  85 0028 9BB2     		uxth	r3, r3
+  86 002a 9A42     		cmp	r2, r3
+  87 002c 0AD1     		bne	.L1
+  40:main.c        ****     {
+  41:main.c        ****         // Para el DMA 
+  42:main.c        ****         CyDmaChDisable(VDACoutDMA_Chan);
+  88              		.loc 1 42 0
+  89 002e 084B     		ldr	r3, .L4+8
+  90 0030 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  91 0032 1846     		mov	r0, r3
+  92 0034 FFF7FEFF 		bl	CyDmaChDisable
+  43:main.c        ****         // Resincroniza el DMA y espera a que se rehanbilite el DMA del DAC (Digital to Analog Conv
+  44:main.c        ****         syncDMA = 0u;
+  93              		.loc 1 44 0
+  94 0038 064B     		ldr	r3, .L4+12
+  95 003a 0022     		movs	r2, #0
+  96 003c 1A70     		strb	r2, [r3]
+  45:main.c        ****         syncDMA_counter = 0u;
+  97              		.loc 1 45 0
+  98 003e 064B     		ldr	r3, .L4+16
+  99 0040 0022     		movs	r2, #0
+ 100 0042 1A70     		strb	r2, [r3]
+ 101              	.L1:
+  46:main.c        ****     }
+  47:main.c        ****     
+  48:main.c        ****     
+  49:main.c        ****     
+  50:main.c        **** }
+ 102              		.loc 1 50 0
+ 103 0044 80BD     		pop	{r7, pc}
+ 104              	.L5:
+ 105 0046 00BF     		.align	2
+ 106              	.L4:
+ 107 0048 00000000 		.word	outIndex
+ 108 004c 00000000 		.word	inIndex
+ 109 0050 00000000 		.word	VDACoutDMA_Chan
+ 110 0054 00000000 		.word	syncDMA
+ 111 0058 00000000 		.word	syncDMA_counter
+ 112              		.cfi_endproc
+ 113              	.LFE56:
+ 114              		.size	DMA_done, .-DMA_done
+ 115              		.section	.rodata
+ 116              		.align	2
+ 117              	.LC0:
+ 118 0000 50657069 		.ascii	"Pepito Sound\000"
+ 118      746F2053 
+ 118      6F756E64 
+ 118      00
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 4
+
+
+ 119 000d 000000   		.align	2
+ 120              	.LC1:
+ 121 0010 53797374 		.ascii	"System: Bistecs\000"
+ 121      656D3A20 
+ 121      42697374 
+ 121      65637300 
+ 122              		.align	2
+ 123              	.LC2:
+ 124 0020 41756469 		.ascii	"Audio OFF\000"
+ 124      6F204F46 
+ 124      4600
+ 125 002a 0000     		.section	.text.main,"ax",%progbits
+ 126              		.align	2
+ 127              		.global	main
+ 128              		.thumb
+ 129              		.thumb_func
+ 130              		.type	main, %function
+ 131              	main:
+ 132              	.LFB57:
+  51:main.c        **** 
+  52:main.c        **** 
+  53:main.c        **** // Se hace la sincronizacion software
+  54:main.c        **** void main()
+  55:main.c        **** {
+ 133              		.loc 1 55 0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 8
+ 136              		@ frame_needed = 1, uses_anonymous_args = 0
+ 137 0000 90B5     		push	{r4, r7, lr}
+ 138              		.cfi_def_cfa_offset 12
+ 139              		.cfi_offset 4, -12
+ 140              		.cfi_offset 7, -8
+ 141              		.cfi_offset 14, -4
+ 142 0002 83B0     		sub	sp, sp, #12
+ 143              		.cfi_def_cfa_offset 24
+ 144 0004 00AF     		add	r7, sp, #0
+ 145              		.cfi_def_cfa_register 7
+  56:main.c        ****     uint8 i;
+  57:main.c        ****     uint8 skip_next_OUT = 0;
+ 146              		.loc 1 57 0
+ 147 0006 0023     		movs	r3, #0
+ 148 0008 BB71     		strb	r3, [r7, #6]
+  58:main.c        ****     
+  59:main.c        ****     VDAC8_Start();
+ 149              		.loc 1 59 0
+ 150 000a FFF7FEFF 		bl	VDAC8_Start
+  60:main.c        ****     //VDAC8_1_Start();
+  61:main.c        ****     
+  62:main.c        ****     // Cuando el DMA del buffer haya finalizado nos vamos a DMA_done
+  63:main.c        ****     VDACoutDMA_done_isr_StartEx(DMA_done);
+ 151              		.loc 1 63 0
+ 152 000e 8248     		ldr	r0, .L22
+ 153 0010 FFF7FEFF 		bl	VDACoutDMA_done_isr_StartEx
+  64:main.c        ****     
+  65:main.c        ****    
+  66:main.c        ****     LCD_Start();
+ 154              		.loc 1 66 0
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 5
+
+
+ 155 0014 FFF7FEFF 		bl	LCD_Start
+  67:main.c        ****     //LCD_PrintString("USB->DMA->DAC");
+  68:main.c        ****     LCD_PrintString("Pepito Sound");
+ 156              		.loc 1 68 0
+ 157 0018 8048     		ldr	r0, .L22+4
+ 158 001a FFF7FEFF 		bl	LCD_PrintString
+  69:main.c        ****     
+  70:main.c        ****     
+  71:main.c        ****     
+  72:main.c        ****     
+  73:main.c        ****     
+  74:main.c        ****     
+  75:main.c        ****     
+  76:main.c        ****     
+  77:main.c        ****     // Inicializacion del DMA
+  78:main.c        ****     // Desde la memoria buffer del DAC del USB al VDAC
+  79:main.c        ****    /* DMA Configuration for VDACoutDMA (Memory to VDAC) */
+  80:main.c        ****     #define VDACoutDMA_BYTES_PER_BURST      1
+  81:main.c        ****     #define VDACoutDMA_REQUEST_PER_BURST    1
+  82:main.c        ****     #define VDACoutDMA_DST_BASE             (CYDEV_PERIPH_BASE)
+  83:main.c        ****     #if (defined(__C51__))          /* PSoC 3 - Source is SRAM */
+  84:main.c        ****         #define VDACoutDMA_SRC_BASE         (CYDEV_SRAM_BASE)
+  85:main.c        ****     #else                           /* PSoC 5 */
+  86:main.c        ****         #define VDACoutDMA_SRC_BASE         (soundBuffer)
+  87:main.c        ****     #endif  /* End C51 */  
+  88:main.c        ****     
+  89:main.c        ****     // Primer argumento: cuantos bytes se transfieren a la vez -> 1 byte
+  90:main.c        ****     // Segundo argumento: Cuantos bytes se trasnfierene en una peticion -> 1 Byte
+  91:main.c        ****     // Direccion de la fuente (los 16 bits mas significativos (HI16) 
+  92:main.c        ****     // Direccion del destino (los 16 bist mas significativos (H16)
+  93:main.c        ****     
+  94:main.c        ****     VDACoutDMA_Chan = VDACoutDMA_DmaInitialize(VDACoutDMA_BYTES_PER_BURST, VDACoutDMA_REQUEST_PER_B
+  95:main.c        ****                                      HI16(VDACoutDMA_SRC_BASE), HI16(VDACoutDMA_DST_BASE));
+ 159              		.loc 1 95 0
+ 160 001e 804B     		ldr	r3, .L22+8
+ 161 0020 1B0C     		lsrs	r3, r3, #16
+  94:main.c        ****                                      HI16(VDACoutDMA_SRC_BASE), HI16(VDACoutDMA_DST_BASE));
+ 162              		.loc 1 94 0
+ 163 0022 9BB2     		uxth	r3, r3
+ 164 0024 0120     		movs	r0, #1
+ 165 0026 0121     		movs	r1, #1
+ 166 0028 1A46     		mov	r2, r3
+ 167 002a 4FF48043 		mov	r3, #16384
+ 168 002e FFF7FEFF 		bl	VDACoutDMA_DmaInitialize
+ 169 0032 0346     		mov	r3, r0
+ 170 0034 1A46     		mov	r2, r3
+ 171 0036 7B4B     		ldr	r3, .L22+12
+ 172 0038 1A70     		strb	r2, [r3]
+  96:main.c        ****     
+  97:main.c        ****     // Para cada elemento del buffer, reservo memoria
+  98:main.c        ****     for (i = 0u; i < NUM_BUF; i++) 
+ 173              		.loc 1 98 0
+ 174 003a 0023     		movs	r3, #0
+ 175 003c FB71     		strb	r3, [r7, #7]
+ 176 003e 09E0     		b	.L7
+ 177              	.L8:
+  99:main.c        ****     {
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 6
+
+
+ 100:main.c        ****         VDACoutDMA_TD[i] = CyDmaTdAllocate();
+ 178              		.loc 1 100 0 discriminator 3
+ 179 0040 FC79     		ldrb	r4, [r7, #7]	@ zero_extendqisi2
+ 180 0042 FFF7FEFF 		bl	CyDmaTdAllocate
+ 181 0046 0346     		mov	r3, r0
+ 182 0048 1A46     		mov	r2, r3
+ 183 004a 774B     		ldr	r3, .L22+16
+ 184 004c 1A55     		strb	r2, [r3, r4]
+  98:main.c        ****     {
+ 185              		.loc 1 98 0 discriminator 3
+ 186 004e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 187 0050 0133     		adds	r3, r3, #1
+ 188 0052 FB71     		strb	r3, [r7, #7]
+ 189              	.L7:
+  98:main.c        ****     {
+ 190              		.loc 1 98 0 is_stmt 0 discriminator 1
+ 191 0054 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 192 0056 092B     		cmp	r3, #9
+ 193 0058 F2D9     		bls	.L8
+ 101:main.c        ****     }    
+ 102:main.c        ****     
+ 103:main.c        ****     
+ 104:main.c        ****     // Para cada buffer le cambio la configuracion
+ 105:main.c        ****     for (i = 0u; i < (NUM_BUF-1); i++) 
+ 194              		.loc 1 105 0 is_stmt 1
+ 195 005a 0023     		movs	r3, #0
+ 196 005c FB71     		strb	r3, [r7, #7]
+ 197 005e 0FE0     		b	.L9
+ 198              	.L10:
+ 106:main.c        ****     {
+ 107:main.c        ****         CyDmaTdSetConfiguration(VDACoutDMA_TD[i], TRANS_SIZE, VDACoutDMA_TD[i+1], TD_INC_SRC_ADR | 
+ 199              		.loc 1 107 0 discriminator 3
+ 200 0060 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 201 0062 714A     		ldr	r2, .L22+16
+ 202 0064 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+ 203 0066 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 204 0068 0133     		adds	r3, r3, #1
+ 205 006a 6F4A     		ldr	r2, .L22+16
+ 206 006c D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 207 006e 0846     		mov	r0, r1
+ 208 0070 2021     		movs	r1, #32
+ 209 0072 1A46     		mov	r2, r3
+ 210 0074 0523     		movs	r3, #5
+ 211 0076 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 105:main.c        ****     {
+ 212              		.loc 1 105 0 discriminator 3
+ 213 007a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 214 007c 0133     		adds	r3, r3, #1
+ 215 007e FB71     		strb	r3, [r7, #7]
+ 216              	.L9:
+ 105:main.c        ****     {
+ 217              		.loc 1 105 0 is_stmt 0 discriminator 1
+ 218 0080 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 219 0082 082B     		cmp	r3, #8
+ 220 0084 ECD9     		bls	.L10
+ 108:main.c        ****                                                                                   VDACoutDMA__TD_TE
+ 109:main.c        ****     }
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 7
+
+
+ 110:main.c        ****     
+ 111:main.c        ****     
+ 112:main.c        ****     CyDmaTdSetConfiguration(VDACoutDMA_TD[NUM_BUF-1], TRANS_SIZE, VDACoutDMA_TD[0], TD_INC_SRC_ADR 
+ 221              		.loc 1 112 0 is_stmt 1
+ 222 0086 684B     		ldr	r3, .L22+16
+ 223 0088 5A7A     		ldrb	r2, [r3, #9]	@ zero_extendqisi2
+ 224 008a 674B     		ldr	r3, .L22+16
+ 225 008c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 226 008e 1046     		mov	r0, r2
+ 227 0090 2021     		movs	r1, #32
+ 228 0092 1A46     		mov	r2, r3
+ 229 0094 0523     		movs	r3, #5
+ 230 0096 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 113:main.c        ****                      
+ 114:main.c        ****     
+ 115:main.c        ****     
+ 116:main.c        ****     VDACoutDMA__TD_TERMOUT_EN);
+ 117:main.c        ****     for (i = 0u; i < NUM_BUF; i++) 
+ 231              		.loc 1 117 0
+ 232 009a 0023     		movs	r3, #0
+ 233 009c FB71     		strb	r3, [r7, #7]
+ 234 009e 10E0     		b	.L11
+ 235              	.L12:
+ 118:main.c        ****     {
+ 119:main.c        ****         // Establecemos las direcciones
+ 120:main.c        ****         CyDmaTdSetAddress(VDACoutDMA_TD[i], LO16((uint32)&soundBuffer[TRANS_SIZE*i]), LO16((uint32)
+ 236              		.loc 1 120 0 discriminator 3
+ 237 00a0 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 238 00a2 614A     		ldr	r2, .L22+16
+ 239 00a4 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+ 240 00a6 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 241 00a8 5B01     		lsls	r3, r3, #5
+ 242 00aa 5D4A     		ldr	r2, .L22+8
+ 243 00ac 1344     		add	r3, r3, r2
+ 244 00ae 9BB2     		uxth	r3, r3
+ 245 00b0 0846     		mov	r0, r1
+ 246 00b2 1946     		mov	r1, r3
+ 247 00b4 45F68132 		movw	r2, #23425
+ 248 00b8 FFF7FEFF 		bl	CyDmaTdSetAddress
+ 117:main.c        ****     {
+ 249              		.loc 1 117 0 discriminator 3
+ 250 00bc FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 251 00be 0133     		adds	r3, r3, #1
+ 252 00c0 FB71     		strb	r3, [r7, #7]
+ 253              	.L11:
+ 117:main.c        ****     {
+ 254              		.loc 1 117 0 is_stmt 0 discriminator 1
+ 255 00c2 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 256 00c4 092B     		cmp	r3, #9
+ 257 00c6 EBD9     		bls	.L12
+ 121:main.c        ****     } 
+ 122:main.c        ****     
+ 123:main.c        ****     
+ 124:main.c        ****     // Establece el canal inicial(Manejador del canal, Manejador del TD)
+ 125:main.c        ****     CyDmaChSetInitialTd(VDACoutDMA_Chan, VDACoutDMA_TD[0]);
+ 258              		.loc 1 125 0 is_stmt 1
+ 259 00c8 564B     		ldr	r3, .L22+12
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 8
+
+
+ 260 00ca 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 261 00cc 564B     		ldr	r3, .L22+16
+ 262 00ce 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 263 00d0 1046     		mov	r0, r2
+ 264 00d2 1946     		mov	r1, r3
+ 265 00d4 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 126:main.c        **** 
+ 127:main.c        ****     
+ 128:main.c        ****     
+ 129:main.c        ****     
+ 130:main.c        ****     
+ 131:main.c        ****     CyGlobalIntEnable;  /* enable global interrupts. */
+ 266              		.loc 1 131 0
+ 267              	@ 131 "main.c" 1
+ 268 00d8 62B6     		CPSIE   i
+ 269              	@ 0 "" 2
+ 132:main.c        **** 
+ 133:main.c        ****     /* Start USBFS Operation with 3V operation */
+ 134:main.c        ****     USBFS_Start(0, USBFS_3V_OPERATION);   
+ 270              		.loc 1 134 0
+ 271              		.thumb
+ 272 00da 0020     		movs	r0, #0
+ 273 00dc 0021     		movs	r1, #0
+ 274 00de FFF7FEFF 		bl	USBFS_Start
+ 135:main.c        ****     /* Wait for Device to enumerate */
+ 136:main.c        ****     while(!USBFS_GetConfiguration());    
+ 275              		.loc 1 136 0
+ 276 00e2 00BF     		nop
+ 277              	.L13:
+ 278              		.loc 1 136 0 is_stmt 0 discriminator 1
+ 279 00e4 FFF7FEFF 		bl	USBFS_GetConfiguration
+ 280 00e8 0346     		mov	r3, r0
+ 281 00ea 002B     		cmp	r3, #0
+ 282 00ec FAD0     		beq	.L13
+ 283              	.L21:
+ 137:main.c        **** 
+ 138:main.c        ****     
+ 139:main.c        ****     
+ 140:main.c        ****     
+ 141:main.c        ****     // De forma repetitiva hace:
+ 142:main.c        ****     // 1. Comprobamos si no ha cambiado la configuracion del USB
+ 143:main.c        ****         // 2. Comprobamosque se obtenga la configuracion y la interfaz sea de audio (Sirve para rei
+ 144:main.c        ****            // Indice entrada = 0
+ 145:main.c        ****             //Indice salida = 0
+ 146:main.c        ****             // Sincronizacion del DMA = 0
+ 147:main.c        ****             // Sincronizador del DMA contado = 0
+ 148:main.c        ****     
+ 149:main.c        ****     
+ 150:main.c        ****         // Si Se ha llenado el buffer del USB
+ 151:main.c        ****             // 
+ 152:main.c        **** 
+ 153:main.c        ****     for(;;)
+ 154:main.c        ****     {
+ 155:main.c        **** 
+ 156:main.c        ****         if(USBFS_IsConfigurationChanged() != 0u) 
+ 284              		.loc 1 156 0 is_stmt 1
+ 285 00ee FFF7FEFF 		bl	USBFS_IsConfigurationChanged
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 9
+
+
+ 286 00f2 0346     		mov	r3, r0
+ 287 00f4 002B     		cmp	r3, #0
+ 288 00f6 2AD0     		beq	.L14
+ 157:main.c        ****         {
+ 158:main.c        ****             // ¿Se ha cambiado algo de la configuracion del USB?
+ 159:main.c        ****             if((USBFS_GetConfiguration() != 0u) && (USBFS_GetInterfaceSetting(AUDIO_INTERFACE) != 0
+ 289              		.loc 1 159 0
+ 290 00f8 FFF7FEFF 		bl	USBFS_GetConfiguration
+ 291 00fc 0346     		mov	r3, r0
+ 292 00fe 002B     		cmp	r3, #0
+ 293 0100 1ED0     		beq	.L15
+ 294              		.loc 1 159 0 is_stmt 0 discriminator 1
+ 295 0102 0120     		movs	r0, #1
+ 296 0104 FFF7FEFF 		bl	USBFS_GetInterfaceSetting
+ 297 0108 0346     		mov	r3, r0
+ 298 010a 002B     		cmp	r3, #0
+ 299 010c 18D0     		beq	.L15
+ 160:main.c        ****             {   
+ 161:main.c        ****                 
+ 162:main.c        ****                 inIndex = 0u;
+ 300              		.loc 1 162 0 is_stmt 1
+ 301 010e 474B     		ldr	r3, .L22+20
+ 302 0110 0022     		movs	r2, #0
+ 303 0112 1A80     		strh	r2, [r3]	@ movhi
+ 163:main.c        ****                 outIndex = 0u;
+ 304              		.loc 1 163 0
+ 305 0114 464B     		ldr	r3, .L22+24
+ 306 0116 0022     		movs	r2, #0
+ 307 0118 1A80     		strh	r2, [r3]	@ movhi
+ 164:main.c        ****                 syncDMA = 0u;
+ 308              		.loc 1 164 0
+ 309 011a 464B     		ldr	r3, .L22+28
+ 310 011c 0022     		movs	r2, #0
+ 311 011e 1A70     		strb	r2, [r3]
+ 165:main.c        ****                 syncDMA_counter = 0u;
+ 312              		.loc 1 165 0
+ 313 0120 454B     		ldr	r3, .L22+32
+ 314 0122 0022     		movs	r2, #0
+ 315 0124 1A70     		strb	r2, [r3]
+ 166:main.c        ****                 skip_next_OUT = 0u;
+ 316              		.loc 1 166 0
+ 317 0126 0023     		movs	r3, #0
+ 318 0128 BB71     		strb	r3, [r7, #6]
+ 167:main.c        ****                 USBFS_EnableOutEP(OUT_EP);
+ 319              		.loc 1 167 0
+ 320 012a 0220     		movs	r0, #2
+ 321 012c FFF7FEFF 		bl	USBFS_EnableOutEP
+ 168:main.c        ****                 LCD_Position(1,0);
+ 322              		.loc 1 168 0
+ 323 0130 0120     		movs	r0, #1
+ 324 0132 0021     		movs	r1, #0
+ 325 0134 FFF7FEFF 		bl	LCD_Position
+ 169:main.c        ****                 LCD_PrintString("System: Bistecs");
+ 326              		.loc 1 169 0
+ 327 0138 4048     		ldr	r0, .L22+36
+ 328 013a FFF7FEFF 		bl	LCD_PrintString
+ 329 013e 06E0     		b	.L14
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 10
+
+
+ 330              	.L15:
+ 170:main.c        ****                 //LCD_PrintString("Audio ON ");
+ 171:main.c        ****             }    
+ 172:main.c        ****             else // Cuando esta en mute o no sale audio
+ 173:main.c        ****             {
+ 174:main.c        ****                 LCD_Position(1,0);
+ 331              		.loc 1 174 0
+ 332 0140 0120     		movs	r0, #1
+ 333 0142 0021     		movs	r1, #0
+ 334 0144 FFF7FEFF 		bl	LCD_Position
+ 175:main.c        ****                 LCD_PrintString("Audio OFF");
+ 335              		.loc 1 175 0
+ 336 0148 3D48     		ldr	r0, .L22+40
+ 337 014a FFF7FEFF 		bl	LCD_PrintString
+ 338              	.L14:
+ 176:main.c        ****             }
+ 177:main.c        ****         }
+ 178:main.c        ****         if (USBFS_GetEPState(OUT_EP) == USBFS_OUT_BUFFER_FULL)
+ 339              		.loc 1 178 0
+ 340 014e 0220     		movs	r0, #2
+ 341 0150 FFF7FEFF 		bl	USBFS_GetEPState
+ 342 0154 0346     		mov	r3, r0
+ 343 0156 012B     		cmp	r3, #1
+ 344 0158 41D1     		bne	.L16
+ 179:main.c        ****         {
+ 180:main.c        ****             if(skip_next_OUT == 0u)
+ 345              		.loc 1 180 0
+ 346 015a BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 347 015c 002B     		cmp	r3, #0
+ 348 015e 27D1     		bne	.L17
+ 181:main.c        ****             {
+ 182:main.c        ****                 /* Read OUT_EP using DMA */
+ 183:main.c        ****                 // Lee OUT_EP usando el acceso directo a memoria y lo deja en soundBuffer[inIndex*T
+ 184:main.c        ****                 USBFS_ReadOutEP(OUT_EP, &soundBuffer[inIndex*TRANS_SIZE], TRANS_SIZE); // Lectura p
+ 349              		.loc 1 184 0
+ 350 0160 324B     		ldr	r3, .L22+20
+ 351 0162 1B88     		ldrh	r3, [r3]	@ movhi
+ 352 0164 9BB2     		uxth	r3, r3
+ 353 0166 5B01     		lsls	r3, r3, #5
+ 354 0168 2D4A     		ldr	r2, .L22+8
+ 355 016a 1344     		add	r3, r3, r2
+ 356 016c 0220     		movs	r0, #2
+ 357 016e 1946     		mov	r1, r3
+ 358 0170 2022     		movs	r2, #32
+ 359 0172 FFF7FEFF 		bl	USBFS_ReadOutEP
+ 185:main.c        ****                 leyendoDelUSB_Write(~leyendoDelUSB_Read());
+ 360              		.loc 1 185 0
+ 361 0176 FFF7FEFF 		bl	leyendoDelUSB_Read
+ 362 017a 0346     		mov	r3, r0
+ 363 017c DB43     		mvns	r3, r3
+ 364 017e DBB2     		uxtb	r3, r3
+ 365 0180 1846     		mov	r0, r3
+ 366 0182 FFF7FEFF 		bl	leyendoDelUSB_Write
+ 186:main.c        ****                 if(++inIndex >= NUM_BUF)
+ 367              		.loc 1 186 0
+ 368 0186 294B     		ldr	r3, .L22+20
+ 369 0188 1B88     		ldrh	r3, [r3]	@ movhi
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 11
+
+
+ 370 018a 9BB2     		uxth	r3, r3
+ 371 018c 0133     		adds	r3, r3, #1
+ 372 018e 9BB2     		uxth	r3, r3
+ 373 0190 264A     		ldr	r2, .L22+20
+ 374 0192 1946     		mov	r1, r3	@ movhi
+ 375 0194 1180     		strh	r1, [r2]	@ movhi
+ 376 0196 092B     		cmp	r3, #9
+ 377 0198 02D9     		bls	.L18
+ 187:main.c        ****                 {
+ 188:main.c        ****                     inIndex = 0u;
+ 378              		.loc 1 188 0
+ 379 019a 244B     		ldr	r3, .L22+20
+ 380 019c 0022     		movs	r2, #0
+ 381 019e 1A80     		strh	r2, [r3]	@ movhi
+ 382              	.L18:
+ 189:main.c        ****                 }
+ 190:main.c        ****                 syncDMA_counter++;
+ 383              		.loc 1 190 0
+ 384 01a0 254B     		ldr	r3, .L22+32
+ 385 01a2 1B78     		ldrb	r3, [r3]
+ 386 01a4 DBB2     		uxtb	r3, r3
+ 387 01a6 0133     		adds	r3, r3, #1
+ 388 01a8 DAB2     		uxtb	r2, r3
+ 389 01aa 234B     		ldr	r3, .L22+32
+ 390 01ac 1A70     		strb	r2, [r3]
+ 391 01ae 04E0     		b	.L19
+ 392              	.L17:
+ 191:main.c        ****             }
+ 192:main.c        ****             else 
+ 193:main.c        ****             {
+ 194:main.c        ****                 // Se salta la transferencia
+ 195:main.c        ****                 USBFS_EnableOutEP(OUT_EP);
+ 393              		.loc 1 195 0
+ 394 01b0 0220     		movs	r0, #2
+ 395 01b2 FFF7FEFF 		bl	USBFS_EnableOutEP
+ 196:main.c        ****                 skip_next_OUT = 0u;
+ 396              		.loc 1 196 0
+ 397 01b6 0023     		movs	r3, #0
+ 398 01b8 BB71     		strb	r3, [r7, #6]
+ 399              	.L19:
+ 197:main.c        ****             }
+ 198:main.c        ****             
+ 199:main.c        ****             // Si el infice de salida coincide con el de entrada es porque el 
+ 200:main.c        ****             // relok interno es menos veloz que el trafico que genera el PC
+ 201:main.c        ****             if(outIndex == inIndex)
+ 400              		.loc 1 201 0
+ 401 01ba 1D4B     		ldr	r3, .L22+24
+ 402 01bc 1B88     		ldrh	r3, [r3]	@ movhi
+ 403 01be 9AB2     		uxth	r2, r3
+ 404 01c0 1A4B     		ldr	r3, .L22+20
+ 405 01c2 1B88     		ldrh	r3, [r3]	@ movhi
+ 406 01c4 9BB2     		uxth	r3, r3
+ 407 01c6 9A42     		cmp	r2, r3
+ 408 01c8 09D1     		bne	.L16
+ 202:main.c        ****             {
+ 203:main.c        ****                 // Asi que se salta ese tramo de transferencia
+ 204:main.c        ****                 skip_next_OUT = 1u;
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 12
+
+
+ 409              		.loc 1 204 0
+ 410 01ca 0123     		movs	r3, #1
+ 411 01cc BB71     		strb	r3, [r7, #6]
+ 205:main.c        ****                 outindexinIndex_Write(~outindexinIndex_Read());
+ 412              		.loc 1 205 0
+ 413 01ce FFF7FEFF 		bl	outindexinIndex_Read
+ 414 01d2 0346     		mov	r3, r0
+ 415 01d4 DB43     		mvns	r3, r3
+ 416 01d6 DBB2     		uxtb	r3, r3
+ 417 01d8 1846     		mov	r0, r3
+ 418 01da FFF7FEFF 		bl	outindexinIndex_Write
+ 419              	.L16:
+ 206:main.c        ****                 
+ 207:main.c        ****             }
+ 208:main.c        ****         }
+ 209:main.c        ****         
+ 210:main.c        ****         // Si esta correctamente sincronizado, le pasamos al canal DMA el canal del VDAC con 1 bit
+ 211:main.c        ****         // Sólo entra cuando se ha empezado a transmitir el audio y cuando se corta
+ 212:main.c        ****         if((syncDMA == 0) && (syncDMA_counter >= (NUM_BUF/2)))
+ 420              		.loc 1 212 0
+ 421 01de 154B     		ldr	r3, .L22+28
+ 422 01e0 1B78     		ldrb	r3, [r3]
+ 423 01e2 DBB2     		uxtb	r3, r3
+ 424 01e4 002B     		cmp	r3, #0
+ 425 01e6 15D1     		bne	.L20
+ 426              		.loc 1 212 0 is_stmt 0 discriminator 1
+ 427 01e8 134B     		ldr	r3, .L22+32
+ 428 01ea 1B78     		ldrb	r3, [r3]
+ 429 01ec DBB2     		uxtb	r3, r3
+ 430 01ee 042B     		cmp	r3, #4
+ 431 01f0 10D9     		bls	.L20
+ 213:main.c        ****         {
+ 214:main.c        ****             CyDmaChEnable(VDACoutDMA_Chan, 1);
+ 432              		.loc 1 214 0 is_stmt 1
+ 433 01f2 0C4B     		ldr	r3, .L22+12
+ 434 01f4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 435 01f6 1846     		mov	r0, r3
+ 436 01f8 0121     		movs	r1, #1
+ 437 01fa FFF7FEFF 		bl	CyDmaChEnable
+ 215:main.c        ****             syncDMA = 1u;
+ 438              		.loc 1 215 0
+ 439 01fe 0D4B     		ldr	r3, .L22+28
+ 440 0200 0122     		movs	r2, #1
+ 441 0202 1A70     		strb	r2, [r3]
+ 216:main.c        ****             
+ 217:main.c        ****             interrupcionDMA_Write(~interrupcionDMA_Read());
+ 442              		.loc 1 217 0
+ 443 0204 FFF7FEFF 		bl	interrupcionDMA_Read
+ 444 0208 0346     		mov	r3, r0
+ 445 020a DB43     		mvns	r3, r3
+ 446 020c DBB2     		uxtb	r3, r3
+ 447 020e 1846     		mov	r0, r3
+ 448 0210 FFF7FEFF 		bl	interrupcionDMA_Write
+ 449              	.L20:
+ 218:main.c        ****         }    
+ 219:main.c        ****     }
+ 450              		.loc 1 219 0
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 13
+
+
+ 451 0214 6BE7     		b	.L21
+ 452              	.L23:
+ 453 0216 00BF     		.align	2
+ 454              	.L22:
+ 455 0218 00000000 		.word	DMA_done
+ 456 021c 00000000 		.word	.LC0
+ 457 0220 00000000 		.word	soundBuffer
+ 458 0224 00000000 		.word	VDACoutDMA_Chan
+ 459 0228 00000000 		.word	VDACoutDMA_TD
+ 460 022c 00000000 		.word	inIndex
+ 461 0230 00000000 		.word	outIndex
+ 462 0234 00000000 		.word	syncDMA
+ 463 0238 00000000 		.word	syncDMA_counter
+ 464 023c 10000000 		.word	.LC1
+ 465 0240 20000000 		.word	.LC2
+ 466              		.cfi_endproc
+ 467              	.LFE57:
+ 468              		.size	main, .-main
+ 469              		.text
+ 470              	.Letext0:
+ 471              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 472              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 473              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 474              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 475              		.section	.debug_info,"",%progbits
+ 476              	.Ldebug_info0:
+ 477 0000 BA010000 		.4byte	0x1ba
+ 478 0004 0400     		.2byte	0x4
+ 479 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 480 000a 04       		.byte	0x4
+ 481 000b 01       		.uleb128 0x1
+ 482 000c 22000000 		.4byte	.LASF28
+ 483 0010 01       		.byte	0x1
+ 484 0011 B6010000 		.4byte	.LASF29
+ 485 0015 DA000000 		.4byte	.LASF30
+ 486 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 487 001d 00000000 		.4byte	0
+ 488 0021 00000000 		.4byte	.Ldebug_line0
+ 489 0025 02       		.uleb128 0x2
+ 490 0026 01       		.byte	0x1
+ 491 0027 06       		.byte	0x6
+ 492 0028 E4010000 		.4byte	.LASF0
+ 493 002c 02       		.uleb128 0x2
+ 494 002d 01       		.byte	0x1
+ 495 002e 08       		.byte	0x8
+ 496 002f CC000000 		.4byte	.LASF1
+ 497 0033 02       		.uleb128 0x2
+ 498 0034 02       		.byte	0x2
+ 499 0035 05       		.byte	0x5
+ 500 0036 CB010000 		.4byte	.LASF2
+ 501 003a 02       		.uleb128 0x2
+ 502 003b 02       		.byte	0x2
+ 503 003c 07       		.byte	0x7
+ 504 003d 01010000 		.4byte	.LASF3
+ 505 0041 03       		.uleb128 0x3
+ 506 0042 18000000 		.4byte	.LASF9
+ 507 0046 02       		.byte	0x2
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 14
+
+
+ 508 0047 3F       		.byte	0x3f
+ 509 0048 4C000000 		.4byte	0x4c
+ 510 004c 02       		.uleb128 0x2
+ 511 004d 04       		.byte	0x4
+ 512 004e 05       		.byte	0x5
+ 513 004f DB010000 		.4byte	.LASF4
+ 514 0053 02       		.uleb128 0x2
+ 515 0054 04       		.byte	0x4
+ 516 0055 07       		.byte	0x7
+ 517 0056 EF000000 		.4byte	.LASF5
+ 518 005a 02       		.uleb128 0x2
+ 519 005b 08       		.byte	0x8
+ 520 005c 05       		.byte	0x5
+ 521 005d A8010000 		.4byte	.LASF6
+ 522 0061 02       		.uleb128 0x2
+ 523 0062 08       		.byte	0x8
+ 524 0063 07       		.byte	0x7
+ 525 0064 64010000 		.4byte	.LASF7
+ 526 0068 04       		.uleb128 0x4
+ 527 0069 04       		.byte	0x4
+ 528 006a 05       		.byte	0x5
+ 529 006b 696E7400 		.ascii	"int\000"
+ 530 006f 02       		.uleb128 0x2
+ 531 0070 04       		.byte	0x4
+ 532 0071 07       		.byte	0x7
+ 533 0072 57010000 		.4byte	.LASF8
+ 534 0076 03       		.uleb128 0x3
+ 535 0077 97010000 		.4byte	.LASF10
+ 536 007b 03       		.byte	0x3
+ 537 007c 2C       		.byte	0x2c
+ 538 007d 41000000 		.4byte	0x41
+ 539 0081 03       		.uleb128 0x3
+ 540 0082 D5010000 		.4byte	.LASF11
+ 541 0086 04       		.byte	0x4
+ 542 0087 5B       		.byte	0x5b
+ 543 0088 2C000000 		.4byte	0x2c
+ 544 008c 03       		.uleb128 0x3
+ 545 008d 39010000 		.4byte	.LASF12
+ 546 0091 04       		.byte	0x4
+ 547 0092 5C       		.byte	0x5c
+ 548 0093 3A000000 		.4byte	0x3a
+ 549 0097 03       		.uleb128 0x3
+ 550 0098 50010000 		.4byte	.LASF13
+ 551 009c 04       		.byte	0x4
+ 552 009d 5D       		.byte	0x5d
+ 553 009e 53000000 		.4byte	0x53
+ 554 00a2 02       		.uleb128 0x2
+ 555 00a3 04       		.byte	0x4
+ 556 00a4 04       		.byte	0x4
+ 557 00a5 B8000000 		.4byte	.LASF14
+ 558 00a9 02       		.uleb128 0x2
+ 559 00aa 08       		.byte	0x8
+ 560 00ab 04       		.byte	0x4
+ 561 00ac 21010000 		.4byte	.LASF15
+ 562 00b0 02       		.uleb128 0x2
+ 563 00b1 01       		.byte	0x1
+ 564 00b2 08       		.byte	0x8
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 15
+
+
+ 565 00b3 BD010000 		.4byte	.LASF16
+ 566 00b7 03       		.uleb128 0x3
+ 567 00b8 92010000 		.4byte	.LASF17
+ 568 00bc 04       		.byte	0x4
+ 569 00bd F0       		.byte	0xf0
+ 570 00be C2000000 		.4byte	0xc2
+ 571 00c2 05       		.uleb128 0x5
+ 572 00c3 81000000 		.4byte	0x81
+ 573 00c7 05       		.uleb128 0x5
+ 574 00c8 8C000000 		.4byte	0x8c
+ 575 00cc 02       		.uleb128 0x2
+ 576 00cd 04       		.byte	0x4
+ 577 00ce 07       		.byte	0x7
+ 578 00cf 9F010000 		.4byte	.LASF18
+ 579 00d3 06       		.uleb128 0x6
+ 580 00d4 C2010000 		.4byte	.LASF31
+ 581 00d8 01       		.byte	0x1
+ 582 00d9 1D       		.byte	0x1d
+ 583 00da 00000000 		.4byte	.LFB56
+ 584 00de 5C000000 		.4byte	.LFE56-.LFB56
+ 585 00e2 01       		.uleb128 0x1
+ 586 00e3 9C       		.byte	0x9c
+ 587 00e4 07       		.uleb128 0x7
+ 588 00e5 34010000 		.4byte	.LASF32
+ 589 00e9 01       		.byte	0x1
+ 590 00ea 36       		.byte	0x36
+ 591 00eb 00000000 		.4byte	.LFB57
+ 592 00ef 44020000 		.4byte	.LFE57-.LFB57
+ 593 00f3 01       		.uleb128 0x1
+ 594 00f4 9C       		.byte	0x9c
+ 595 00f5 14010000 		.4byte	0x114
+ 596 00f9 08       		.uleb128 0x8
+ 597 00fa 6900     		.ascii	"i\000"
+ 598 00fc 01       		.byte	0x1
+ 599 00fd 38       		.byte	0x38
+ 600 00fe 81000000 		.4byte	0x81
+ 601 0102 02       		.uleb128 0x2
+ 602 0103 91       		.byte	0x91
+ 603 0104 6F       		.sleb128 -17
+ 604 0105 09       		.uleb128 0x9
+ 605 0106 BE000000 		.4byte	.LASF19
+ 606 010a 01       		.byte	0x1
+ 607 010b 39       		.byte	0x39
+ 608 010c 81000000 		.4byte	0x81
+ 609 0110 02       		.uleb128 0x2
+ 610 0111 91       		.byte	0x91
+ 611 0112 6E       		.sleb128 -18
+ 612 0113 00       		.byte	0
+ 613 0114 0A       		.uleb128 0xa
+ 614 0115 14010000 		.4byte	.LASF20
+ 615 0119 05       		.byte	0x5
+ 616 011a 1606     		.2byte	0x616
+ 617 011c 20010000 		.4byte	0x120
+ 618 0120 05       		.uleb128 0x5
+ 619 0121 76000000 		.4byte	0x76
+ 620 0125 0B       		.uleb128 0xb
+ 621 0126 81000000 		.4byte	0x81
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 16
+
+
+ 622 012a 36010000 		.4byte	0x136
+ 623 012e 0C       		.uleb128 0xc
+ 624 012f CC000000 		.4byte	0xcc
+ 625 0133 3F01     		.2byte	0x13f
+ 626 0135 00       		.byte	0
+ 627 0136 0D       		.uleb128 0xd
+ 628 0137 28010000 		.4byte	.LASF21
+ 629 013b 01       		.byte	0x1
+ 630 013c 0C       		.byte	0xc
+ 631 013d 25010000 		.4byte	0x125
+ 632 0141 05       		.uleb128 0x5
+ 633 0142 03       		.byte	0x3
+ 634 0143 00000000 		.4byte	soundBuffer
+ 635 0147 0D       		.uleb128 0xd
+ 636 0148 7B010000 		.4byte	.LASF22
+ 637 014c 01       		.byte	0x1
+ 638 014d 0D       		.byte	0xd
+ 639 014e C7000000 		.4byte	0xc7
+ 640 0152 05       		.uleb128 0x5
+ 641 0153 03       		.byte	0x3
+ 642 0154 00000000 		.4byte	outIndex
+ 643 0158 0D       		.uleb128 0xd
+ 644 0159 B0000000 		.4byte	.LASF23
+ 645 015d 01       		.byte	0x1
+ 646 015e 0E       		.byte	0xe
+ 647 015f C7000000 		.4byte	0xc7
+ 648 0163 05       		.uleb128 0x5
+ 649 0164 03       		.byte	0x3
+ 650 0165 00000000 		.4byte	inIndex
+ 651 0169 0D       		.uleb128 0xd
+ 652 016a 10000000 		.4byte	.LASF24
+ 653 016e 01       		.byte	0x1
+ 654 016f 10       		.byte	0x10
+ 655 0170 C2000000 		.4byte	0xc2
+ 656 0174 05       		.uleb128 0x5
+ 657 0175 03       		.byte	0x3
+ 658 0176 00000000 		.4byte	syncDMA
+ 659 017a 0D       		.uleb128 0xd
+ 660 017b 00000000 		.4byte	.LASF25
+ 661 017f 01       		.byte	0x1
+ 662 0180 11       		.byte	0x11
+ 663 0181 C2000000 		.4byte	0xc2
+ 664 0185 05       		.uleb128 0x5
+ 665 0186 03       		.byte	0x3
+ 666 0187 00000000 		.4byte	syncDMA_counter
+ 667 018b 0D       		.uleb128 0xd
+ 668 018c 40010000 		.4byte	.LASF26
+ 669 0190 01       		.byte	0x1
+ 670 0191 13       		.byte	0x13
+ 671 0192 81000000 		.4byte	0x81
+ 672 0196 05       		.uleb128 0x5
+ 673 0197 03       		.byte	0x3
+ 674 0198 00000000 		.4byte	VDACoutDMA_Chan
+ 675 019c 0B       		.uleb128 0xb
+ 676 019d 81000000 		.4byte	0x81
+ 677 01a1 AC010000 		.4byte	0x1ac
+ 678 01a5 0E       		.uleb128 0xe
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 17
+
+
+ 679 01a6 CC000000 		.4byte	0xcc
+ 680 01aa 09       		.byte	0x9
+ 681 01ab 00       		.byte	0
+ 682 01ac 0D       		.uleb128 0xd
+ 683 01ad 84010000 		.4byte	.LASF27
+ 684 01b1 01       		.byte	0x1
+ 685 01b2 14       		.byte	0x14
+ 686 01b3 9C010000 		.4byte	0x19c
+ 687 01b7 05       		.uleb128 0x5
+ 688 01b8 03       		.byte	0x3
+ 689 01b9 00000000 		.4byte	VDACoutDMA_TD
+ 690 01bd 00       		.byte	0
+ 691              		.section	.debug_abbrev,"",%progbits
+ 692              	.Ldebug_abbrev0:
+ 693 0000 01       		.uleb128 0x1
+ 694 0001 11       		.uleb128 0x11
+ 695 0002 01       		.byte	0x1
+ 696 0003 25       		.uleb128 0x25
+ 697 0004 0E       		.uleb128 0xe
+ 698 0005 13       		.uleb128 0x13
+ 699 0006 0B       		.uleb128 0xb
+ 700 0007 03       		.uleb128 0x3
+ 701 0008 0E       		.uleb128 0xe
+ 702 0009 1B       		.uleb128 0x1b
+ 703 000a 0E       		.uleb128 0xe
+ 704 000b 55       		.uleb128 0x55
+ 705 000c 17       		.uleb128 0x17
+ 706 000d 11       		.uleb128 0x11
+ 707 000e 01       		.uleb128 0x1
+ 708 000f 10       		.uleb128 0x10
+ 709 0010 17       		.uleb128 0x17
+ 710 0011 00       		.byte	0
+ 711 0012 00       		.byte	0
+ 712 0013 02       		.uleb128 0x2
+ 713 0014 24       		.uleb128 0x24
+ 714 0015 00       		.byte	0
+ 715 0016 0B       		.uleb128 0xb
+ 716 0017 0B       		.uleb128 0xb
+ 717 0018 3E       		.uleb128 0x3e
+ 718 0019 0B       		.uleb128 0xb
+ 719 001a 03       		.uleb128 0x3
+ 720 001b 0E       		.uleb128 0xe
+ 721 001c 00       		.byte	0
+ 722 001d 00       		.byte	0
+ 723 001e 03       		.uleb128 0x3
+ 724 001f 16       		.uleb128 0x16
+ 725 0020 00       		.byte	0
+ 726 0021 03       		.uleb128 0x3
+ 727 0022 0E       		.uleb128 0xe
+ 728 0023 3A       		.uleb128 0x3a
+ 729 0024 0B       		.uleb128 0xb
+ 730 0025 3B       		.uleb128 0x3b
+ 731 0026 0B       		.uleb128 0xb
+ 732 0027 49       		.uleb128 0x49
+ 733 0028 13       		.uleb128 0x13
+ 734 0029 00       		.byte	0
+ 735 002a 00       		.byte	0
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 18
+
+
+ 736 002b 04       		.uleb128 0x4
+ 737 002c 24       		.uleb128 0x24
+ 738 002d 00       		.byte	0
+ 739 002e 0B       		.uleb128 0xb
+ 740 002f 0B       		.uleb128 0xb
+ 741 0030 3E       		.uleb128 0x3e
+ 742 0031 0B       		.uleb128 0xb
+ 743 0032 03       		.uleb128 0x3
+ 744 0033 08       		.uleb128 0x8
+ 745 0034 00       		.byte	0
+ 746 0035 00       		.byte	0
+ 747 0036 05       		.uleb128 0x5
+ 748 0037 35       		.uleb128 0x35
+ 749 0038 00       		.byte	0
+ 750 0039 49       		.uleb128 0x49
+ 751 003a 13       		.uleb128 0x13
+ 752 003b 00       		.byte	0
+ 753 003c 00       		.byte	0
+ 754 003d 06       		.uleb128 0x6
+ 755 003e 2E       		.uleb128 0x2e
+ 756 003f 00       		.byte	0
+ 757 0040 3F       		.uleb128 0x3f
+ 758 0041 19       		.uleb128 0x19
+ 759 0042 03       		.uleb128 0x3
+ 760 0043 0E       		.uleb128 0xe
+ 761 0044 3A       		.uleb128 0x3a
+ 762 0045 0B       		.uleb128 0xb
+ 763 0046 3B       		.uleb128 0x3b
+ 764 0047 0B       		.uleb128 0xb
+ 765 0048 27       		.uleb128 0x27
+ 766 0049 19       		.uleb128 0x19
+ 767 004a 11       		.uleb128 0x11
+ 768 004b 01       		.uleb128 0x1
+ 769 004c 12       		.uleb128 0x12
+ 770 004d 06       		.uleb128 0x6
+ 771 004e 40       		.uleb128 0x40
+ 772 004f 18       		.uleb128 0x18
+ 773 0050 9642     		.uleb128 0x2116
+ 774 0052 19       		.uleb128 0x19
+ 775 0053 00       		.byte	0
+ 776 0054 00       		.byte	0
+ 777 0055 07       		.uleb128 0x7
+ 778 0056 2E       		.uleb128 0x2e
+ 779 0057 01       		.byte	0x1
+ 780 0058 3F       		.uleb128 0x3f
+ 781 0059 19       		.uleb128 0x19
+ 782 005a 03       		.uleb128 0x3
+ 783 005b 0E       		.uleb128 0xe
+ 784 005c 3A       		.uleb128 0x3a
+ 785 005d 0B       		.uleb128 0xb
+ 786 005e 3B       		.uleb128 0x3b
+ 787 005f 0B       		.uleb128 0xb
+ 788 0060 11       		.uleb128 0x11
+ 789 0061 01       		.uleb128 0x1
+ 790 0062 12       		.uleb128 0x12
+ 791 0063 06       		.uleb128 0x6
+ 792 0064 40       		.uleb128 0x40
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 19
+
+
+ 793 0065 18       		.uleb128 0x18
+ 794 0066 9642     		.uleb128 0x2116
+ 795 0068 19       		.uleb128 0x19
+ 796 0069 01       		.uleb128 0x1
+ 797 006a 13       		.uleb128 0x13
+ 798 006b 00       		.byte	0
+ 799 006c 00       		.byte	0
+ 800 006d 08       		.uleb128 0x8
+ 801 006e 34       		.uleb128 0x34
+ 802 006f 00       		.byte	0
+ 803 0070 03       		.uleb128 0x3
+ 804 0071 08       		.uleb128 0x8
+ 805 0072 3A       		.uleb128 0x3a
+ 806 0073 0B       		.uleb128 0xb
+ 807 0074 3B       		.uleb128 0x3b
+ 808 0075 0B       		.uleb128 0xb
+ 809 0076 49       		.uleb128 0x49
+ 810 0077 13       		.uleb128 0x13
+ 811 0078 02       		.uleb128 0x2
+ 812 0079 18       		.uleb128 0x18
+ 813 007a 00       		.byte	0
+ 814 007b 00       		.byte	0
+ 815 007c 09       		.uleb128 0x9
+ 816 007d 34       		.uleb128 0x34
+ 817 007e 00       		.byte	0
+ 818 007f 03       		.uleb128 0x3
+ 819 0080 0E       		.uleb128 0xe
+ 820 0081 3A       		.uleb128 0x3a
+ 821 0082 0B       		.uleb128 0xb
+ 822 0083 3B       		.uleb128 0x3b
+ 823 0084 0B       		.uleb128 0xb
+ 824 0085 49       		.uleb128 0x49
+ 825 0086 13       		.uleb128 0x13
+ 826 0087 02       		.uleb128 0x2
+ 827 0088 18       		.uleb128 0x18
+ 828 0089 00       		.byte	0
+ 829 008a 00       		.byte	0
+ 830 008b 0A       		.uleb128 0xa
+ 831 008c 34       		.uleb128 0x34
+ 832 008d 00       		.byte	0
+ 833 008e 03       		.uleb128 0x3
+ 834 008f 0E       		.uleb128 0xe
+ 835 0090 3A       		.uleb128 0x3a
+ 836 0091 0B       		.uleb128 0xb
+ 837 0092 3B       		.uleb128 0x3b
+ 838 0093 05       		.uleb128 0x5
+ 839 0094 49       		.uleb128 0x49
+ 840 0095 13       		.uleb128 0x13
+ 841 0096 3F       		.uleb128 0x3f
+ 842 0097 19       		.uleb128 0x19
+ 843 0098 3C       		.uleb128 0x3c
+ 844 0099 19       		.uleb128 0x19
+ 845 009a 00       		.byte	0
+ 846 009b 00       		.byte	0
+ 847 009c 0B       		.uleb128 0xb
+ 848 009d 01       		.uleb128 0x1
+ 849 009e 01       		.byte	0x1
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 20
+
+
+ 850 009f 49       		.uleb128 0x49
+ 851 00a0 13       		.uleb128 0x13
+ 852 00a1 01       		.uleb128 0x1
+ 853 00a2 13       		.uleb128 0x13
+ 854 00a3 00       		.byte	0
+ 855 00a4 00       		.byte	0
+ 856 00a5 0C       		.uleb128 0xc
+ 857 00a6 21       		.uleb128 0x21
+ 858 00a7 00       		.byte	0
+ 859 00a8 49       		.uleb128 0x49
+ 860 00a9 13       		.uleb128 0x13
+ 861 00aa 2F       		.uleb128 0x2f
+ 862 00ab 05       		.uleb128 0x5
+ 863 00ac 00       		.byte	0
+ 864 00ad 00       		.byte	0
+ 865 00ae 0D       		.uleb128 0xd
+ 866 00af 34       		.uleb128 0x34
+ 867 00b0 00       		.byte	0
+ 868 00b1 03       		.uleb128 0x3
+ 869 00b2 0E       		.uleb128 0xe
+ 870 00b3 3A       		.uleb128 0x3a
+ 871 00b4 0B       		.uleb128 0xb
+ 872 00b5 3B       		.uleb128 0x3b
+ 873 00b6 0B       		.uleb128 0xb
+ 874 00b7 49       		.uleb128 0x49
+ 875 00b8 13       		.uleb128 0x13
+ 876 00b9 3F       		.uleb128 0x3f
+ 877 00ba 19       		.uleb128 0x19
+ 878 00bb 02       		.uleb128 0x2
+ 879 00bc 18       		.uleb128 0x18
+ 880 00bd 00       		.byte	0
+ 881 00be 00       		.byte	0
+ 882 00bf 0E       		.uleb128 0xe
+ 883 00c0 21       		.uleb128 0x21
+ 884 00c1 00       		.byte	0
+ 885 00c2 49       		.uleb128 0x49
+ 886 00c3 13       		.uleb128 0x13
+ 887 00c4 2F       		.uleb128 0x2f
+ 888 00c5 0B       		.uleb128 0xb
+ 889 00c6 00       		.byte	0
+ 890 00c7 00       		.byte	0
+ 891 00c8 00       		.byte	0
+ 892              		.section	.debug_aranges,"",%progbits
+ 893 0000 24000000 		.4byte	0x24
+ 894 0004 0200     		.2byte	0x2
+ 895 0006 00000000 		.4byte	.Ldebug_info0
+ 896 000a 04       		.byte	0x4
+ 897 000b 00       		.byte	0
+ 898 000c 0000     		.2byte	0
+ 899 000e 0000     		.2byte	0
+ 900 0010 00000000 		.4byte	.LFB56
+ 901 0014 5C000000 		.4byte	.LFE56-.LFB56
+ 902 0018 00000000 		.4byte	.LFB57
+ 903 001c 44020000 		.4byte	.LFE57-.LFB57
+ 904 0020 00000000 		.4byte	0
+ 905 0024 00000000 		.4byte	0
+ 906              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 21
+
+
+ 907              	.Ldebug_ranges0:
+ 908 0000 00000000 		.4byte	.LFB56
+ 909 0004 5C000000 		.4byte	.LFE56
+ 910 0008 00000000 		.4byte	.LFB57
+ 911 000c 44020000 		.4byte	.LFE57
+ 912 0010 00000000 		.4byte	0
+ 913 0014 00000000 		.4byte	0
+ 914              		.section	.debug_line,"",%progbits
+ 915              	.Ldebug_line0:
+ 916 0000 EA010000 		.section	.debug_str,"MS",%progbits,1
+ 916      02004701 
+ 916      00000201 
+ 916      FB0E0D00 
+ 916      01010101 
+ 917              	.LASF25:
+ 918 0000 73796E63 		.ascii	"syncDMA_counter\000"
+ 918      444D415F 
+ 918      636F756E 
+ 918      74657200 
+ 919              	.LASF24:
+ 920 0010 73796E63 		.ascii	"syncDMA\000"
+ 920      444D4100 
+ 921              	.LASF9:
+ 922 0018 5F5F696E 		.ascii	"__int32_t\000"
+ 922      7433325F 
+ 922      7400
+ 923              	.LASF28:
+ 924 0022 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 924      4320342E 
+ 924      392E3320 
+ 924      32303135 
+ 924      30333033 
+ 925 0055 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 925      20726576 
+ 925      6973696F 
+ 925      6E203232 
+ 925      31323230 
+ 926 0088 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 926      66756E63 
+ 926      74696F6E 
+ 926      2D736563 
+ 926      74696F6E 
+ 927              	.LASF23:
+ 928 00b0 696E496E 		.ascii	"inIndex\000"
+ 928      64657800 
+ 929              	.LASF14:
+ 930 00b8 666C6F61 		.ascii	"float\000"
+ 930      7400
+ 931              	.LASF19:
+ 932 00be 736B6970 		.ascii	"skip_next_OUT\000"
+ 932      5F6E6578 
+ 932      745F4F55 
+ 932      5400
+ 933              	.LASF1:
+ 934 00cc 756E7369 		.ascii	"unsigned char\000"
+ 934      676E6564 
+ 934      20636861 
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 22
+
+
+ 934      7200
+ 935              	.LASF30:
+ 936 00da 433A5C53 		.ascii	"C:\\SoundSystem.cydsn\000"
+ 936      6F756E64 
+ 936      53797374 
+ 936      656D2E63 
+ 936      7964736E 
+ 937              	.LASF5:
+ 938 00ef 6C6F6E67 		.ascii	"long unsigned int\000"
+ 938      20756E73 
+ 938      69676E65 
+ 938      6420696E 
+ 938      7400
+ 939              	.LASF3:
+ 940 0101 73686F72 		.ascii	"short unsigned int\000"
+ 940      7420756E 
+ 940      7369676E 
+ 940      65642069 
+ 940      6E7400
+ 941              	.LASF20:
+ 942 0114 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 942      52784275 
+ 942      66666572 
+ 942      00
+ 943              	.LASF15:
+ 944 0121 646F7562 		.ascii	"double\000"
+ 944      6C6500
+ 945              	.LASF21:
+ 946 0128 736F756E 		.ascii	"soundBuffer\000"
+ 946      64427566 
+ 946      66657200 
+ 947              	.LASF32:
+ 948 0134 6D61696E 		.ascii	"main\000"
+ 948      00
+ 949              	.LASF12:
+ 950 0139 75696E74 		.ascii	"uint16\000"
+ 950      313600
+ 951              	.LASF26:
+ 952 0140 56444143 		.ascii	"VDACoutDMA_Chan\000"
+ 952      6F757444 
+ 952      4D415F43 
+ 952      68616E00 
+ 953              	.LASF13:
+ 954 0150 75696E74 		.ascii	"uint32\000"
+ 954      333200
+ 955              	.LASF8:
+ 956 0157 756E7369 		.ascii	"unsigned int\000"
+ 956      676E6564 
+ 956      20696E74 
+ 956      00
+ 957              	.LASF7:
+ 958 0164 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 958      206C6F6E 
+ 958      6720756E 
+ 958      7369676E 
+ 958      65642069 
+ 959              	.LASF22:
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccYejwMS.s 			page 23
+
+
+ 960 017b 6F757449 		.ascii	"outIndex\000"
+ 960      6E646578 
+ 960      00
+ 961              	.LASF27:
+ 962 0184 56444143 		.ascii	"VDACoutDMA_TD\000"
+ 962      6F757444 
+ 962      4D415F54 
+ 962      4400
+ 963              	.LASF17:
+ 964 0192 72656738 		.ascii	"reg8\000"
+ 964      00
+ 965              	.LASF10:
+ 966 0197 696E7433 		.ascii	"int32_t\000"
+ 966      325F7400 
+ 967              	.LASF18:
+ 968 019f 73697A65 		.ascii	"sizetype\000"
+ 968      74797065 
+ 968      00
+ 969              	.LASF6:
+ 970 01a8 6C6F6E67 		.ascii	"long long int\000"
+ 970      206C6F6E 
+ 970      6720696E 
+ 970      7400
+ 971              	.LASF29:
+ 972 01b6 6D61696E 		.ascii	"main.c\000"
+ 972      2E6300
+ 973              	.LASF16:
+ 974 01bd 63686172 		.ascii	"char\000"
+ 974      00
+ 975              	.LASF31:
+ 976 01c2 444D415F 		.ascii	"DMA_done\000"
+ 976      646F6E65 
+ 976      00
+ 977              	.LASF2:
+ 978 01cb 73686F72 		.ascii	"short int\000"
+ 978      7420696E 
+ 978      7400
+ 979              	.LASF11:
+ 980 01d5 75696E74 		.ascii	"uint8\000"
+ 980      3800
+ 981              	.LASF4:
+ 982 01db 6C6F6E67 		.ascii	"long int\000"
+ 982      20696E74 
+ 982      00
+ 983              	.LASF0:
+ 984 01e4 7369676E 		.ascii	"signed char\000"
+ 984      65642063 
+ 984      68617200 
+ 985              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

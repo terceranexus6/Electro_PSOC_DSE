@@ -1,0 +1,801 @@
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\DP8051_Keil_951\Debug\main.obj
+COMPILER INVOKED BY: C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\import\keil\pk51\9.51\C51\BIN\c51.exe 
+                    -main.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP INCDIR(.,Generated_Source\PSoC3) FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/main
+                    -.lst) CD OT(2,SIZE) OJ(.\DP8051_Keil_951\Debug\main.obj)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: main.c
+   3          *
+   4          * Version: 1.0
+   5          *
+   6          * Description:
+   7          *   This project enumerates USBFS component as a 8-bits, 32kHz, mono USB Audio 
+   8          *   Device. The audio data is passed to 8-bit DAC using two DMAs. One DMA is 
+   9          *   integrated in USBFS component used for sending and receiving data to/ from 
+  10          *   the memory cyclic buffer; the other DMA (VDACoutDMA) moves data from memory 
+  11          *   buffer to VDAC8.
+  12          *   
+  13          *   The synchronization of incoming transfers with internal 32kHz clock is done
+  14          *   by the software. It works when cyclic buffer overflows.
+  15          *   When internal 32kHz clock is faster compared to PC transactions, VDACoutDMA 
+  16          *   stops for a while to fill the buffer.
+  17          *   When internal 32kHz clock is slower compared to PC transactions, then one
+  18          *   USB transfer is skipped.
+  19          *
+  20          * To test project:
+  21          *  1. Select 3.3V in SW3 and plug-in power to the CY8CKIT-001
+  22          *  2. Build USBFS_Audio project and program the hex file on to the target 
+  23          *     device
+  24          *  3. Connect USB cable from computer to CY8CKIT-001
+  25          *  4. Connect active Speaker to port P1[7] and Ground
+  26          *  5. Open Sound and Audio Devices Properties on PC, select CypressAudioControl 
+  27          *     device in Audio Tab 
+  28          *  6. Play the audio on PC
+  29          *  7. Listen the audio on the speaker or observe the signal on oscilloscope.
+  30          *
+  31          * Related Document:
+  32          *  Universal Serial Bus Specification Revision 2.0 
+  33          *  Universal Serial Bus Device Class Definition for Audio Devices Release 1.0
+  34          *
+  35          ********************************************************************************
+  36          * Copyright 2012, Cypress Semiconductor Corporation. All rights reserved.
+  37          * This software is owned by Cypress Semiconductor Corporation and is protected
+  38          * by and subject to worldwide patent and copyright laws and treaties.
+  39          * Therefore, you may use this software only as provided in the license agreement
+  40          * accompanying the software package from which you obtained this software.
+  41          * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  42          * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  43          * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  44          *******************************************************************************/
+  45          
+  46          #include <device.h>
+  47          
+  48          #define AUDIO_INTERFACE (1u)
+  49          #define OUT_EP          (2u)
+  50          
+  51          #define NUM_BUF         (10u)
+  52          #define TRANS_SIZE      (32u)
+  53          #define BUFSIZE         (TRANS_SIZE*NUM_BUF)
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 2   
+
+  54          
+  55          uint8 soundBuffer[BUFSIZE];
+  56          volatile uint16 outIndex = 0u;
+  57          volatile uint16 inIndex = 0u;
+  58          
+  59          volatile uint8 syncDMA = 0u;
+  60          volatile uint8 syncDMA_counter = 0u; 
+  61          
+  62          /* Variable declarations for VDACoutDMA */
+  63          uint8 VDACoutDMA_Chan;
+  64          uint8 VDACoutDMA_TD[NUM_BUF];
+  65            
+  66          extern uint8 USBFS_DmaChan[];
+  67          extern uint8 USBFS_DmaTd[];
+  68          
+  69          
+  70          /*******************************************************************************
+  71          * Function Name: DMA_done
+  72          ********************************************************************************
+  73          *
+  74          * Summary:
+  75          *   Local Interrupt Service Routine for increment out buffer pointer and 
+  76          *   synchronization. 
+  77          *******************************************************************************/
+  78          CY_ISR(DMA_done)
+  79          {
+  80   1          if(++outIndex >= NUM_BUF)
+  81   1          {
+  82   2              outIndex = 0u;
+  83   2          }
+  84   1          /* When the internal 32kHz clock is faster compare to PC trasactions */
+  85   1          if(outIndex == inIndex)
+  86   1          {
+  87   2              /* Stop DMA*/
+  88   2              CyDmaChDisable(VDACoutDMA_Chan);
+  89   2              /* resync DMA, wait on half buffer data and re-enable DAC DMA */
+  90   2              syncDMA = 0u;
+  91   2              syncDMA_counter = 0u;
+  92   2          }
+  93   1      }
+  94          
+  95          /*******************************************************************************
+  96          * Function Name: main
+  97          ********************************************************************************
+  98          *
+  99          * Summary:
+ 100          *  Initialize the componets and do the software synchronization.
+ 101          *
+ 102          * Parameters:
+ 103          *  None.
+ 104          *
+ 105          * Return:
+ 106          *  None.
+ 107          *
+ 108          *******************************************************************************/
+ 109          void main()
+ 110          {
+ 111   1          uint8 i;
+ 112   1          uint8 skip_next_OUT = 0;
+ 113   1          
+ 114   1          VDAC8_Start();
+ 115   1          VDACoutDMA_done_isr_StartEx(DMA_done);
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 3   
+
+ 116   1      
+ 117   1          LCD_Start();
+ 118   1          LCD_PrintString("USB->DMA->DAC");
+ 119   1      
+ 120   1         /* DMA Configuration for VDACoutDMA (Memory to VDAC) */
+ 121   1          #define VDACoutDMA_BYTES_PER_BURST      1
+ 122   1          #define VDACoutDMA_REQUEST_PER_BURST    1
+ 123   1          #define VDACoutDMA_DST_BASE             (CYDEV_PERIPH_BASE)
+ 124   1          #if (defined(__C51__))          /* PSoC 3 - Source is SRAM */
+ 125   1              #define VDACoutDMA_SRC_BASE         (CYDEV_SRAM_BASE)
+ 126   1          #else                           /* PSoC 5 */
+                      #define VDACoutDMA_SRC_BASE         (soundBuffer)
+                  #endif  /* End C51 */  
+ 129   1          VDACoutDMA_Chan = VDACoutDMA_DmaInitialize(VDACoutDMA_BYTES_PER_BURST, VDACoutDMA_REQUEST_PER_BURST, 
+ 130   1                                           HI16(VDACoutDMA_SRC_BASE), HI16(VDACoutDMA_DST_BASE));
+ 131   1          for (i = 0u; i < NUM_BUF; i++) 
+ 132   1          {
+ 133   2              VDACoutDMA_TD[i] = CyDmaTdAllocate();
+ 134   2          }    
+ 135   1          for (i = 0u; i < (NUM_BUF-1); i++) 
+ 136   1          {
+ 137   2              CyDmaTdSetConfiguration(VDACoutDMA_TD[i], TRANS_SIZE, VDACoutDMA_TD[i+1], TD_INC_SRC_ADR | 
+ 138   2                                                                                        VDACoutDMA__TD_TERMOUT_E
+             -N);
+ 139   2          }
+ 140   1          CyDmaTdSetConfiguration(VDACoutDMA_TD[NUM_BUF-1], TRANS_SIZE, VDACoutDMA_TD[0], TD_INC_SRC_ADR | 
+ 141   1                                                                                        VDACoutDMA__TD_TERMOUT_E
+             -N);
+ 142   1          for (i = 0u; i < NUM_BUF; i++) 
+ 143   1          {
+ 144   2              CyDmaTdSetAddress(VDACoutDMA_TD[i], LO16((uint32)&soundBuffer[TRANS_SIZE*i]), LO16((uint32)VDAC8_D
+             -ata_PTR));
+ 145   2          }    
+ 146   1          CyDmaChSetInitialTd(VDACoutDMA_Chan, VDACoutDMA_TD[0]);
+ 147   1      
+ 148   1          CyGlobalIntEnable;  /* enable global interrupts. */
+ 149   1      
+ 150   1          /* Start USBFS Operation with 3V operation */
+ 151   1          USBFS_Start(0, USBFS_3V_OPERATION);   
+ 152   1          /* Wait for Device to enumerate */
+ 153   1          while(!USBFS_GetConfiguration());    
+ 154   1      
+ 155   1      
+ 156   1          for(;;)
+ 157   1          {
+ 158   2      
+ 159   2              if(USBFS_IsConfigurationChanged() != 0u) 
+ 160   2              {
+ 161   3                  /* Check the active Alternative setting when configuration changed */
+ 162   3                  if((USBFS_GetConfiguration() != 0u) && (USBFS_GetInterfaceSetting(AUDIO_INTERFACE) != 0u))
+ 163   3                  {   /* Enable OUT EP and init local variables when Alternate 1 with AudioStreaming interface h
+             -as been set */
+ 164   4                      inIndex = 0u;
+ 165   4                      outIndex = 0u;
+ 166   4                      syncDMA = 0u;
+ 167   4                      syncDMA_counter = 0u;
+ 168   4                      skip_next_OUT = 0u;
+ 169   4                      USBFS_EnableOutEP(OUT_EP);
+ 170   4                      LCD_Position(1,0);
+ 171   4                      LCD_PrintString("Audio ON ");
+ 172   4                  }    
+ 173   3                  else    /* Zero Alternate setting for mute */
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 4   
+
+ 174   3                  {
+ 175   4                      LCD_Position(1,0);
+ 176   4                      LCD_PrintString("Audio OFF");
+ 177   4                  }
+ 178   3              }
+ 179   2              if (USBFS_GetEPState(OUT_EP) == USBFS_OUT_BUFFER_FULL)
+ 180   2              {
+ 181   3                  if(skip_next_OUT == 0u)
+ 182   3                  {
+ 183   4                      /* Read OUT_EP using DMA */
+ 184   4                      USBFS_ReadOutEP(OUT_EP, &soundBuffer[inIndex*TRANS_SIZE], TRANS_SIZE); 
+ 185   4                      if(++inIndex >= NUM_BUF)
+ 186   4                      {
+ 187   5                          inIndex = 0u;
+ 188   5                      }
+ 189   4                      syncDMA_counter++;
+ 190   4                  }
+ 191   3                  else 
+ 192   3                  {
+ 193   4                      /* Skip this transfer, Re-arm OUT endpoint */
+ 194   4                      USBFS_EnableOutEP(OUT_EP);
+ 195   4                      skip_next_OUT = 0u;
+ 196   4                  }
+ 197   3                  /* When the internal 32kHz clock is slower compare to PC trafic */
+ 198   3                  if(outIndex == inIndex)
+ 199   3                  {
+ 200   4                      /* Then skip next transfer from PC */
+ 201   4                      skip_next_OUT = 1u;
+ 202   4                  }
+ 203   3              }
+ 204   2              if((syncDMA == 0) && (syncDMA_counter >= (NUM_BUF/2)))
+ 205   2              {
+ 206   3                  CyDmaChEnable(VDACoutDMA_Chan, 1);
+ 207   3                  syncDMA = 1u;
+ 208   3              }    
+ 209   2          }
+ 210   1      }
+ 211          
+ 212          
+ 213          /* [] END OF FILE */
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 5   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION DMA_done (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0F0              PUSH    B
+0004 C083              PUSH    DPH
+0006 C082              PUSH    DPL
+0008 C085              PUSH    DPH1
+000A C084              PUSH    DPL1
+000C C086              PUSH    DPS
+000E 758600            MOV     DPS,#00H
+0011 C000        E     PUSH    ?C?XPAGE1SFR
+0013 750000      E     MOV     ?C?XPAGE1SFR,#?C?XPAGE1RST
+0016 C0D0              PUSH    PSW
+0018 75D000            MOV     PSW,#00H
+001B C000              PUSH    AR0
+001D C001              PUSH    AR1
+001F C002              PUSH    AR2
+0021 C003              PUSH    AR3
+0023 C004              PUSH    AR4
+0025 C005              PUSH    AR5
+0027 C006              PUSH    AR6
+0029 C007              PUSH    AR7
+                                           ; SOURCE LINE # 78
+                                           ; SOURCE LINE # 80
+002B 900000      R     MOV     DPTR,#outIndex
+002E E4                CLR     A
+002F 75F001            MOV     B,#01H
+0032 120000      E     LCALL   ?C?IILDX
+0035 AFF0              MOV     R7,B
+0037 FE                MOV     R6,A
+0038 C3                CLR     C
+0039 EF                MOV     A,R7
+003A 940A              SUBB    A,#0AH
+003C EE                MOV     A,R6
+003D 9400              SUBB    A,#00H
+003F 4008              JC      ?C0001
+                                           ; SOURCE LINE # 81
+                                           ; SOURCE LINE # 82
+0041 900000      R     MOV     DPTR,#outIndex
+0044 E4                CLR     A
+0045 F0                MOVX    @DPTR,A
+0046 A3                INC     DPTR
+0047 E4                CLR     A
+0048 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 83
+0049         ?C0001:
+                                           ; SOURCE LINE # 85
+0049 900000      R     MOV     DPTR,#inIndex
+004C E0                MOVX    A,@DPTR
+004D FE                MOV     R6,A
+004E A3                INC     DPTR
+004F E0                MOVX    A,@DPTR
+0050 FF                MOV     R7,A
+0051 900000      R     MOV     DPTR,#outIndex
+0054 E0                MOVX    A,@DPTR
+0055 FC                MOV     R4,A
+0056 A3                INC     DPTR
+0057 E0                MOVX    A,@DPTR
+0058 FD                MOV     R5,A
+0059 ED                MOV     A,R5
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 6   
+
+005A B50716            CJNE    A,AR7,?C0003
+005D EC                MOV     A,R4
+005E B50612            CJNE    A,AR6,?C0003
+                                           ; SOURCE LINE # 86
+                                           ; SOURCE LINE # 88
+0061 900000      R     MOV     DPTR,#VDACoutDMA_Chan
+0064 E0                MOVX    A,@DPTR
+0065 FF                MOV     R7,A
+0066 120000      E     LCALL   _?CyDmaChDisable
+                                           ; SOURCE LINE # 90
+0069 900000      R     MOV     DPTR,#syncDMA
+006C E4                CLR     A
+006D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 91
+006E 900000      R     MOV     DPTR,#syncDMA_counter
+0071 E4                CLR     A
+0072 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 92
+                                           ; SOURCE LINE # 93
+0073         ?C0003:
+0073 D007              POP     AR7
+0075 D006              POP     AR6
+0077 D005              POP     AR5
+0079 D004              POP     AR4
+007B D003              POP     AR3
+007D D002              POP     AR2
+007F D001              POP     AR1
+0081 D000              POP     AR0
+0083 D0D0              POP     PSW
+0085 D000        E     POP     ?C?XPAGE1SFR
+0087 D086              POP     DPS
+0089 D084              POP     DPL1
+008B D085              POP     DPH1
+008D D082              POP     DPL
+008F D083              POP     DPH
+0091 D0F0              POP     B
+0093 D0E0              POP     ACC
+0095 32                RETI    
+             ; FUNCTION DMA_done (END)
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 110
+                                           ; SOURCE LINE # 112
+0000 900000      R     MOV     DPTR,#skip_next_OUT
+0003 E4                CLR     A
+0004 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 114
+0005 120000      E     LCALL   VDAC8_Start
+                                           ; SOURCE LINE # 115
+0008 7E00        R     MOV     R6,#HIGH DMA_done
+000A 7F00        R     MOV     R7,#LOW DMA_done
+000C 120000      E     LCALL   _VDACoutDMA_done_isr_StartEx
+                                           ; SOURCE LINE # 117
+000F 120000      E     LCALL   LCD_Start
+                                           ; SOURCE LINE # 118
+0012 7BFF              MOV     R3,#0FFH
+0014 7A00        R     MOV     R2,#HIGH ?SC_0
+0016 7900        R     MOV     R1,#LOW ?SC_0
+0018 120000      E     LCALL   _LCD_PrintString
+                                           ; SOURCE LINE # 130
+001B 900000      E     MOV     DPTR,#?_VDACoutDMA_DmaInitialize?BYTE+04H
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 7   
+
+001E E4                CLR     A
+001F F0                MOVX    @DPTR,A
+0020 A3                INC     DPTR
+0021 E4                CLR     A
+0022 F0                MOVX    @DPTR,A
+0023 7B00              MOV     R3,#00H
+0025 7A00              MOV     R2,#00H
+0027 7D01              MOV     R5,#01H
+0029 7F01              MOV     R7,#01H
+002B 120000      E     LCALL   _VDACoutDMA_DmaInitialize
+002E 900000      R     MOV     DPTR,#VDACoutDMA_Chan
+0031 EF                MOV     A,R7
+0032 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 131
+0033 900000      R     MOV     DPTR,#i
+0036 E4                CLR     A
+0037 F0                MOVX    @DPTR,A
+0038         ?C0004:
+0038 900000      R     MOV     DPTR,#i
+003B E0                MOVX    A,@DPTR
+003C FF                MOV     R7,A
+003D EF                MOV     A,R7
+003E C3                CLR     C
+003F 940A              SUBB    A,#0AH
+0041 501C              JNC     ?C0005
+                                           ; SOURCE LINE # 132
+                                           ; SOURCE LINE # 133
+0043 120000      E     LCALL   CyDmaTdAllocate
+0046 900000      R     MOV     DPTR,#i
+0049 E0                MOVX    A,@DPTR
+004A FE                MOV     R6,A
+004B 7400        R     MOV     A,#LOW VDACoutDMA_TD
+004D 2E                ADD     A,R6
+004E F582              MOV     DPL,A
+0050 E4                CLR     A
+0051 3400        R     ADDC    A,#HIGH VDACoutDMA_TD
+0053 F583              MOV     DPH,A
+0055 EF                MOV     A,R7
+0056 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 134
+0057 900000      R     MOV     DPTR,#i
+005A E0                MOVX    A,@DPTR
+005B 04                INC     A
+005C F0                MOVX    @DPTR,A
+005D 80D9              SJMP    ?C0004
+005F         ?C0005:
+                                           ; SOURCE LINE # 135
+005F 900000      R     MOV     DPTR,#i
+0062 E4                CLR     A
+0063 F0                MOVX    @DPTR,A
+0064         ?C0007:
+0064 900000      R     MOV     DPTR,#i
+0067 E0                MOVX    A,@DPTR
+0068 FF                MOV     R7,A
+0069 EF                MOV     A,R7
+006A C3                CLR     C
+006B 9409              SUBB    A,#09H
+006D 5037              JNC     ?C0008
+                                           ; SOURCE LINE # 136
+                                           ; SOURCE LINE # 137
+006F 900000      R     MOV     DPTR,#i
+0072 E0                MOVX    A,@DPTR
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 8   
+
+0073 FF                MOV     R7,A
+0074 7400        R     MOV     A,#LOW VDACoutDMA_TD
+0076 2F                ADD     A,R7
+0077 F582              MOV     DPL,A
+0079 E4                CLR     A
+007A 3400        R     ADDC    A,#HIGH VDACoutDMA_TD
+007C F583              MOV     DPH,A
+007E E0                MOVX    A,@DPTR
+007F FF                MOV     R7,A
+0080 900000      R     MOV     DPTR,#i
+0083 E0                MOVX    A,@DPTR
+0084 FE                MOV     R6,A
+0085 7400        R     MOV     A,#LOW VDACoutDMA_TD+01H
+0087 2E                ADD     A,R6
+0088 F582              MOV     DPL,A
+008A E4                CLR     A
+008B 3400        R     ADDC    A,#HIGH VDACoutDMA_TD+01H
+008D F583              MOV     DPH,A
+008F E0                MOVX    A,@DPTR
+0090 FB                MOV     R3,A
+0091 900000      E     MOV     DPTR,#?_CyDmaTdSetConfiguration?BYTE+04H
+0094 7405              MOV     A,#05H
+0096 F0                MOVX    @DPTR,A
+0097 7D20              MOV     R5,#020H
+0099 7C00              MOV     R4,#00H
+009B 120000      E     LCALL   _CyDmaTdSetConfiguration
+                                           ; SOURCE LINE # 139
+009E 900000      R     MOV     DPTR,#i
+00A1 E0                MOVX    A,@DPTR
+00A2 04                INC     A
+00A3 F0                MOVX    @DPTR,A
+00A4 80BE              SJMP    ?C0007
+00A6         ?C0008:
+                                           ; SOURCE LINE # 140
+00A6 900000      R     MOV     DPTR,#VDACoutDMA_TD+09H
+00A9 E0                MOVX    A,@DPTR
+00AA FF                MOV     R7,A
+00AB 900000      R     MOV     DPTR,#VDACoutDMA_TD
+00AE E0                MOVX    A,@DPTR
+00AF FB                MOV     R3,A
+00B0 900000      E     MOV     DPTR,#?_CyDmaTdSetConfiguration?BYTE+04H
+00B3 7405              MOV     A,#05H
+00B5 F0                MOVX    @DPTR,A
+00B6 7D20              MOV     R5,#020H
+00B8 7C00              MOV     R4,#00H
+00BA 120000      E     LCALL   _CyDmaTdSetConfiguration
+                                           ; SOURCE LINE # 142
+00BD 900000      R     MOV     DPTR,#i
+00C0 E4                CLR     A
+00C1 F0                MOVX    @DPTR,A
+00C2         ?C0010:
+00C2 900000      R     MOV     DPTR,#i
+00C5 E0                MOVX    A,@DPTR
+00C6 FF                MOV     R7,A
+00C7 EF                MOV     A,R7
+00C8 C3                CLR     C
+00C9 940A              SUBB    A,#0AH
+00CB 504B              JNC     ?C0011
+                                           ; SOURCE LINE # 143
+                                           ; SOURCE LINE # 144
+00CD 900000      R     MOV     DPTR,#i
+00D0 E0                MOVX    A,@DPTR
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 9   
+
+00D1 FF                MOV     R7,A
+00D2 75F020            MOV     B,#020H
+00D5 EF                MOV     A,R7
+00D6 900000      R     MOV     DPTR,#soundBuffer
+00D9 120000      E     LCALL   ?C?OFFXADD
+00DC AF82              MOV     R7,DPL
+00DE AE83              MOV     R6,DPH
+00E0 7D01              MOV     R5,#01H
+00E2 7C00              MOV     R4,#00H
+00E4 EF                MOV     A,R7
+00E5 54FF              ANL     A,#0FFH
+00E7 FF                MOV     R7,A
+00E8 EE                MOV     A,R6
+00E9 54FF              ANL     A,#0FFH
+00EB FE                MOV     R6,A
+00EC ED                MOV     A,R5
+00ED 5400              ANL     A,#00H
+00EF FD                MOV     R5,A
+00F0 EC                MOV     A,R4
+00F1 5400              ANL     A,#00H
+00F3 FC                MOV     R4,A
+00F4 AD07              MOV     R5,AR7
+00F6 AC06              MOV     R4,AR6
+00F8 900000      R     MOV     DPTR,#i
+00FB E0                MOVX    A,@DPTR
+00FC FF                MOV     R7,A
+00FD 7400        R     MOV     A,#LOW VDACoutDMA_TD
+00FF 2F                ADD     A,R7
+0100 F582              MOV     DPL,A
+0102 E4                CLR     A
+0103 3400        R     ADDC    A,#HIGH VDACoutDMA_TD
+0105 F583              MOV     DPH,A
+0107 E0                MOVX    A,@DPTR
+0108 FF                MOV     R7,A
+0109 7B81              MOV     R3,#081H
+010B 7A5B              MOV     R2,#05BH
+010D 120000      E     LCALL   _CyDmaTdSetAddress
+                                           ; SOURCE LINE # 145
+0110 900000      R     MOV     DPTR,#i
+0113 E0                MOVX    A,@DPTR
+0114 04                INC     A
+0115 F0                MOVX    @DPTR,A
+0116 80AA              SJMP    ?C0010
+0118         ?C0011:
+                                           ; SOURCE LINE # 146
+0118 900000      R     MOV     DPTR,#VDACoutDMA_Chan
+011B E0                MOVX    A,@DPTR
+011C FF                MOV     R7,A
+011D 900000      R     MOV     DPTR,#VDACoutDMA_TD
+0120 E0                MOVX    A,@DPTR
+0121 FD                MOV     R5,A
+0122 120000      E     LCALL   _CyDmaChSetInitialTd
+                                           ; SOURCE LINE # 148
+0125 D2AF              SETB    EA
+0127 9044F4            MOV     DPTR,#044F4H
+012A 74FD              MOV     A,#0FDH
+012C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 151
+012D 7D00              MOV     R5,#00H
+012F 7F00              MOV     R7,#00H
+0131 120000      E     LCALL   _USBFS_Start
+0134         ?C0013:
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 10  
+
+                                           ; SOURCE LINE # 153
+0134 120000      E     LCALL   USBFS_GetConfiguration
+0137 EF                MOV     A,R7
+0138 60FA              JZ      ?C0013
+013A         ?C0014:
+                                           ; SOURCE LINE # 156
+013A         ?C0015:
+                                           ; SOURCE LINE # 157
+                                           ; SOURCE LINE # 159
+013A 120000      E     LCALL   USBFS_IsConfigurationChanged
+013D EF                MOV     A,R7
+013E 6054              JZ      ?C0017
+                                           ; SOURCE LINE # 160
+                                           ; SOURCE LINE # 162
+0140 120000      E     LCALL   USBFS_GetConfiguration
+0143 EF                MOV     A,R7
+0144 603E              JZ      ?C0018
+0146 7F01              MOV     R7,#01H
+0148 120000      E     LCALL   _USBFS_GetInterfaceSetting
+014B EF                MOV     A,R7
+014C 6036              JZ      ?C0018
+                                           ; SOURCE LINE # 163
+                                           ; SOURCE LINE # 164
+014E 900000      R     MOV     DPTR,#inIndex
+0151 E4                CLR     A
+0152 F0                MOVX    @DPTR,A
+0153 A3                INC     DPTR
+0154 E4                CLR     A
+0155 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 165
+0156 900000      R     MOV     DPTR,#outIndex
+0159 E4                CLR     A
+015A F0                MOVX    @DPTR,A
+015B A3                INC     DPTR
+015C E4                CLR     A
+015D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 166
+015E 900000      R     MOV     DPTR,#syncDMA
+0161 E4                CLR     A
+0162 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 167
+0163 900000      R     MOV     DPTR,#syncDMA_counter
+0166 E4                CLR     A
+0167 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 168
+0168 900000      R     MOV     DPTR,#skip_next_OUT
+016B E4                CLR     A
+016C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 169
+016D 7F02              MOV     R7,#02H
+016F 120000      E     LCALL   _USBFS_EnableOutEP
+                                           ; SOURCE LINE # 170
+0172 7D00              MOV     R5,#00H
+0174 7F01              MOV     R7,#01H
+0176 120000      E     LCALL   _LCD_Position
+                                           ; SOURCE LINE # 171
+0179 7BFF              MOV     R3,#0FFH
+017B 7A00        R     MOV     R2,#HIGH ?SC_14
+017D 7900        R     MOV     R1,#LOW ?SC_14
+017F 120000      E     LCALL   _LCD_PrintString
+                                           ; SOURCE LINE # 172
+0182 8010              SJMP    ?C0017
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 11  
+
+0184         ?C0018:
+                                           ; SOURCE LINE # 174
+                                           ; SOURCE LINE # 175
+0184 7D00              MOV     R5,#00H
+0186 7F01              MOV     R7,#01H
+0188 120000      E     LCALL   _LCD_Position
+                                           ; SOURCE LINE # 176
+018B 7BFF              MOV     R3,#0FFH
+018D 7A00        R     MOV     R2,#HIGH ?SC_24
+018F 7900        R     MOV     R1,#LOW ?SC_24
+0191 120000      E     LCALL   _LCD_PrintString
+                                           ; SOURCE LINE # 177
+                                           ; SOURCE LINE # 178
+0194         ?C0017:
+                                           ; SOURCE LINE # 179
+0194 7F02              MOV     R7,#02H
+0196 120000      E     LCALL   _USBFS_GetEPState
+0199 EF                MOV     A,R7
+019A 6401              XRL     A,#01H
+019C 6003              JZ      $ + 5H
+019E 020000      R     LJMP    ?C0020
+                                           ; SOURCE LINE # 180
+                                           ; SOURCE LINE # 181
+01A1 900000      R     MOV     DPTR,#skip_next_OUT
+01A4 E0                MOVX    A,@DPTR
+01A5 FF                MOV     R7,A
+01A6 EF                MOV     A,R7
+01A7 7051              JNZ     ?C0021
+                                           ; SOURCE LINE # 182
+                                           ; SOURCE LINE # 184
+01A9 900000      R     MOV     DPTR,#inIndex
+01AC E0                MOVX    A,@DPTR
+01AD FE                MOV     R6,A
+01AE A3                INC     DPTR
+01AF E0                MOVX    A,@DPTR
+01B0 FF                MOV     R7,A
+01B1 EF                MOV     A,R7
+01B2 7805              MOV     R0,#05H
+01B4         ?C0028:
+01B4 C3                CLR     C
+01B5 33                RLC     A
+01B6 CE                XCH     A,R6
+01B7 33                RLC     A
+01B8 CE                XCH     A,R6
+01B9 D8F9              DJNZ    R0,?C0028
+01BB FF                MOV     R7,A
+01BC 7400        R     MOV     A,#LOW soundBuffer
+01BE 2F                ADD     A,R7
+01BF F9                MOV     R1,A
+01C0 7400        R     MOV     A,#HIGH soundBuffer
+01C2 3E                ADDC    A,R6
+01C3 FA                MOV     R2,A
+01C4 7B01              MOV     R3,#01H
+01C6 900000      E     MOV     DPTR,#?_USBFS_ReadOutEP?BYTE+04H
+01C9 E4                CLR     A
+01CA F0                MOVX    @DPTR,A
+01CB A3                INC     DPTR
+01CC 7420              MOV     A,#020H
+01CE F0                MOVX    @DPTR,A
+01CF 7F02              MOV     R7,#02H
+01D1 120000      E     LCALL   _USBFS_ReadOutEP
+                                           ; SOURCE LINE # 185
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 12  
+
+01D4 900000      R     MOV     DPTR,#inIndex
+01D7 E4                CLR     A
+01D8 75F001            MOV     B,#01H
+01DB 120000      E     LCALL   ?C?IILDX
+01DE AFF0              MOV     R7,B
+01E0 FE                MOV     R6,A
+01E1 C3                CLR     C
+01E2 EF                MOV     A,R7
+01E3 940A              SUBB    A,#0AH
+01E5 EE                MOV     A,R6
+01E6 9400              SUBB    A,#00H
+01E8 4008              JC      ?C0022
+                                           ; SOURCE LINE # 186
+                                           ; SOURCE LINE # 187
+01EA 900000      R     MOV     DPTR,#inIndex
+01ED E4                CLR     A
+01EE F0                MOVX    @DPTR,A
+01EF A3                INC     DPTR
+01F0 E4                CLR     A
+01F1 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 188
+01F2         ?C0022:
+                                           ; SOURCE LINE # 189
+01F2 900000      R     MOV     DPTR,#syncDMA_counter
+01F5 E0                MOVX    A,@DPTR
+01F6 04                INC     A
+01F7 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 190
+01F8 800A              SJMP    ?C0023
+01FA         ?C0021:
+                                           ; SOURCE LINE # 192
+                                           ; SOURCE LINE # 194
+01FA 7F02              MOV     R7,#02H
+01FC 120000      E     LCALL   _USBFS_EnableOutEP
+                                           ; SOURCE LINE # 195
+01FF 900000      R     MOV     DPTR,#skip_next_OUT
+0202 E4                CLR     A
+0203 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 196
+0204         ?C0023:
+                                           ; SOURCE LINE # 198
+0204 900000      R     MOV     DPTR,#inIndex
+0207 E0                MOVX    A,@DPTR
+0208 FE                MOV     R6,A
+0209 A3                INC     DPTR
+020A E0                MOVX    A,@DPTR
+020B FF                MOV     R7,A
+020C 900000      R     MOV     DPTR,#outIndex
+020F E0                MOVX    A,@DPTR
+0210 FC                MOV     R4,A
+0211 A3                INC     DPTR
+0212 E0                MOVX    A,@DPTR
+0213 FD                MOV     R5,A
+0214 ED                MOV     A,R5
+0215 B5070A            CJNE    A,AR7,?C0020
+0218 EC                MOV     A,R4
+0219 B50606            CJNE    A,AR6,?C0020
+                                           ; SOURCE LINE # 199
+                                           ; SOURCE LINE # 201
+021C 900000      R     MOV     DPTR,#skip_next_OUT
+021F 7401              MOV     A,#01H
+0221 F0                MOVX    @DPTR,A
+C51 COMPILER V9.51   MAIN                                                                  05/19/2017 11:21:13 PAGE 13  
+
+                                           ; SOURCE LINE # 202
+                                           ; SOURCE LINE # 203
+0222         ?C0020:
+                                           ; SOURCE LINE # 204
+0222 900000      R     MOV     DPTR,#syncDMA
+0225 E0                MOVX    A,@DPTR
+0226 FF                MOV     R7,A
+0227 EF                MOV     A,R7
+0228 6003              JZ      $ + 5H
+022A 020000      R     LJMP    ?C0015
+022D 900000      R     MOV     DPTR,#syncDMA_counter
+0230 E0                MOVX    A,@DPTR
+0231 FF                MOV     R7,A
+0232 EF                MOV     A,R7
+0233 C3                CLR     C
+0234 9405              SUBB    A,#05H
+0236 5003              JNC     $ + 5H
+0238 020000      R     LJMP    ?C0015
+                                           ; SOURCE LINE # 205
+                                           ; SOURCE LINE # 206
+023B 900000      R     MOV     DPTR,#VDACoutDMA_Chan
+023E E0                MOVX    A,@DPTR
+023F FF                MOV     R7,A
+0240 7D01              MOV     R5,#01H
+0242 120000      E     LCALL   _CyDmaChEnable
+                                           ; SOURCE LINE # 207
+0245 900000      R     MOV     DPTR,#syncDMA
+0248 7401              MOV     A,#01H
+024A F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 208
+                                           ; SOURCE LINE # 209
+024B 020000      R     LJMP    ?C0015
+024E 22                RET     
+             ; FUNCTION main (END)
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    741    ----
+   CONSTANT SIZE    =     34    ----
+   XDATA SIZE       =    337       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

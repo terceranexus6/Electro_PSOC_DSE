@@ -1,0 +1,1293 @@
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE USBFS_EPISR
+OBJECT MODULE PLACED IN .\DP8051_Keil_951\Debug\USBFS_episr.obj
+COMPILER INVOKED BY: C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\import\keil\pk51\9.51\C51\BIN\c51.exe 
+                    -Generated_Source\PSoC3\USBFS_episr.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP INCDIR(.,Generated_Source\PSoC3) FF(3) DB WL(2) P
+                    -R(.\DP8051_Keil_951\Debug/USBFS_episr.lst) CD OT(2,SIZE) OJ(.\DP8051_Keil_951\Debug\USBFS_episr.obj)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: USBFS_episr.c
+   3          * Version 2.70
+   4          *
+   5          * Description:
+   6          *  Data endpoint Interrupt Service Routines
+   7          *
+   8          * Note:
+   9          *
+  10          ********************************************************************************
+  11          * Copyright 2008-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  12          * You may use this file only in accordance with the license, terms, conditions,
+  13          * disclaimers, and limitations in the end user license agreement accompanying
+  14          * the software package with which this file was provided.
+  15          *******************************************************************************/
+  16          
+  17          #include "USBFS.h"
+  18          #include "USBFS_pvt.h"
+  19          #if (defined(USBFS_ENABLE_MIDI_STREAMING) && (USBFS_ENABLE_MIDI_API != 0u))
+                  #include "USBFS_midi.h"
+              #endif /* (defined(USBFS_ENABLE_MIDI_STREAMING) && (USBFS_ENABLE_MIDI_API != 0u)) */
+  22          #if ((USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u))
+                  #include "USBFS_EP8_DMA_Done_SR.h"
+                  #include "USBFS_EP17_DMA_Done_SR.h"
+              #endif /* (USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u) */
+  26          
+  27          
+  28          /***************************************
+  29          * Custom Declarations
+  30          ***************************************/
+  31          /* `#START CUSTOM_DECLARATIONS` Place your declaration here */
+  32          
+  33          /* `#END` */
+  34          
+  35          
+  36          #if(USBFS_EP1_ISR_REMOVE == 0u)
+              
+              
+                  /******************************************************************************
+                  * Function Name: USBFS_EP_1_ISR
+                  *******************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 1 Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  ******************************************************************************/
+                  CY_ISR(USBFS_EP_1_ISR)
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 2   
+
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT)  && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+              
+                      /* `#START EP1_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+              
+                      CY_GET_REG8(USBFS_SIE_EP1_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP1].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP1].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP1].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR) &
+                                                                                  (uint8)~USBFS_SIE_EP_INT_EP1_MASK);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP1)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+              
+                      /* `#START EP1_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+                  }
+              
+              #endif   /*  USBFS_EP1_ISR_REMOVE */
+ 100          
+ 101          
+ 102          #if(USBFS_EP2_ISR_REMOVE == 0u)
+ 103          
+ 104              /*******************************************************************************
+ 105              * Function Name: USBFS_EP_2_ISR
+ 106              ********************************************************************************
+ 107              *
+ 108              * Summary:
+ 109              *  Endpoint 2 Interrupt Service Routine
+ 110              *
+ 111              * Parameters:
+ 112              *  None.
+ 113              *
+ 114              * Return:
+ 115              *  None.
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 3   
+
+ 116              *
+ 117              *******************************************************************************/
+ 118              CY_ISR(USBFS_EP_2_ISR)
+ 119              {
+ 120   1              #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 121   1                           USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 124   1      
+ 125   1              /* `#START EP2_USER_CODE` Place your code here */
+ 126   1      
+ 127   1              /* `#END` */
+ 128   1      
+ 129   1              #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 130   1                           USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 134   1      
+ 135   1              CY_GET_REG8(USBFS_SIE_EP2_CR0_PTR); /* Must read the mode reg */
+ 136   1              /* Do not toggle ISOC endpoint */
+ 137   1              if((USBFS_EP[USBFS_EP2].attrib & USBFS_EP_TYPE_MASK) !=
+ 138   1                                                                                          USBFS_EP_TYPE_ISOC)
+ 139   1              {
+ 140   2                  USBFS_EP[USBFS_EP2].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+ 141   2              }
+ 142   1              USBFS_EP[USBFS_EP2].apiEpState = USBFS_EVENT_PENDING;
+ 143   1              CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+ 144   1                                                                              & (uint8)~USBFS_SIE_EP_INT_EP2_MAS
+             -K);
+ 145   1      
+ 146   1              #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 147   1                           USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP2)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+ 153   1      
+ 154   1              /* `#START EP2_END_USER_CODE` Place your code here */
+ 155   1      
+ 156   1              /* `#END` */
+ 157   1      
+ 158   1              #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+ 159   1                           USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+ 162   1          }
+ 163          
+ 164          #endif   /*  USBFS_EP2_ISR_REMOVE */
+ 165          
+ 166          
+ 167          #if(USBFS_EP3_ISR_REMOVE == 0u)
+              
+                  /*******************************************************************************
+                  * Function Name: USBFS_EP_3_ISR
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 3 Interrupt Service Routine
+                  *
+                  * Parameters:
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 4   
+
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  *******************************************************************************/
+                  CY_ISR(USBFS_EP_3_ISR)
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3 */
+              
+                      /* `#START EP3_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      CY_GET_REG8(USBFS_SIE_EP3_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP3].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP3].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP3].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+                                                                                      & (uint8)~USBFS_SIE_EP_INT_EP3_MAS
+             -K);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP3)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+              
+                      /* `#START EP3_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+                  }
+              
+              #endif   /*  USBFS_EP3_ISR_REMOVE */
+ 230          
+ 231          
+ 232          #if(USBFS_EP4_ISR_REMOVE == 0u)
+              
+                  /*******************************************************************************
+                  * Function Name: USBFS_EP_4_ISR
+                  ********************************************************************************
+                  *
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 5   
+
+                  * Summary:
+                  *  Endpoint 4 Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  *******************************************************************************/
+                  CY_ISR(USBFS_EP_4_ISR)
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP4_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      CY_GET_REG8(USBFS_SIE_EP4_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP4].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP4].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP4].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+                                                                                      & (uint8)~USBFS_SIE_EP_INT_EP4_MAS
+             -K);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP4)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+              
+                      /* `#START EP4_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+                  }
+              
+              #endif   /*  USBFS_EP4_ISR_REMOVE */
+ 295          
+ 296          
+ 297          #if(USBFS_EP5_ISR_REMOVE == 0u)
+              
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 6   
+
+                  /*******************************************************************************
+                  * Function Name: USBFS_EP_5_ISR
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 5 Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  *******************************************************************************/
+                  CY_ISR(USBFS_EP_5_ISR)
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP5_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      CY_GET_REG8(USBFS_SIE_EP5_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP5].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP5].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP5].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+                                                                                      & (uint8)~USBFS_SIE_EP_INT_EP5_MAS
+             -K);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP5)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+              
+                      /* `#START EP5_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+                  }
+              #endif   /*  USBFS_EP5_ISR_REMOVE */
+ 359          
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 7   
+
+ 360          
+ 361          #if(USBFS_EP6_ISR_REMOVE == 0u)
+              
+                  /*******************************************************************************
+                  * Function Name: USBFS_EP_6_ISR
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 6 Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  *******************************************************************************/
+                  CY_ISR(USBFS_EP_6_ISR)
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP6_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      CY_GET_REG8(USBFS_SIE_EP6_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP6].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP6].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP6].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+                                                                                      & (uint8)~USBFS_SIE_EP_INT_EP6_MAS
+             -K);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP6)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP6_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 8   
+
+                  }
+              
+              #endif   /*  USBFS_EP6_ISR_REMOVE */
+ 424          
+ 425          
+ 426          #if(USBFS_EP7_ISR_REMOVE == 0u)
+              
+                  /*******************************************************************************
+                  * Function Name: USBFS_EP_7_ISR
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 7 Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  *******************************************************************************/
+                  CY_ISR(USBFS_EP_7_ISR)
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP7_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      CY_GET_REG8(USBFS_SIE_EP7_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP7].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP7].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP7].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+                                                                                      & (uint8)~USBFS_SIE_EP_INT_EP7_MAS
+             -K);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP7)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP7_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 9   
+
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+                  }
+              
+              #endif   /*  USBFS_EP7_ISR_REMOVE */
+ 489          
+ 490          
+ 491          #if(USBFS_EP8_ISR_REMOVE == 0u)
+              
+                  /*******************************************************************************
+                  * Function Name: USBFS_EP_8_ISR
+                  ********************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 8 Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  *******************************************************************************/
+                  CY_ISR(USBFS_EP_8_ISR)
+                  {
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          uint8 int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      /* `#START EP8_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          int_en = EA;
+                          CyGlobalIntEnable;  /* Make sure nested interrupt is enabled */
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+              
+                      CY_GET_REG8(USBFS_SIE_EP8_CR0_PTR); /* Must read the mode reg */
+                      /* Do not toggle ISOC endpoint */
+                      if((USBFS_EP[USBFS_EP8].attrib & USBFS_EP_TYPE_MASK) !=
+                                                                                                  USBFS_EP_TYPE_ISOC)
+                      {
+                          USBFS_EP[USBFS_EP8].epToggle ^= USBFS_EPX_CNT_DATA_TOGGLE;
+                      }
+                      USBFS_EP[USBFS_EP8].apiEpState = USBFS_EVENT_PENDING;
+                      CY_SET_REG8(USBFS_SIE_EP_INT_SR_PTR, CY_GET_REG8(USBFS_SIE_EP_INT_SR_PTR)
+                                                                                      & (uint8)~USBFS_SIE_EP_INT_EP8_MAS
+             -K);
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT)
+                          if(USBFS_midi_out_ep == USBFS_EP8)
+                          {
+                              USBFS_MIDI_OUT_EP_Service();
+                          }
+                      #endif /*  USBFS_ISR_SERVICE_MIDI_OUT */
+              
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 10  
+
+                      /* `#START EP8_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+              
+                      #if (defined(USBFS_ENABLE_MIDI_STREAMING) && !defined(USBFS_MAIN_SERVICE_MIDI_OUT) && \
+                                   USBFS_ISR_SERVICE_MIDI_OUT && CY_PSOC3)
+                          EA = int_en;
+                      #endif /* CY_PSOC3 & USBFS_ISR_SERVICE_MIDI_OUT  */
+                  }
+              
+              #endif   /*  USBFS_EP8_ISR_REMOVE */
+ 554          
+ 555          
+ 556          /*******************************************************************************
+ 557          * Function Name: USBFS_SOF_ISR
+ 558          ********************************************************************************
+ 559          *
+ 560          * Summary:
+ 561          *  Start of Frame Interrupt Service Routine
+ 562          *
+ 563          * Parameters:
+ 564          *  None.
+ 565          *
+ 566          * Return:
+ 567          *  None.
+ 568          *
+ 569          *******************************************************************************/
+ 570          CY_ISR(USBFS_SOF_ISR)
+ 571          {
+ 572   1          /* `#START SOF_USER_CODE` Place your code here */
+ 573   1      
+ 574   1          /* `#END` */
+ 575   1      }
+ 576          
+ 577          
+ 578          /*******************************************************************************
+ 579          * Function Name: USBFS_BUS_RESET_ISR
+ 580          ********************************************************************************
+ 581          *
+ 582          * Summary:
+ 583          *  USB Bus Reset Interrupt Service Routine.  Calls _Start with the same
+ 584          *  parameters as the last USER call to _Start
+ 585          *
+ 586          * Parameters:
+ 587          *  None.
+ 588          *
+ 589          * Return:
+ 590          *  None.
+ 591          *
+ 592          *******************************************************************************/
+ 593          CY_ISR(USBFS_BUS_RESET_ISR)
+ 594          {
+ 595   1          /* `#START BUS_RESET_USER_CODE` Place your code here */
+ 596   1      
+ 597   1          /* `#END` */
+ 598   1      
+ 599   1          USBFS_ReInitComponent();
+ 600   1      }
+ 601          
+ 602          
+ 603          #if((USBFS_EP_MM != USBFS__EP_MANUAL) && (USBFS_ARB_ISR_REMOVE == 0u))
+ 604          
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 11  
+
+ 605          
+ 606              /*******************************************************************************
+ 607              * Function Name: USBFS_ARB_ISR
+ 608              ********************************************************************************
+ 609              *
+ 610              * Summary:
+ 611              *  Arbiter Interrupt Service Routine
+ 612              *
+ 613              * Parameters:
+ 614              *  None.
+ 615              *
+ 616              * Return:
+ 617              *  None.
+ 618              *
+ 619              * Side effect:
+ 620              *  Search for EP8 int_status will be much slower than search for EP1 int_status.
+ 621              *
+ 622              *******************************************************************************/
+ 623              CY_ISR(USBFS_ARB_ISR)
+ 624              {
+ 625   1              uint8 int_status;
+ 626   1              uint8 ep_status;
+ 627   1              uint8 ep = USBFS_EP1;
+ 628   1              uint8 ptr = 0u;
+ 629   1      
+ 630   1              /* `#START ARB_BEGIN_USER_CODE` Place your code here */
+ 631   1      
+ 632   1              /* `#END` */
+ 633   1      
+ 634   1              int_status = USBFS_ARB_INT_SR_REG;                   /* read Arbiter Status Register */
+ 635   1              USBFS_ARB_INT_SR_REG = int_status;                   /* Clear Serviced Interrupts */
+ 636   1      
+ 637   1              while(int_status != 0u)
+ 638   1              {
+ 639   2                  if((int_status & 1u) != 0u)  /* If EpX interrupt present */
+ 640   2                  {   /* read Endpoint Status Register */
+ 641   3                      ep_status  = CY_GET_REG8((reg8 *)(USBFS_ARB_EP1_SR_IND + ptr));
+ 642   3                      /* If In Buffer Full */
+ 643   3                      if((ep_status & USBFS_ARB_EPX_SR_IN_BUF_FULL) != 0u)
+ 644   3                      {
+ 645   4                          if((USBFS_EP[ep].addr & USBFS_DIR_IN) != 0u)
+ 646   4                          {
+ 647   5                              /* Clear Data ready status */
+ 648   5                              *(reg8 *)(USBFS_ARB_EP1_CFG_IND + ptr) &=
+ 649   5                                                                          (uint8)~USBFS_ARB_EPX_CFG_IN_DATA_RDY;
+ 650   5                              #if((USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u))
+                                          /* Setup common area DMA with rest of the data */
+                                          if(USBFS_inLength[ep] > USBFS_DMA_BYTES_PER_BURST)
+                                          {
+                                              USBFS_LoadNextInEP(ep, 0u);
+                                          }
+                                          else
+                                          {
+                                              USBFS_inBufFull[ep] = 1u;
+                                          }
+                                      #endif /* ((USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u)) */
+ 661   5                              /* Write the Mode register */
+ 662   5                              CY_SET_REG8((reg8 *)(USBFS_SIE_EP1_CR0_IND + ptr), USBFS_EP[ep].epMode);
+ 663   5                              #if (defined(USBFS_ENABLE_MIDI_STREAMING) && USBFS_ISR_SERVICE_MIDI_IN)
+                                          if(ep == USBFS_midi_in_ep)
+                                          {   /* Clear MIDI input pointer */
+                                              USBFS_midiInPointer = 0u;
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 12  
+
+                                          }
+                                      #endif /*  USBFS_ENABLE_MIDI_STREAMING*/
+ 669   5                          }
+ 670   4                      }
+ 671   3                      /* (re)arm Out EP only for mode2 */
+ 672   3                      #if(USBFS_EP_MM != USBFS__EP_DMAAUTO)
+ 673   3                          /* If DMA Grant */
+ 674   3                          if((ep_status & USBFS_ARB_EPX_SR_DMA_GNT) != 0u)
+ 675   3                          {
+ 676   4                              if((USBFS_EP[ep].addr & USBFS_DIR_IN) == 0u)
+ 677   4                              {
+ 678   5                                      USBFS_EP[ep].apiEpState = USBFS_NO_EVENT_PENDING;
+ 679   5                                      /* Write the Mode register */
+ 680   5                                      CY_SET_REG8((reg8 *)(USBFS_SIE_EP1_CR0_IND + ptr),
+ 681   5                                                                                          USBFS_EP[ep].epMode);
+ 682   5                              }
+ 683   4                          }
+ 684   3                      #endif /*  USBFS_EP_MM */
+ 685   3      
+ 686   3                      /* `#START ARB_USER_CODE` Place your code here for handle Buffer Underflow/Overflow */
+ 687   3      
+ 688   3                      /* `#END` */
+ 689   3      
+ 690   3                      CY_SET_REG8((reg8 *)(USBFS_ARB_EP1_SR_IND + ptr), ep_status);   /* Clear Serviced events *
+             -/
+ 691   3                  }
+ 692   2                  ptr += USBFS_EPX_CNTX_ADDR_OFFSET;               /* prepare pointer for next EP */
+ 693   2                  ep++;
+ 694   2                  int_status >>= 1u;
+ 695   2              }
+ 696   1      
+ 697   1              /* `#START ARB_END_USER_CODE` Place your code here */
+ 698   1      
+ 699   1              /* `#END` */
+ 700   1          }
+ 701          
+ 702          #endif /*  USBFS_EP_MM */
+ 703          
+ 704          #if ((USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u))
+                  /******************************************************************************
+                  * Function Name: USBFS_EP_DMA_DONE_ISR
+                  *******************************************************************************
+                  *
+                  * Summary:
+                  *  Endpoint 1 DMA Done Interrupt Service Routine
+                  *
+                  * Parameters:
+                  *  None.
+                  *
+                  * Return:
+                  *  None.
+                  *
+                  ******************************************************************************/
+                  CY_ISR(USBFS_EP_DMA_DONE_ISR)
+                  {
+                      uint8 int8Status;
+                      uint8 int17Status;
+                      uint8 ep_status;
+                      uint8 ep = USBFS_EP1;
+                      uint8 ptr = 0u;
+              
+                      /* `#START EP_DMA_DONE_BEGIN_USER_CODE` Place your code here */
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 13  
+
+              
+                      /* `#END` */
+              
+                      /* Read clear on read status register with the EP source of interrupt */
+                      int17Status = USBFS_EP17_DMA_Done_SR_Read() & USBFS_EP17_SR_MASK;
+                      int8Status = USBFS_EP8_DMA_Done_SR_Read() & USBFS_EP8_SR_MASK;
+              
+                      while(int8Status != 0u)
+                      {
+                          while(int17Status != 0u)
+                          {
+                              if((int17Status & 1u) != 0u)  /* If EpX interrupt present */
+                              {
+                                  /* Read Endpoint Status Register */
+                                  ep_status = CY_GET_REG8((reg8 *)(USBFS_ARB_EP1_SR_IND + ptr));
+                                  if( ((ep_status & USBFS_ARB_EPX_SR_IN_BUF_FULL) == 0u) &&
+                                      (USBFS_inBufFull[ep] == 0u))
+                                  {
+                                      /* `#START EP_DMA_DONE_USER_CODE` Place your code here */
+              
+                                      /* `#END` */
+              
+                                      CY_SET_REG8((reg8 *)(USBFS_ARB_RW1_WA_MSB_IND + ptr), 0x00u);
+                                      /* repeat 2 last bytes to prefetch endpoint area */
+                                      CY_SET_REG8((reg8 *)(USBFS_ARB_RW1_WA_IND + ptr),
+                                                  USBFS_DMA_BYTES_PER_BURST * ep - USBFS_DMA_BYTES_REPEAT);
+                                      USBFS_LoadNextInEP(ep, 1);
+                                      /* Set Data ready status, This will generate DMA request */
+                                      * (reg8 *)(USBFS_ARB_EP1_CFG_IND + ptr) |= USBFS_ARB_EPX_CFG_IN_DATA_RDY;
+                                  }
+                              }
+                              ptr += USBFS_EPX_CNTX_ADDR_OFFSET;               /* prepare pointer for next EP */
+                              ep++;
+                              int17Status >>= 1u;
+                          }
+                          int8Status >>= 1u;
+                          if(int8Status != 0)
+                          {
+                              /* Prepare pointer for EP8 */
+                              ptr = ((USBFS_EP8 - USBFS_EP1) << USBFS_EPX_CNTX_ADDR_SHIFT);
+                              ep = USBFS_EP8;
+                              int17Status = int8Status & 0x01u;
+                          }
+                      }
+              
+                      /* `#START EP_DMA_DONE_END_USER_CODE` Place your code here */
+              
+                      /* `#END` */
+                  }
+              #endif /* ((USBFS_EP_MM == USBFS__EP_DMAAUTO) && (USBFS_EP_DMA_AUTO_OPT == 0u)) */
+ 778          
+ 779          
+ 780          /* [] END OF FILE */
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 14  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION USBFS_EP_2_ISR (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C083              PUSH    DPH
+0004 C082              PUSH    DPL
+0006 C085              PUSH    DPH1
+0008 C084              PUSH    DPL1
+000A C086              PUSH    DPS
+000C 758600            MOV     DPS,#00H
+000F C000        E     PUSH    ?C?XPAGE1SFR
+0011 750000      E     MOV     ?C?XPAGE1SFR,#?C?XPAGE1RST
+0014 C0D0              PUSH    PSW
+0016 75D000            MOV     PSW,#00H
+0019 C006              PUSH    AR6
+001B C007              PUSH    AR7
+                                           ; SOURCE LINE # 118
+                                           ; SOURCE LINE # 135
+001D 90601E            MOV     DPTR,#0601EH
+0020 E0                MOVX    A,@DPTR
+0021 FF                MOV     R7,A
+                                           ; SOURCE LINE # 137
+0022 900000      E     MOV     DPTR,#USBFS_EP+016H
+0025 E0                MOVX    A,@DPTR
+0026 FF                MOV     R7,A
+0027 EF                MOV     A,R7
+0028 5403              ANL     A,#03H
+002A FF                MOV     R7,A
+002B 7E00              MOV     R6,#00H
+002D EF                MOV     A,R7
+002E 6401              XRL     A,#01H
+0030 4E                ORL     A,R6
+0031 600E              JZ      ?C0001
+                                           ; SOURCE LINE # 139
+                                           ; SOURCE LINE # 140
+0033 900000      E     MOV     DPTR,#USBFS_EP+019H
+0036 E0                MOVX    A,@DPTR
+0037 FF                MOV     R7,A
+0038 EF                MOV     A,R7
+0039 6480              XRL     A,#080H
+003B FF                MOV     R7,A
+003C 900000      E     MOV     DPTR,#USBFS_EP+019H
+003F EF                MOV     A,R7
+0040 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 141
+0041         ?C0001:
+                                           ; SOURCE LINE # 142
+0041 900000      E     MOV     DPTR,#USBFS_EP+017H
+0044 7401              MOV     A,#01H
+0046 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 144
+0047 90600B            MOV     DPTR,#0600BH
+004A E0                MOVX    A,@DPTR
+004B FF                MOV     R7,A
+004C EF                MOV     A,R7
+004D 54FD              ANL     A,#0FDH
+004F FF                MOV     R7,A
+0050 EF                MOV     A,R7
+0051 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 162
+0052 D007              POP     AR7
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 15  
+
+0054 D006              POP     AR6
+0056 D0D0              POP     PSW
+0058 D000        E     POP     ?C?XPAGE1SFR
+005A D086              POP     DPS
+005C D084              POP     DPL1
+005E D085              POP     DPH1
+0060 D082              POP     DPL
+0062 D083              POP     DPH
+0064 D0E0              POP     ACC
+0066 32                RETI    
+             ; FUNCTION USBFS_EP_2_ISR (END)
+
+             ; FUNCTION USBFS_SOF_ISR (BEGIN)
+                                           ; SOURCE LINE # 570
+                                           ; SOURCE LINE # 575
+0000 32                RETI    
+             ; FUNCTION USBFS_SOF_ISR (END)
+
+             ; FUNCTION USBFS_BUS_RESET_ISR (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0F0              PUSH    B
+0004 C083              PUSH    DPH
+0006 C082              PUSH    DPL
+0008 C085              PUSH    DPH1
+000A C084              PUSH    DPL1
+000C C086              PUSH    DPS
+000E 758600            MOV     DPS,#00H
+0011 C000        E     PUSH    ?C?XPAGE1SFR
+0013 750000      E     MOV     ?C?XPAGE1SFR,#?C?XPAGE1RST
+0016 C0D0              PUSH    PSW
+0018 75D000            MOV     PSW,#00H
+001B C000              PUSH    AR0
+001D C001              PUSH    AR1
+001F C002              PUSH    AR2
+0021 C003              PUSH    AR3
+0023 C004              PUSH    AR4
+0025 C005              PUSH    AR5
+0027 C006              PUSH    AR6
+0029 C007              PUSH    AR7
+                                           ; SOURCE LINE # 593
+                                           ; SOURCE LINE # 599
+002B 120000      E     LCALL   USBFS_ReInitComponent
+                                           ; SOURCE LINE # 600
+002E D007              POP     AR7
+0030 D006              POP     AR6
+0032 D005              POP     AR5
+0034 D004              POP     AR4
+0036 D003              POP     AR3
+0038 D002              POP     AR2
+003A D001              POP     AR1
+003C D000              POP     AR0
+003E D0D0              POP     PSW
+0040 D000        E     POP     ?C?XPAGE1SFR
+0042 D086              POP     DPS
+0044 D084              POP     DPL1
+0046 D085              POP     DPH1
+0048 D082              POP     DPL
+004A D083              POP     DPH
+004C D0F0              POP     B
+004E D0E0              POP     ACC
+0050 32                RETI    
+             ; FUNCTION USBFS_BUS_RESET_ISR (END)
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 16  
+
+
+             ; FUNCTION USBFS_ARB_ISR (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0F0              PUSH    B
+0004 C083              PUSH    DPH
+0006 C082              PUSH    DPL
+0008 C085              PUSH    DPH1
+000A C084              PUSH    DPL1
+000C C086              PUSH    DPS
+000E 758600            MOV     DPS,#00H
+0011 C000        E     PUSH    ?C?XPAGE1SFR
+0013 750000      E     MOV     ?C?XPAGE1SFR,#?C?XPAGE1RST
+0016 C0D0              PUSH    PSW
+0018 75D000            MOV     PSW,#00H
+001B C004              PUSH    AR4
+001D C005              PUSH    AR5
+001F C006              PUSH    AR6
+0021 C007              PUSH    AR7
+                                           ; SOURCE LINE # 623
+                                           ; SOURCE LINE # 627
+0023 900000      R     MOV     DPTR,#ep
+0026 7401              MOV     A,#01H
+0028 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 628
+0029 900000      R     MOV     DPTR,#ptr
+002C E4                CLR     A
+002D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 634
+002E 90609F            MOV     DPTR,#0609FH
+0031 E0                MOVX    A,@DPTR
+0032 FF                MOV     R7,A
+0033 900000      R     MOV     DPTR,#int_status
+0036 EF                MOV     A,R7
+0037 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 635
+0038 900000      R     MOV     DPTR,#int_status
+003B E0                MOVX    A,@DPTR
+003C FF                MOV     R7,A
+003D 90609F            MOV     DPTR,#0609FH
+0040 EF                MOV     A,R7
+0041 F0                MOVX    @DPTR,A
+0042         ?C0005:
+                                           ; SOURCE LINE # 637
+0042 900000      R     MOV     DPTR,#int_status
+0045 E0                MOVX    A,@DPTR
+0046 FF                MOV     R7,A
+0047 EF                MOV     A,R7
+0048 7003              JNZ     $ + 5H
+004A 020000      R     LJMP    ?C0012
+                                           ; SOURCE LINE # 638
+                                           ; SOURCE LINE # 639
+004D 900000      R     MOV     DPTR,#int_status
+0050 E0                MOVX    A,@DPTR
+0051 FF                MOV     R7,A
+0052 EF                MOV     A,R7
+0053 5401              ANL     A,#01H
+0055 FF                MOV     R7,A
+0056 7E00              MOV     R6,#00H
+0058 EF                MOV     A,R7
+0059 4E                ORL     A,R6
+005A 7003              JNZ     $ + 5H
+005C 020000      R     LJMP    ?C0007
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 17  
+
+                                           ; SOURCE LINE # 640
+                                           ; SOURCE LINE # 641
+005F 900000      R     MOV     DPTR,#ptr
+0062 E0                MOVX    A,@DPTR
+0063 FF                MOV     R7,A
+0064 7E00              MOV     R6,#00H
+0066 EF                MOV     A,R7
+0067 2482              ADD     A,#082H
+0069 FF                MOV     R7,A
+006A EE                MOV     A,R6
+006B 3460              ADDC    A,#060H
+006D FE                MOV     R6,A
+006E 8F82              MOV     DPL,R7
+0070 8E83              MOV     DPH,R6
+0072 E0                MOVX    A,@DPTR
+0073 FF                MOV     R7,A
+0074 900000      R     MOV     DPTR,#ep_status
+0077 EF                MOV     A,R7
+0078 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 643
+0079 900000      R     MOV     DPTR,#ep_status
+007C E0                MOVX    A,@DPTR
+007D FF                MOV     R7,A
+007E EF                MOV     A,R7
+007F 5401              ANL     A,#01H
+0081 FF                MOV     R7,A
+0082 7E00              MOV     R6,#00H
+0084 EF                MOV     A,R7
+0085 4E                ORL     A,R6
+0086 6066              JZ      ?C0008
+                                           ; SOURCE LINE # 644
+                                           ; SOURCE LINE # 645
+0088 900000      R     MOV     DPTR,#ep
+008B E0                MOVX    A,@DPTR
+008C FF                MOV     R7,A
+008D EF                MOV     A,R7
+008E 75F00B            MOV     B,#0BH
+0091 A4                MUL     AB
+0092 2400        E     ADD     A,#LOW USBFS_EP+04H
+0094 F582              MOV     DPL,A
+0096 E4                CLR     A
+0097 3400        E     ADDC    A,#HIGH USBFS_EP+04H
+0099 F583              MOV     DPH,A
+009B E0                MOVX    A,@DPTR
+009C FF                MOV     R7,A
+009D EF                MOV     A,R7
+009E 5480              ANL     A,#080H
+00A0 FF                MOV     R7,A
+00A1 7E00              MOV     R6,#00H
+00A3 EF                MOV     A,R7
+00A4 4E                ORL     A,R6
+00A5 6047              JZ      ?C0008
+                                           ; SOURCE LINE # 646
+                                           ; SOURCE LINE # 649
+00A7 900000      R     MOV     DPTR,#ptr
+00AA E0                MOVX    A,@DPTR
+00AB FF                MOV     R7,A
+00AC 7E00              MOV     R6,#00H
+00AE EF                MOV     A,R7
+00AF 2480              ADD     A,#080H
+00B1 FF                MOV     R7,A
+00B2 EE                MOV     A,R6
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 18  
+
+00B3 3460              ADDC    A,#060H
+00B5 FE                MOV     R6,A
+00B6 8F82              MOV     DPL,R7
+00B8 8E83              MOV     DPH,R6
+00BA E0                MOVX    A,@DPTR
+00BB FF                MOV     R7,A
+00BC EF                MOV     A,R7
+00BD 54FE              ANL     A,#0FEH
+00BF FF                MOV     R7,A
+00C0 EF                MOV     A,R7
+00C1 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 662
+00C2 900000      R     MOV     DPTR,#ep
+00C5 E0                MOVX    A,@DPTR
+00C6 FF                MOV     R7,A
+00C7 EF                MOV     A,R7
+00C8 75F00B            MOV     B,#0BH
+00CB A4                MUL     AB
+00CC 2400        E     ADD     A,#LOW USBFS_EP+05H
+00CE F582              MOV     DPL,A
+00D0 E4                CLR     A
+00D1 3400        E     ADDC    A,#HIGH USBFS_EP+05H
+00D3 F583              MOV     DPH,A
+00D5 E0                MOVX    A,@DPTR
+00D6 FF                MOV     R7,A
+00D7 900000      R     MOV     DPTR,#ptr
+00DA E0                MOVX    A,@DPTR
+00DB FE                MOV     R6,A
+00DC EE                MOV     A,R6
+00DD FD                MOV     R5,A
+00DE 7C00              MOV     R4,#00H
+00E0 ED                MOV     A,R5
+00E1 240E              ADD     A,#0EH
+00E3 FD                MOV     R5,A
+00E4 EC                MOV     A,R4
+00E5 3460              ADDC    A,#060H
+00E7 FC                MOV     R4,A
+00E8 8D82              MOV     DPL,R5
+00EA 8C83              MOV     DPH,R4
+00EC EF                MOV     A,R7
+00ED F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 669
+                                           ; SOURCE LINE # 670
+00EE         ?C0008:
+                                           ; SOURCE LINE # 674
+00EE 900000      R     MOV     DPTR,#ep_status
+00F1 E0                MOVX    A,@DPTR
+00F2 FF                MOV     R7,A
+00F3 EF                MOV     A,R7
+00F4 5402              ANL     A,#02H
+00F6 FF                MOV     R7,A
+00F7 7E00              MOV     R6,#00H
+00F9 EF                MOV     A,R7
+00FA 4E                ORL     A,R6
+00FB 6060              JZ      ?C0010
+                                           ; SOURCE LINE # 675
+                                           ; SOURCE LINE # 676
+00FD 900000      R     MOV     DPTR,#ep
+0100 E0                MOVX    A,@DPTR
+0101 FF                MOV     R7,A
+0102 EF                MOV     A,R7
+0103 75F00B            MOV     B,#0BH
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 19  
+
+0106 A4                MUL     AB
+0107 2400        E     ADD     A,#LOW USBFS_EP+04H
+0109 F582              MOV     DPL,A
+010B E4                CLR     A
+010C 3400        E     ADDC    A,#HIGH USBFS_EP+04H
+010E F583              MOV     DPH,A
+0110 E0                MOVX    A,@DPTR
+0111 FF                MOV     R7,A
+0112 EF                MOV     A,R7
+0113 5480              ANL     A,#080H
+0115 FF                MOV     R7,A
+0116 7E00              MOV     R6,#00H
+0118 EF                MOV     A,R7
+0119 4E                ORL     A,R6
+011A 7041              JNZ     ?C0010
+                                           ; SOURCE LINE # 677
+                                           ; SOURCE LINE # 678
+011C 900000      R     MOV     DPTR,#ep
+011F E0                MOVX    A,@DPTR
+0120 FF                MOV     R7,A
+0121 EF                MOV     A,R7
+0122 75F00B            MOV     B,#0BH
+0125 A4                MUL     AB
+0126 2400        E     ADD     A,#LOW USBFS_EP+01H
+0128 F582              MOV     DPL,A
+012A E4                CLR     A
+012B 3400        E     ADDC    A,#HIGH USBFS_EP+01H
+012D F583              MOV     DPH,A
+012F E4                CLR     A
+0130 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 681
+0131 900000      R     MOV     DPTR,#ep
+0134 E0                MOVX    A,@DPTR
+0135 FF                MOV     R7,A
+0136 EF                MOV     A,R7
+0137 75F00B            MOV     B,#0BH
+013A A4                MUL     AB
+013B 2400        E     ADD     A,#LOW USBFS_EP+05H
+013D F582              MOV     DPL,A
+013F E4                CLR     A
+0140 3400        E     ADDC    A,#HIGH USBFS_EP+05H
+0142 F583              MOV     DPH,A
+0144 E0                MOVX    A,@DPTR
+0145 FF                MOV     R7,A
+0146 900000      R     MOV     DPTR,#ptr
+0149 E0                MOVX    A,@DPTR
+014A FE                MOV     R6,A
+014B EE                MOV     A,R6
+014C FD                MOV     R5,A
+014D 7C00              MOV     R4,#00H
+014F ED                MOV     A,R5
+0150 240E              ADD     A,#0EH
+0152 FD                MOV     R5,A
+0153 EC                MOV     A,R4
+0154 3460              ADDC    A,#060H
+0156 FC                MOV     R4,A
+0157 8D82              MOV     DPL,R5
+0159 8C83              MOV     DPH,R4
+015B EF                MOV     A,R7
+015C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 682
+                                           ; SOURCE LINE # 683
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 20  
+
+015D         ?C0010:
+                                           ; SOURCE LINE # 690
+015D 900000      R     MOV     DPTR,#ep_status
+0160 E0                MOVX    A,@DPTR
+0161 FF                MOV     R7,A
+0162 900000      R     MOV     DPTR,#ptr
+0165 E0                MOVX    A,@DPTR
+0166 FE                MOV     R6,A
+0167 EE                MOV     A,R6
+0168 FD                MOV     R5,A
+0169 7C00              MOV     R4,#00H
+016B ED                MOV     A,R5
+016C 2482              ADD     A,#082H
+016E FD                MOV     R5,A
+016F EC                MOV     A,R4
+0170 3460              ADDC    A,#060H
+0172 FC                MOV     R4,A
+0173 8D82              MOV     DPL,R5
+0175 8C83              MOV     DPH,R4
+0177 EF                MOV     A,R7
+0178 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 691
+0179         ?C0007:
+                                           ; SOURCE LINE # 692
+0179 900000      R     MOV     DPTR,#ptr
+017C E0                MOVX    A,@DPTR
+017D 2410              ADD     A,#010H
+017F F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 693
+0180 900000      R     MOV     DPTR,#ep
+0183 E0                MOVX    A,@DPTR
+0184 04                INC     A
+0185 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 694
+0186 900000      R     MOV     DPTR,#int_status
+0189 E0                MOVX    A,@DPTR
+018A FF                MOV     R7,A
+018B EF                MOV     A,R7
+018C C3                CLR     C
+018D 13                RRC     A
+018E FF                MOV     R7,A
+018F 900000      R     MOV     DPTR,#int_status
+0192 EF                MOV     A,R7
+0193 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 695
+0194 020000      R     LJMP    ?C0005
+                                           ; SOURCE LINE # 700
+0197         ?C0012:
+0197 D007              POP     AR7
+0199 D006              POP     AR6
+019B D005              POP     AR5
+019D D004              POP     AR4
+019F D0D0              POP     PSW
+01A1 D000        E     POP     ?C?XPAGE1SFR
+01A3 D086              POP     DPS
+01A5 D084              POP     DPL1
+01A7 D085              POP     DPH1
+01A9 D082              POP     DPL
+01AB D083              POP     DPH
+01AD D0F0              POP     B
+01AF D0E0              POP     ACC
+01B1 32                RETI    
+C51 COMPILER V9.51   USBFS_EPISR                                                           05/19/2017 11:21:14 PAGE 21  
+
+             ; FUNCTION USBFS_ARB_ISR (END)
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    619    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       4
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

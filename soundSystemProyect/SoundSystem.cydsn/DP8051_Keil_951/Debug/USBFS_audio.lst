@@ -1,0 +1,903 @@
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE USBFS_AUDIO
+OBJECT MODULE PLACED IN .\DP8051_Keil_951\Debug\USBFS_audio.obj
+COMPILER INVOKED BY: C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\import\keil\pk51\9.51\C51\BIN\c51.exe 
+                    -Generated_Source\PSoC3\USBFS_audio.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP INCDIR(.,Generated_Source\PSoC3) FF(3) DB WL(2) P
+                    -R(.\DP8051_Keil_951\Debug/USBFS_audio.lst) CD OT(2,SIZE) OJ(.\DP8051_Keil_951\Debug\USBFS_audio.obj)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File Name: USBFS_audio.c
+   3          * Version 2.70
+   4          *
+   5          * Description:
+   6          *  USB AUDIO Class request handler.
+   7          *
+   8          * Related Document:
+   9          *  Universal Serial Bus Device Class Definition for Audio Devices Release 1.0
+  10          *
+  11          ********************************************************************************
+  12          * Copyright 2008-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  13          * You may use this file only in accordance with the license, terms, conditions,
+  14          * disclaimers, and limitations in the end user license agreement accompanying
+  15          * the software package with which this file was provided.
+  16          *******************************************************************************/
+  17          
+  18          #include "USBFS.h"
+  19          
+  20          #if defined(USBFS_ENABLE_AUDIO_CLASS)
+  21          
+  22          #include "USBFS_audio.h"
+  23          #include "USBFS_pvt.h"
+  24          #if defined(USBFS_ENABLE_MIDI_STREAMING)
+                  #include "USBFS_midi.h"
+              #endif /*  USBFS_ENABLE_MIDI_STREAMING*/
+  27          
+  28          
+  29          /***************************************
+  30          * Custom Declarations
+  31          ***************************************/
+  32          
+  33          /* `#START CUSTOM_DECLARATIONS` Place your declaration here */
+  34          
+  35          /* `#END` */
+  36          
+  37          
+  38          #if !defined(USER_SUPPLIED_AUDIO_HANDLER)
+  39          
+  40          
+  41          /***************************************
+  42          *    AUDIO Variables
+  43          ***************************************/
+  44          
+  45          #if defined(USBFS_ENABLE_AUDIO_STREAMING)
+  46              volatile uint8 USBFS_currentSampleFrequency[USBFS_MAX_EP][USBFS_SAMPLE_FREQ_LEN];
+  47              volatile uint8 USBFS_frequencyChanged;
+  48              volatile uint8 USBFS_currentMute;
+  49              volatile uint8 USBFS_currentVolume[USBFS_VOLUME_LEN];
+  50              volatile uint8 USBFS_minimumVolume[USBFS_VOLUME_LEN] = {USBFS_VOL_MIN_LSB,
+  51                                                                                            USBFS_VOL_MIN_MSB};
+  52              volatile uint8 USBFS_maximumVolume[USBFS_VOLUME_LEN] = {USBFS_VOL_MAX_LSB,
+  53                                                                                            USBFS_VOL_MAX_MSB};
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 2   
+
+  54              volatile uint8 USBFS_resolutionVolume[USBFS_VOLUME_LEN] = {USBFS_VOL_RES_LSB,
+  55                                                                                               USBFS_VOL_RES_MSB};
+  56          #endif /*  USBFS_ENABLE_AUDIO_STREAMING */
+  57          
+  58          
+  59          /*******************************************************************************
+  60          * Function Name: USBFS_DispatchAUDIOClassRqst
+  61          ********************************************************************************
+  62          *
+  63          * Summary:
+  64          *  This routine dispatches class requests
+  65          *
+  66          * Parameters:
+  67          *  None.
+  68          *
+  69          * Return:
+  70          *  requestHandled
+  71          *
+  72          * Global variables:
+  73          *   USBFS_currentSampleFrequency: Contains the current audio Sample
+  74          *       Frequency. It is set by the Host using SET_CUR request to the endpoint.
+  75          *   USBFS_frequencyChanged: This variable is used as a flag for the
+  76          *       user code, to be aware that Host has been sent request for changing
+  77          *       Sample Frequency. Sample frequency will be sent on the next OUT
+  78          *       transaction. It is contains endpoint address when set. The following
+  79          *       code is recommended for detecting new Sample Frequency in main code:
+  80          *       if((USBFS_frequencyChanged != 0) &&
+  81          *       (USBFS_transferState == USBFS_TRANS_STATE_IDLE))
+  82          *       {
+  83          *          USBFS_frequencyChanged = 0;
+  84          *       }
+  85          *       USBFS_transferState variable is checked to be sure that
+  86          *             transfer completes.
+  87          *   USBFS_currentMute: Contains mute configuration set by Host.
+  88          *   USBFS_currentVolume: Contains volume level set by Host.
+  89          *
+  90          * Reentrant:
+  91          *  No.
+  92          *
+  93          *******************************************************************************/
+  94          uint8 USBFS_DispatchAUDIOClassRqst(void) 
+  95          {
+  96   1          uint8 requestHandled = USBFS_FALSE;
+  97   1          uint8 bmRequestType  = CY_GET_REG8(USBFS_bmRequestType);
+  98   1          
+  99   1          #if defined(USBFS_ENABLE_AUDIO_STREAMING)
+ 100   1              uint8 epNumber;
+ 101   1              epNumber = CY_GET_REG8(USBFS_wIndexLo) & USBFS_DIR_UNUSED;
+ 102   1          #endif /*  USBFS_ENABLE_AUDIO_STREAMING */
+ 103   1          
+ 104   1      
+ 105   1          if ((bmRequestType & USBFS_RQST_DIR_MASK) == USBFS_RQST_DIR_D2H)
+ 106   1          {
+ 107   2              /* Control Read */
+ 108   2              if((bmRequestType & USBFS_RQST_RCPT_MASK) == USBFS_RQST_RCPT_EP)
+ 109   2              {
+ 110   3                  /* Endpoint */
+ 111   3                  switch (CY_GET_REG8(USBFS_bRequest))
+ 112   3                  {
+ 113   4                      case USBFS_GET_CUR:
+ 114   4                      #if defined(USBFS_ENABLE_AUDIO_STREAMING)
+ 115   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_SAMPLING_FREQ_CONTROL)
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 3   
+
+ 116   4                          {
+ 117   5                               /* point Control Selector is Sampling Frequency */
+ 118   5                              USBFS_currentTD.wCount = USBFS_SAMPLE_FREQ_LEN;
+ 119   5                              USBFS_currentTD.pData  = USBFS_currentSampleFrequency[epNumber];
+ 120   5                              requestHandled   = USBFS_InitControlRead();
+ 121   5                          }
+ 122   4                      #endif /*  USBFS_ENABLE_AUDIO_STREAMING */
+ 123   4      
+ 124   4                      /* `#START AUDIO_READ_REQUESTS` Place other request handler here */
+ 125   4      
+ 126   4                      /* `#END` */
+ 127   4                          break;
+ 128   4                      default:
+ 129   4                          break;
+ 130   4                  }
+ 131   3              }
+ 132   2              else if((bmRequestType & USBFS_RQST_RCPT_MASK) == USBFS_RQST_RCPT_IFC)
+ 133   2              {
+ 134   3                  /* Interface or Entity ID */
+ 135   3                  switch (CY_GET_REG8(USBFS_bRequest))
+ 136   3                  {
+ 137   4                      case USBFS_GET_CUR:
+ 138   4                      #if defined(USBFS_ENABLE_AUDIO_STREAMING)
+ 139   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_MUTE_CONTROL)
+ 140   4                          {
+ 141   5                              /* `#START MUTE_CONTROL_GET_REQUEST` Place multi-channel handler here */
+ 142   5      
+ 143   5                              /* `#END` */
+ 144   5      
+ 145   5                               /* Entity ID Control Selector is MUTE */
+ 146   5                              USBFS_currentTD.wCount = 1u;
+ 147   5                              USBFS_currentTD.pData  = &USBFS_currentMute;
+ 148   5                              requestHandled   = USBFS_InitControlRead();
+ 149   5                          }
+ 150   4                          else if(CY_GET_REG8(USBFS_wValueHi) == USBFS_VOLUME_CONTROL)
+ 151   4                          {
+ 152   5                              /* `#START VOLUME_CONTROL_GET_REQUEST` Place multi-channel handler here */
+ 153   5      
+ 154   5                              /* `#END` */
+ 155   5      
+ 156   5                              /* Entity ID Control Selector is VOLUME, */
+ 157   5                              USBFS_currentTD.wCount = USBFS_VOLUME_LEN;
+ 158   5                              USBFS_currentTD.pData  = USBFS_currentVolume;
+ 159   5                              requestHandled   = USBFS_InitControlRead();
+ 160   5                          }
+ 161   4                          else
+ 162   4                          {
+ 163   5                              /* `#START OTHER_GET_CUR_REQUESTS` Place other request handler here */
+ 164   5      
+ 165   5                              /* `#END` */
+ 166   5                          }
+ 167   4                          break;
+ 168   4                      case USBFS_GET_MIN:    /* GET_MIN */
+ 169   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_VOLUME_CONTROL)
+ 170   4                          {
+ 171   5                              /* Entity ID Control Selector is VOLUME, */
+ 172   5                              USBFS_currentTD.wCount = USBFS_VOLUME_LEN;
+ 173   5                              USBFS_currentTD.pData  = &USBFS_minimumVolume[0];
+ 174   5                              requestHandled   = USBFS_InitControlRead();
+ 175   5                          }
+ 176   4                          break;
+ 177   4                      case USBFS_GET_MAX:    /* GET_MAX */
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 4   
+
+ 178   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_VOLUME_CONTROL)
+ 179   4                          {
+ 180   5                              /* Entity ID Control Selector is VOLUME, */
+ 181   5                              USBFS_currentTD.wCount = USBFS_VOLUME_LEN;
+ 182   5                              USBFS_currentTD.pData  = &USBFS_maximumVolume[0];
+ 183   5                              requestHandled   = USBFS_InitControlRead();
+ 184   5                          }
+ 185   4                          break;
+ 186   4                      case USBFS_GET_RES:    /* GET_RES */
+ 187   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_VOLUME_CONTROL)
+ 188   4                          {
+ 189   5                               /* Entity ID Control Selector is VOLUME, */
+ 190   5                              USBFS_currentTD.wCount = USBFS_VOLUME_LEN;
+ 191   5                              USBFS_currentTD.pData  = &USBFS_resolutionVolume[0];
+ 192   5                              requestHandled   = USBFS_InitControlRead();
+ 193   5                          }
+ 194   4                          break;
+ 195   4                      /* The contents of the status message is reserved for future use.
+ 196   4                      *  For the time being, a null packet should be returned in the data stage of the
+ 197   4                      *  control transfer, and the received null packet should be ACKed.
+ 198   4                      */
+ 199   4                      case USBFS_GET_STAT:
+ 200   4                              USBFS_currentTD.wCount = 0u;
+ 201   4                              requestHandled   = USBFS_InitControlWrite();
+ 202   4      
+ 203   4                      #endif /*  USBFS_ENABLE_AUDIO_STREAMING */
+ 204   4      
+ 205   4                      /* `#START AUDIO_WRITE_REQUESTS` Place other request handler here */
+ 206   4      
+ 207   4                      /* `#END` */
+ 208   4                          break;
+ 209   4                      default:
+ 210   4                          break;
+ 211   4                  }
+ 212   3              }
+ 213   2              else
+ 214   2              {   /* USBFS_RQST_RCPT_OTHER */
+ 215   3              }
+ 216   2          }
+ 217   1          else if ((bmRequestType & USBFS_RQST_DIR_MASK) == USBFS_RQST_DIR_H2D)
+ 218   1          {
+ 219   2              /* Control Write */
+ 220   2              if((bmRequestType & USBFS_RQST_RCPT_MASK) == USBFS_RQST_RCPT_EP)
+ 221   2              {
+ 222   3                  /* point */
+ 223   3                  switch (CY_GET_REG8(USBFS_bRequest))
+ 224   3                  {
+ 225   4                      case USBFS_SET_CUR:
+ 226   4                      #if defined(USBFS_ENABLE_AUDIO_STREAMING)
+ 227   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_SAMPLING_FREQ_CONTROL)
+ 228   4                          {
+ 229   5                               /* point Control Selector is Sampling Frequency */
+ 230   5                              USBFS_currentTD.wCount = USBFS_SAMPLE_FREQ_LEN;
+ 231   5                              USBFS_currentTD.pData  = USBFS_currentSampleFrequency[epNumber];
+ 232   5                              requestHandled   = USBFS_InitControlWrite();
+ 233   5                              USBFS_frequencyChanged = epNumber;
+ 234   5                          }
+ 235   4                      #endif /*  USBFS_ENABLE_AUDIO_STREAMING */
+ 236   4      
+ 237   4                      /* `#START AUDIO_SAMPLING_FREQ_REQUESTS` Place other request handler here */
+ 238   4      
+ 239   4                      /* `#END` */
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 5   
+
+ 240   4                          break;
+ 241   4                      default:
+ 242   4                          break;
+ 243   4                  }
+ 244   3              }
+ 245   2              else if((bmRequestType & USBFS_RQST_RCPT_MASK) == USBFS_RQST_RCPT_IFC)
+ 246   2              {
+ 247   3                  /* Interface or Entity ID */
+ 248   3                  switch (CY_GET_REG8(USBFS_bRequest))
+ 249   3                  {
+ 250   4                      case USBFS_SET_CUR:
+ 251   4                      #if defined(USBFS_ENABLE_AUDIO_STREAMING)
+ 252   4                          if(CY_GET_REG8(USBFS_wValueHi) == USBFS_MUTE_CONTROL)
+ 253   4                          {
+ 254   5                              /* `#START MUTE_SET_REQUEST` Place multi-channel handler here */
+ 255   5      
+ 256   5                              /* `#END` */
+ 257   5      
+ 258   5                              /* Entity ID Control Selector is MUTE */
+ 259   5                              USBFS_currentTD.wCount = 1u;
+ 260   5                              USBFS_currentTD.pData  = &USBFS_currentMute;
+ 261   5                              requestHandled   = USBFS_InitControlWrite();
+ 262   5                          }
+ 263   4                          else if(CY_GET_REG8(USBFS_wValueHi) == USBFS_VOLUME_CONTROL)
+ 264   4                          {
+ 265   5                              /* `#START VOLUME_CONTROL_SET_REQUEST` Place multi-channel handler here */
+ 266   5      
+ 267   5                              /* `#END` */
+ 268   5      
+ 269   5                              /* Entity ID Control Selector is VOLUME */
+ 270   5                              USBFS_currentTD.wCount = USBFS_VOLUME_LEN;
+ 271   5                              USBFS_currentTD.pData  = USBFS_currentVolume;
+ 272   5                              requestHandled   = USBFS_InitControlWrite();
+ 273   5                          }
+ 274   4                          else
+ 275   4                          {
+ 276   5                              /* `#START OTHER_SET_CUR_REQUESTS` Place other request handler here */
+ 277   5      
+ 278   5                              /* `#END` */
+ 279   5                          }
+ 280   4                      #endif /*  USBFS_ENABLE_AUDIO_STREAMING */
+ 281   4      
+ 282   4                      /* `#START AUDIO_CONTROL_SEL_REQUESTS` Place other request handler here */
+ 283   4      
+ 284   4                      /* `#END` */
+ 285   4                          break;
+ 286   4                      default:
+ 287   4                          break;
+ 288   4                  }
+ 289   3              }
+ 290   2              else
+ 291   2              {   
+ 292   3                  /* USBFS_RQST_RCPT_OTHER */
+ 293   3              }
+ 294   2          }
+ 295   1          else
+ 296   1          {   
+ 297   2              /* requestHandled is initialized as FALSE by default */
+ 298   2          }
+ 299   1      
+ 300   1          return(requestHandled);
+ 301   1      }
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 6   
+
+ 302          
+ 303          #endif /* USER_SUPPLIED_AUDIO_HANDLER */
+ 304          
+ 305          
+ 306          /*******************************************************************************
+ 307          * Additional user functions supporting AUDIO Requests
+ 308          ********************************************************************************/
+ 309          
+ 310          /* `#START AUDIO_FUNCTIONS` Place any additional functions here */
+ 311          
+ 312          /* `#END` */
+ 313          
+ 314          #endif  /*  USBFS_ENABLE_AUDIO_CLASS */
+ 315          
+ 316          
+ 317          /* [] END OF FILE */
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 7   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION USBFS_DispatchAUDIOClassRqst (BEGIN)
+                                           ; SOURCE LINE # 94
+                                           ; SOURCE LINE # 95
+                                           ; SOURCE LINE # 96
+0000 900000      R     MOV     DPTR,#requestHandled
+0003 E4                CLR     A
+0004 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 97
+0005 906000            MOV     DPTR,#06000H
+0008 E0                MOVX    A,@DPTR
+0009 FF                MOV     R7,A
+000A 900000      R     MOV     DPTR,#bmRequestType
+000D EF                MOV     A,R7
+000E F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 101
+000F 906004            MOV     DPTR,#06004H
+0012 E0                MOVX    A,@DPTR
+0013 FF                MOV     R7,A
+0014 EF                MOV     A,R7
+0015 547F              ANL     A,#07FH
+0017 FF                MOV     R7,A
+0018 900000      R     MOV     DPTR,#epNumber
+001B EF                MOV     A,R7
+001C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 105
+001D 900000      R     MOV     DPTR,#bmRequestType
+0020 E0                MOVX    A,@DPTR
+0021 FF                MOV     R7,A
+0022 EF                MOV     A,R7
+0023 5480              ANL     A,#080H
+0025 FF                MOV     R7,A
+0026 7E00              MOV     R6,#00H
+0028 EF                MOV     A,R7
+0029 6480              XRL     A,#080H
+002B 4E                ORL     A,R6
+002C 6003              JZ      $ + 5H
+002E 020000      R     LJMP    ?C0001
+                                           ; SOURCE LINE # 106
+                                           ; SOURCE LINE # 108
+0031 900000      R     MOV     DPTR,#bmRequestType
+0034 E0                MOVX    A,@DPTR
+0035 FF                MOV     R7,A
+0036 EF                MOV     A,R7
+0037 5403              ANL     A,#03H
+0039 FF                MOV     R7,A
+003A 7E00              MOV     R6,#00H
+003C EF                MOV     A,R7
+003D 6402              XRL     A,#02H
+003F 4E                ORL     A,R6
+0040 7052              JNZ     ?C0002
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 111
+0042 906001            MOV     DPTR,#06001H
+0045 E0                MOVX    A,@DPTR
+0046 FF                MOV     R7,A
+0047 EF                MOV     A,R7
+0048 120000      E     LCALL   ?C?CCASE
+004B 0000        R     DW      ?C0004
+004D 81                DB      081H
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 8   
+
+004E 0000              DW      00H
+0050 0000        R     DW      ?C0024
+                                           ; SOURCE LINE # 112
+                                           ; SOURCE LINE # 113
+0052         ?C0004:
+                                           ; SOURCE LINE # 115
+0052 906003            MOV     DPTR,#06003H
+0055 E0                MOVX    A,@DPTR
+0056 FF                MOV     R7,A
+0057 EF                MOV     A,R7
+0058 6401              XRL     A,#01H
+005A 6003              JZ      $ + 5H
+005C 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 116
+                                           ; SOURCE LINE # 118
+005F 900000      E     MOV     DPTR,#USBFS_currentTD
+0062 E4                CLR     A
+0063 F0                MOVX    @DPTR,A
+0064 A3                INC     DPTR
+0065 7403              MOV     A,#03H
+0067 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 119
+0068 900000      R     MOV     DPTR,#epNumber
+006B E0                MOVX    A,@DPTR
+006C FF                MOV     R7,A
+006D 7E03              MOV     R6,#03H
+006F EF                MOV     A,R7
+0070 8EF0              MOV     B,R6
+0072 A4                MUL     AB
+0073 FF                MOV     R7,A
+0074 AEF0              MOV     R6,B
+0076 7400        R     MOV     A,#LOW USBFS_currentSampleFrequency
+0078 2F                ADD     A,R7
+0079 F9                MOV     R1,A
+007A 7400        R     MOV     A,#HIGH USBFS_currentSampleFrequency
+007C 3E                ADDC    A,R6
+007D FA                MOV     R2,A
+007E 7B01              MOV     R3,#01H
+0080 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+0083 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 120
+0086 120000      E     LCALL   USBFS_InitControlRead
+0089 900000      R     MOV     DPTR,#requestHandled
+008C EF                MOV     A,R7
+008D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 121
+                                           ; SOURCE LINE # 127
+008E 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 128
+                                           ; SOURCE LINE # 129
+                                           ; SOURCE LINE # 130
+                                           ; SOURCE LINE # 131
+0091 020000      R     LJMP    ?C0024
+0094         ?C0002:
+                                           ; SOURCE LINE # 132
+0094 900000      R     MOV     DPTR,#bmRequestType
+0097 E0                MOVX    A,@DPTR
+0098 FF                MOV     R7,A
+0099 EF                MOV     A,R7
+009A 5403              ANL     A,#03H
+009C FF                MOV     R7,A
+009D 7E00              MOV     R6,#00H
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 9   
+
+009F EF                MOV     A,R7
+00A0 6401              XRL     A,#01H
+00A2 4E                ORL     A,R6
+00A3 6003              JZ      $ + 5H
+00A5 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 133
+                                           ; SOURCE LINE # 135
+00A8 906001            MOV     DPTR,#06001H
+00AB E0                MOVX    A,@DPTR
+00AC FF                MOV     R7,A
+00AD EF                MOV     A,R7
+00AE 120000      E     LCALL   ?C?CCASE
+00B1 0000        R     DW      ?C0010
+00B3 81                DB      081H
+00B4 0000        R     DW      ?C0015
+00B6 82                DB      082H
+00B7 0000        R     DW      ?C0017
+00B9 83                DB      083H
+00BA 0000        R     DW      ?C0019
+00BC 84                DB      084H
+00BD 0000        R     DW      ?C0021
+00BF FF                DB      0FFH
+00C0 0000              DW      00H
+00C2 0000        R     DW      ?C0024
+                                           ; SOURCE LINE # 136
+                                           ; SOURCE LINE # 137
+00C4         ?C0010:
+                                           ; SOURCE LINE # 139
+00C4 906003            MOV     DPTR,#06003H
+00C7 E0                MOVX    A,@DPTR
+00C8 FF                MOV     R7,A
+00C9 EF                MOV     A,R7
+00CA B40120            CJNE    A,#01H,?C0011
+                                           ; SOURCE LINE # 140
+                                           ; SOURCE LINE # 146
+00CD 900000      E     MOV     DPTR,#USBFS_currentTD
+00D0 E4                CLR     A
+00D1 F0                MOVX    @DPTR,A
+00D2 A3                INC     DPTR
+00D3 7401              MOV     A,#01H
+00D5 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 147
+00D6 7B01              MOV     R3,#01H
+00D8 7A00        R     MOV     R2,#HIGH USBFS_currentMute
+00DA 7900        R     MOV     R1,#LOW USBFS_currentMute
+00DC 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+00DF 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 148
+00E2 120000      E     LCALL   USBFS_InitControlRead
+00E5 900000      R     MOV     DPTR,#requestHandled
+00E8 EF                MOV     A,R7
+00E9 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 149
+00EA 020000      R     LJMP    ?C0024
+00ED         ?C0011:
+                                           ; SOURCE LINE # 150
+00ED 906003            MOV     DPTR,#06003H
+00F0 E0                MOVX    A,@DPTR
+00F1 FF                MOV     R7,A
+00F2 EF                MOV     A,R7
+00F3 6402              XRL     A,#02H
+00F5 6003              JZ      $ + 5H
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 10  
+
+00F7 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 151
+                                           ; SOURCE LINE # 157
+00FA 900000      E     MOV     DPTR,#USBFS_currentTD
+00FD E4                CLR     A
+00FE F0                MOVX    @DPTR,A
+00FF A3                INC     DPTR
+0100 7402              MOV     A,#02H
+0102 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 158
+0103 7B01              MOV     R3,#01H
+0105 7A00        R     MOV     R2,#HIGH USBFS_currentVolume
+0107 7900        R     MOV     R1,#LOW USBFS_currentVolume
+0109 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+010C 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 159
+010F 120000      E     LCALL   USBFS_InitControlRead
+0112 900000      R     MOV     DPTR,#requestHandled
+0115 EF                MOV     A,R7
+0116 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 160
+0117 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 162
+                                           ; SOURCE LINE # 166
+                                           ; SOURCE LINE # 167
+                                           ; SOURCE LINE # 168
+011A         ?C0015:
+                                           ; SOURCE LINE # 169
+011A 906003            MOV     DPTR,#06003H
+011D E0                MOVX    A,@DPTR
+011E FF                MOV     R7,A
+011F EF                MOV     A,R7
+0120 6402              XRL     A,#02H
+0122 6003              JZ      $ + 5H
+0124 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 170
+                                           ; SOURCE LINE # 172
+0127 900000      E     MOV     DPTR,#USBFS_currentTD
+012A E4                CLR     A
+012B F0                MOVX    @DPTR,A
+012C A3                INC     DPTR
+012D 7402              MOV     A,#02H
+012F F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 173
+0130 7B01              MOV     R3,#01H
+0132 7A00        R     MOV     R2,#HIGH USBFS_minimumVolume
+0134 7900        R     MOV     R1,#LOW USBFS_minimumVolume
+0136 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+0139 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 174
+013C 120000      E     LCALL   USBFS_InitControlRead
+013F 900000      R     MOV     DPTR,#requestHandled
+0142 EF                MOV     A,R7
+0143 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 175
+                                           ; SOURCE LINE # 176
+0144 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 177
+0147         ?C0017:
+                                           ; SOURCE LINE # 178
+0147 906003            MOV     DPTR,#06003H
+014A E0                MOVX    A,@DPTR
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 11  
+
+014B FF                MOV     R7,A
+014C EF                MOV     A,R7
+014D 6402              XRL     A,#02H
+014F 6003              JZ      $ + 5H
+0151 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 179
+                                           ; SOURCE LINE # 181
+0154 900000      E     MOV     DPTR,#USBFS_currentTD
+0157 E4                CLR     A
+0158 F0                MOVX    @DPTR,A
+0159 A3                INC     DPTR
+015A 7402              MOV     A,#02H
+015C F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 182
+015D 7B01              MOV     R3,#01H
+015F 7A00        R     MOV     R2,#HIGH USBFS_maximumVolume
+0161 7900        R     MOV     R1,#LOW USBFS_maximumVolume
+0163 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+0166 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 183
+0169 120000      E     LCALL   USBFS_InitControlRead
+016C 900000      R     MOV     DPTR,#requestHandled
+016F EF                MOV     A,R7
+0170 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 184
+                                           ; SOURCE LINE # 185
+0171 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 186
+0174         ?C0019:
+                                           ; SOURCE LINE # 187
+0174 906003            MOV     DPTR,#06003H
+0177 E0                MOVX    A,@DPTR
+0178 FF                MOV     R7,A
+0179 EF                MOV     A,R7
+017A 6402              XRL     A,#02H
+017C 6003              JZ      $ + 5H
+017E 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 188
+                                           ; SOURCE LINE # 190
+0181 900000      E     MOV     DPTR,#USBFS_currentTD
+0184 E4                CLR     A
+0185 F0                MOVX    @DPTR,A
+0186 A3                INC     DPTR
+0187 7402              MOV     A,#02H
+0189 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 191
+018A 7B01              MOV     R3,#01H
+018C 7A00        R     MOV     R2,#HIGH USBFS_resolutionVolume
+018E 7900        R     MOV     R1,#LOW USBFS_resolutionVolume
+0190 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+0193 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 192
+0196 120000      E     LCALL   USBFS_InitControlRead
+0199 900000      R     MOV     DPTR,#requestHandled
+019C EF                MOV     A,R7
+019D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 193
+                                           ; SOURCE LINE # 194
+019E 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 199
+01A1         ?C0021:
+                                           ; SOURCE LINE # 200
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 12  
+
+01A1 900000      E     MOV     DPTR,#USBFS_currentTD
+01A4 E4                CLR     A
+01A5 F0                MOVX    @DPTR,A
+01A6 A3                INC     DPTR
+01A7 E4                CLR     A
+01A8 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 201
+01A9 120000      E     LCALL   USBFS_InitControlWrite
+01AC 900000      R     MOV     DPTR,#requestHandled
+01AF EF                MOV     A,R7
+01B0 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 208
+01B1 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 209
+                                           ; SOURCE LINE # 210
+                                           ; SOURCE LINE # 211
+                                           ; SOURCE LINE # 212
+01B4 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 214
+                                           ; SOURCE LINE # 215
+                                           ; SOURCE LINE # 216
+01B7         ?C0001:
+                                           ; SOURCE LINE # 217
+01B7 900000      R     MOV     DPTR,#bmRequestType
+01BA E0                MOVX    A,@DPTR
+01BB FF                MOV     R7,A
+01BC EF                MOV     A,R7
+01BD 5480              ANL     A,#080H
+01BF FF                MOV     R7,A
+01C0 7E00              MOV     R6,#00H
+01C2 EF                MOV     A,R7
+01C3 4E                ORL     A,R6
+01C4 6003              JZ      $ + 5H
+01C6 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 218
+                                           ; SOURCE LINE # 220
+01C9 900000      R     MOV     DPTR,#bmRequestType
+01CC E0                MOVX    A,@DPTR
+01CD FF                MOV     R7,A
+01CE EF                MOV     A,R7
+01CF 5403              ANL     A,#03H
+01D1 FF                MOV     R7,A
+01D2 7E00              MOV     R6,#00H
+01D4 EF                MOV     A,R7
+01D5 6402              XRL     A,#02H
+01D7 4E                ORL     A,R6
+01D8 705A              JNZ     ?C0026
+                                           ; SOURCE LINE # 221
+                                           ; SOURCE LINE # 223
+01DA 906001            MOV     DPTR,#06001H
+01DD E0                MOVX    A,@DPTR
+01DE FF                MOV     R7,A
+01DF EF                MOV     A,R7
+01E0 120000      E     LCALL   ?C?CCASE
+01E3 0000        R     DW      ?C0028
+01E5 01                DB      01H
+01E6 0000              DW      00H
+01E8 0000        R     DW      ?C0024
+                                           ; SOURCE LINE # 224
+                                           ; SOURCE LINE # 225
+01EA         ?C0028:
+                                           ; SOURCE LINE # 227
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 13  
+
+01EA 906003            MOV     DPTR,#06003H
+01ED E0                MOVX    A,@DPTR
+01EE FF                MOV     R7,A
+01EF EF                MOV     A,R7
+01F0 6401              XRL     A,#01H
+01F2 6003              JZ      $ + 5H
+01F4 020000      R     LJMP    ?C0024
+                                           ; SOURCE LINE # 228
+                                           ; SOURCE LINE # 230
+01F7 900000      E     MOV     DPTR,#USBFS_currentTD
+01FA E4                CLR     A
+01FB F0                MOVX    @DPTR,A
+01FC A3                INC     DPTR
+01FD 7403              MOV     A,#03H
+01FF F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 231
+0200 900000      R     MOV     DPTR,#epNumber
+0203 E0                MOVX    A,@DPTR
+0204 FF                MOV     R7,A
+0205 7E03              MOV     R6,#03H
+0207 EF                MOV     A,R7
+0208 8EF0              MOV     B,R6
+020A A4                MUL     AB
+020B FF                MOV     R7,A
+020C AEF0              MOV     R6,B
+020E 7400        R     MOV     A,#LOW USBFS_currentSampleFrequency
+0210 2F                ADD     A,R7
+0211 F9                MOV     R1,A
+0212 7400        R     MOV     A,#HIGH USBFS_currentSampleFrequency
+0214 3E                ADDC    A,R6
+0215 FA                MOV     R2,A
+0216 7B01              MOV     R3,#01H
+0218 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+021B 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 232
+021E 120000      E     LCALL   USBFS_InitControlWrite
+0221 900000      R     MOV     DPTR,#requestHandled
+0224 EF                MOV     A,R7
+0225 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 233
+0226 900000      R     MOV     DPTR,#epNumber
+0229 E0                MOVX    A,@DPTR
+022A FF                MOV     R7,A
+022B 900000      R     MOV     DPTR,#USBFS_frequencyChanged
+022E EF                MOV     A,R7
+022F F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 234
+                                           ; SOURCE LINE # 240
+0230 8071              SJMP    ?C0024
+                                           ; SOURCE LINE # 241
+                                           ; SOURCE LINE # 242
+                                           ; SOURCE LINE # 243
+                                           ; SOURCE LINE # 244
+0232 806F              SJMP    ?C0024
+0234         ?C0026:
+                                           ; SOURCE LINE # 245
+0234 900000      R     MOV     DPTR,#bmRequestType
+0237 E0                MOVX    A,@DPTR
+0238 FF                MOV     R7,A
+0239 EF                MOV     A,R7
+023A 5403              ANL     A,#03H
+023C FF                MOV     R7,A
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 14  
+
+023D 7E00              MOV     R6,#00H
+023F EF                MOV     A,R7
+0240 6401              XRL     A,#01H
+0242 4E                ORL     A,R6
+0243 705E              JNZ     ?C0024
+                                           ; SOURCE LINE # 246
+                                           ; SOURCE LINE # 248
+0245 906001            MOV     DPTR,#06001H
+0248 E0                MOVX    A,@DPTR
+0249 FF                MOV     R7,A
+024A EF                MOV     A,R7
+024B 120000      E     LCALL   ?C?CCASE
+024E 0000        R     DW      ?C0034
+0250 01                DB      01H
+0251 0000              DW      00H
+0253 0000        R     DW      ?C0024
+                                           ; SOURCE LINE # 249
+                                           ; SOURCE LINE # 250
+0255         ?C0034:
+                                           ; SOURCE LINE # 252
+0255 906003            MOV     DPTR,#06003H
+0258 E0                MOVX    A,@DPTR
+0259 FF                MOV     R7,A
+025A EF                MOV     A,R7
+025B B4011F            CJNE    A,#01H,?C0035
+                                           ; SOURCE LINE # 253
+                                           ; SOURCE LINE # 259
+025E 900000      E     MOV     DPTR,#USBFS_currentTD
+0261 E4                CLR     A
+0262 F0                MOVX    @DPTR,A
+0263 A3                INC     DPTR
+0264 7401              MOV     A,#01H
+0266 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 260
+0267 7B01              MOV     R3,#01H
+0269 7A00        R     MOV     R2,#HIGH USBFS_currentMute
+026B 7900        R     MOV     R1,#LOW USBFS_currentMute
+026D 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+0270 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 261
+0273 120000      E     LCALL   USBFS_InitControlWrite
+0276 900000      R     MOV     DPTR,#requestHandled
+0279 EF                MOV     A,R7
+027A F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 262
+027B 8026              SJMP    ?C0024
+027D         ?C0035:
+                                           ; SOURCE LINE # 263
+027D 906003            MOV     DPTR,#06003H
+0280 E0                MOVX    A,@DPTR
+0281 FF                MOV     R7,A
+0282 EF                MOV     A,R7
+0283 B4021D            CJNE    A,#02H,?C0024
+                                           ; SOURCE LINE # 264
+                                           ; SOURCE LINE # 270
+0286 900000      E     MOV     DPTR,#USBFS_currentTD
+0289 E4                CLR     A
+028A F0                MOVX    @DPTR,A
+028B A3                INC     DPTR
+028C 7402              MOV     A,#02H
+028E F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 271
+C51 COMPILER V9.51   USBFS_AUDIO                                                           05/19/2017 11:21:13 PAGE 15  
+
+028F 7B01              MOV     R3,#01H
+0291 7A00        R     MOV     R2,#HIGH USBFS_currentVolume
+0293 7900        R     MOV     R1,#LOW USBFS_currentVolume
+0295 900000      E     MOV     DPTR,#USBFS_currentTD+02H
+0298 120000      E     LCALL   ?C?PSTXDATA
+                                           ; SOURCE LINE # 272
+029B 120000      E     LCALL   USBFS_InitControlWrite
+029E 900000      R     MOV     DPTR,#requestHandled
+02A1 EF                MOV     A,R7
+02A2 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 273
+                                           ; SOURCE LINE # 275
+                                           ; SOURCE LINE # 279
+                                           ; SOURCE LINE # 285
+                                           ; SOURCE LINE # 286
+                                           ; SOURCE LINE # 287
+                                           ; SOURCE LINE # 288
+                                           ; SOURCE LINE # 289
+                                           ; SOURCE LINE # 291
+                                           ; SOURCE LINE # 293
+                                           ; SOURCE LINE # 294
+                                           ; SOURCE LINE # 296
+                                           ; SOURCE LINE # 298
+02A3         ?C0024:
+                                           ; SOURCE LINE # 300
+02A3 900000      R     MOV     DPTR,#requestHandled
+02A6 E0                MOVX    A,@DPTR
+02A7 FF                MOV     R7,A
+                                           ; SOURCE LINE # 301
+02A8         ?C0042:
+02A8 22                RET     
+             ; FUNCTION USBFS_DispatchAUDIOClassRqst (END)
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    681    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     37       3
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

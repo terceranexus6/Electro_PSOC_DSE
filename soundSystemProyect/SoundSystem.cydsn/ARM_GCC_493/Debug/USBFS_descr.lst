@@ -1,0 +1,1312 @@
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"USBFS_descr.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	USBFS_DEVICE0_DESCR
+  19              		.section	.rodata
+  20              		.align	2
+  21              		.type	USBFS_DEVICE0_DESCR, %object
+  22              		.size	USBFS_DEVICE0_DESCR, 18
+  23              	USBFS_DEVICE0_DESCR:
+  24 0000 12       		.byte	18
+  25 0001 01       		.byte	1
+  26 0002 00       		.byte	0
+  27 0003 02       		.byte	2
+  28 0004 00       		.byte	0
+  29 0005 00       		.byte	0
+  30 0006 00       		.byte	0
+  31 0007 08       		.byte	8
+  32 0008 B4       		.byte	-76
+  33 0009 04       		.byte	4
+  34 000a 01       		.byte	1
+  35 000b 20       		.byte	32
+  36 000c 00       		.byte	0
+  37 000d 00       		.byte	0
+  38 000e 05       		.byte	5
+  39 000f 06       		.byte	6
+  40 0010 00       		.byte	0
+  41 0011 01       		.byte	1
+  42              		.global	USBFS_DEVICE0_CONFIGURATION0_DESCR
+  43 0012 0000     		.align	2
+  44              		.type	USBFS_DEVICE0_CONFIGURATION0_DESCR, %object
+  45              		.size	USBFS_DEVICE0_CONFIGURATION0_DESCR, 103
+  46              	USBFS_DEVICE0_CONFIGURATION0_DESCR:
+  47 0014 09       		.byte	9
+  48 0015 02       		.byte	2
+  49 0016 67       		.byte	103
+  50 0017 00       		.byte	0
+  51 0018 02       		.byte	2
+  52 0019 01       		.byte	1
+  53 001a 00       		.byte	0
+  54 001b C0       		.byte	-64
+  55 001c 02       		.byte	2
+  56 001d 09       		.byte	9
+  57 001e 04       		.byte	4
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 2
+
+
+  58 001f 00       		.byte	0
+  59 0020 00       		.byte	0
+  60 0021 00       		.byte	0
+  61 0022 01       		.byte	1
+  62 0023 01       		.byte	1
+  63 0024 00       		.byte	0
+  64 0025 07       		.byte	7
+  65 0026 09       		.byte	9
+  66 0027 24       		.byte	36
+  67 0028 01       		.byte	1
+  68 0029 00       		.byte	0
+  69 002a 01       		.byte	1
+  70 002b 1E       		.byte	30
+  71 002c 00       		.byte	0
+  72 002d 01       		.byte	1
+  73 002e 01       		.byte	1
+  74 002f 0C       		.byte	12
+  75 0030 24       		.byte	36
+  76 0031 02       		.byte	2
+  77 0032 01       		.byte	1
+  78 0033 01       		.byte	1
+  79 0034 01       		.byte	1
+  80 0035 00       		.byte	0
+  81 0036 01       		.byte	1
+  82 0037 00       		.byte	0
+  83 0038 00       		.byte	0
+  84 0039 00       		.byte	0
+  85 003a 00       		.byte	0
+  86 003b 09       		.byte	9
+  87 003c 24       		.byte	36
+  88 003d 03       		.byte	3
+  89 003e 02       		.byte	2
+  90 003f 01       		.byte	1
+  91 0040 03       		.byte	3
+  92 0041 00       		.byte	0
+  93 0042 01       		.byte	1
+  94 0043 00       		.byte	0
+  95 0044 09       		.byte	9
+  96 0045 04       		.byte	4
+  97 0046 01       		.byte	1
+  98 0047 00       		.byte	0
+  99 0048 00       		.byte	0
+ 100 0049 01       		.byte	1
+ 101 004a 02       		.byte	2
+ 102 004b 00       		.byte	0
+ 103 004c 08       		.byte	8
+ 104 004d 09       		.byte	9
+ 105 004e 04       		.byte	4
+ 106 004f 01       		.byte	1
+ 107 0050 01       		.byte	1
+ 108 0051 01       		.byte	1
+ 109 0052 01       		.byte	1
+ 110 0053 02       		.byte	2
+ 111 0054 00       		.byte	0
+ 112 0055 09       		.byte	9
+ 113 0056 07       		.byte	7
+ 114 0057 24       		.byte	36
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 3
+
+
+ 115 0058 01       		.byte	1
+ 116 0059 01       		.byte	1
+ 117 005a 00       		.byte	0
+ 118 005b 02       		.byte	2
+ 119 005c 00       		.byte	0
+ 120 005d 0E       		.byte	14
+ 121 005e 24       		.byte	36
+ 122 005f 02       		.byte	2
+ 123 0060 01       		.byte	1
+ 124 0061 01       		.byte	1
+ 125 0062 01       		.byte	1
+ 126 0063 08       		.byte	8
+ 127 0064 00       		.byte	0
+ 128 0065 00       		.byte	0
+ 129 0066 7D       		.byte	125
+ 130 0067 00       		.byte	0
+ 131 0068 00       		.byte	0
+ 132 0069 7D       		.byte	125
+ 133 006a 00       		.byte	0
+ 134 006b 09       		.byte	9
+ 135 006c 05       		.byte	5
+ 136 006d 02       		.byte	2
+ 137 006e 0D       		.byte	13
+ 138 006f C0       		.byte	-64
+ 139 0070 00       		.byte	0
+ 140 0071 01       		.byte	1
+ 141 0072 00       		.byte	0
+ 142 0073 00       		.byte	0
+ 143 0074 07       		.byte	7
+ 144 0075 25       		.byte	37
+ 145 0076 01       		.byte	1
+ 146 0077 01       		.byte	1
+ 147 0078 00       		.byte	0
+ 148 0079 00       		.byte	0
+ 149 007a 00       		.byte	0
+ 150              		.global	USBFS_STRING_DESCRIPTORS
+ 151 007b 00       		.align	2
+ 152              		.type	USBFS_STRING_DESCRIPTORS, %object
+ 153              		.size	USBFS_STRING_DESCRIPTORS, 371
+ 154              	USBFS_STRING_DESCRIPTORS:
+ 155 007c 04       		.byte	4
+ 156 007d 03       		.byte	3
+ 157 007e 09       		.byte	9
+ 158 007f 04       		.byte	4
+ 159 0080 44       		.byte	68
+ 160 0081 03       		.byte	3
+ 161 0082 43       		.byte	67
+ 162 0083 00       		.byte	0
+ 163 0084 79       		.byte	121
+ 164 0085 00       		.byte	0
+ 165 0086 70       		.byte	112
+ 166 0087 00       		.byte	0
+ 167 0088 72       		.byte	114
+ 168 0089 00       		.byte	0
+ 169 008a 65       		.byte	101
+ 170 008b 00       		.byte	0
+ 171 008c 73       		.byte	115
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 4
+
+
+ 172 008d 00       		.byte	0
+ 173 008e 73       		.byte	115
+ 174 008f 00       		.byte	0
+ 175 0090 20       		.byte	32
+ 176 0091 00       		.byte	0
+ 177 0092 53       		.byte	83
+ 178 0093 00       		.byte	0
+ 179 0094 65       		.byte	101
+ 180 0095 00       		.byte	0
+ 181 0096 6D       		.byte	109
+ 182 0097 00       		.byte	0
+ 183 0098 69       		.byte	105
+ 184 0099 00       		.byte	0
+ 185 009a 63       		.byte	99
+ 186 009b 00       		.byte	0
+ 187 009c 6F       		.byte	111
+ 188 009d 00       		.byte	0
+ 189 009e 6E       		.byte	110
+ 190 009f 00       		.byte	0
+ 191 00a0 64       		.byte	100
+ 192 00a1 00       		.byte	0
+ 193 00a2 75       		.byte	117
+ 194 00a3 00       		.byte	0
+ 195 00a4 63       		.byte	99
+ 196 00a5 00       		.byte	0
+ 197 00a6 74       		.byte	116
+ 198 00a7 00       		.byte	0
+ 199 00a8 6F       		.byte	111
+ 200 00a9 00       		.byte	0
+ 201 00aa 72       		.byte	114
+ 202 00ab 00       		.byte	0
+ 203 00ac 20       		.byte	32
+ 204 00ad 00       		.byte	0
+ 205 00ae 43       		.byte	67
+ 206 00af 00       		.byte	0
+ 207 00b0 6F       		.byte	111
+ 208 00b1 00       		.byte	0
+ 209 00b2 72       		.byte	114
+ 210 00b3 00       		.byte	0
+ 211 00b4 70       		.byte	112
+ 212 00b5 00       		.byte	0
+ 213 00b6 6F       		.byte	111
+ 214 00b7 00       		.byte	0
+ 215 00b8 72       		.byte	114
+ 216 00b9 00       		.byte	0
+ 217 00ba 61       		.byte	97
+ 218 00bb 00       		.byte	0
+ 219 00bc 74       		.byte	116
+ 220 00bd 00       		.byte	0
+ 221 00be 69       		.byte	105
+ 222 00bf 00       		.byte	0
+ 223 00c0 6F       		.byte	111
+ 224 00c1 00       		.byte	0
+ 225 00c2 6E       		.byte	110
+ 226 00c3 00       		.byte	0
+ 227 00c4 1E       		.byte	30
+ 228 00c5 03       		.byte	3
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 5
+
+
+ 229 00c6 55       		.byte	85
+ 230 00c7 00       		.byte	0
+ 231 00c8 53       		.byte	83
+ 232 00c9 00       		.byte	0
+ 233 00ca 42       		.byte	66
+ 234 00cb 00       		.byte	0
+ 235 00cc 20       		.byte	32
+ 236 00cd 00       		.byte	0
+ 237 00ce 41       		.byte	65
+ 238 00cf 00       		.byte	0
+ 239 00d0 75       		.byte	117
+ 240 00d1 00       		.byte	0
+ 241 00d2 64       		.byte	100
+ 242 00d3 00       		.byte	0
+ 243 00d4 69       		.byte	105
+ 244 00d5 00       		.byte	0
+ 245 00d6 6F       		.byte	111
+ 246 00d7 00       		.byte	0
+ 247 00d8 20       		.byte	32
+ 248 00d9 00       		.byte	0
+ 249 00da 44       		.byte	68
+ 250 00db 00       		.byte	0
+ 251 00dc 65       		.byte	101
+ 252 00dd 00       		.byte	0
+ 253 00de 6D       		.byte	109
+ 254 00df 00       		.byte	0
+ 255 00e0 6F       		.byte	111
+ 256 00e1 00       		.byte	0
+ 257 00e2 22       		.byte	34
+ 258 00e3 03       		.byte	3
+ 259 00e4 43       		.byte	67
+ 260 00e5 00       		.byte	0
+ 261 00e6 6F       		.byte	111
+ 262 00e7 00       		.byte	0
+ 263 00e8 6E       		.byte	110
+ 264 00e9 00       		.byte	0
+ 265 00ea 74       		.byte	116
+ 266 00eb 00       		.byte	0
+ 267 00ec 72       		.byte	114
+ 268 00ed 00       		.byte	0
+ 269 00ee 6F       		.byte	111
+ 270 00ef 00       		.byte	0
+ 271 00f0 6C       		.byte	108
+ 272 00f1 00       		.byte	0
+ 273 00f2 20       		.byte	32
+ 274 00f3 00       		.byte	0
+ 275 00f4 49       		.byte	73
+ 276 00f5 00       		.byte	0
+ 277 00f6 6E       		.byte	110
+ 278 00f7 00       		.byte	0
+ 279 00f8 65       		.byte	101
+ 280 00f9 00       		.byte	0
+ 281 00fa 72       		.byte	114
+ 282 00fb 00       		.byte	0
+ 283 00fc 66       		.byte	102
+ 284 00fd 00       		.byte	0
+ 285 00fe 61       		.byte	97
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 6
+
+
+ 286 00ff 00       		.byte	0
+ 287 0100 63       		.byte	99
+ 288 0101 00       		.byte	0
+ 289 0102 65       		.byte	101
+ 290 0103 00       		.byte	0
+ 291 0104 28       		.byte	40
+ 292 0105 03       		.byte	3
+ 293 0106 53       		.byte	83
+ 294 0107 00       		.byte	0
+ 295 0108 74       		.byte	116
+ 296 0109 00       		.byte	0
+ 297 010a 72       		.byte	114
+ 298 010b 00       		.byte	0
+ 299 010c 65       		.byte	101
+ 300 010d 00       		.byte	0
+ 301 010e 61       		.byte	97
+ 302 010f 00       		.byte	0
+ 303 0110 6D       		.byte	109
+ 304 0111 00       		.byte	0
+ 305 0112 69       		.byte	105
+ 306 0113 00       		.byte	0
+ 307 0114 6E       		.byte	110
+ 308 0115 00       		.byte	0
+ 309 0116 67       		.byte	103
+ 310 0117 00       		.byte	0
+ 311 0118 20       		.byte	32
+ 312 0119 00       		.byte	0
+ 313 011a 49       		.byte	73
+ 314 011b 00       		.byte	0
+ 315 011c 6E       		.byte	110
+ 316 011d 00       		.byte	0
+ 317 011e 74       		.byte	116
+ 318 011f 00       		.byte	0
+ 319 0120 65       		.byte	101
+ 320 0121 00       		.byte	0
+ 321 0122 72       		.byte	114
+ 322 0123 00       		.byte	0
+ 323 0124 66       		.byte	102
+ 324 0125 00       		.byte	0
+ 325 0126 61       		.byte	97
+ 326 0127 00       		.byte	0
+ 327 0128 63       		.byte	99
+ 328 0129 00       		.byte	0
+ 329 012a 65       		.byte	101
+ 330 012b 00       		.byte	0
+ 331 012c 2C       		.byte	44
+ 332 012d 03       		.byte	3
+ 333 012e 43       		.byte	67
+ 334 012f 00       		.byte	0
+ 335 0130 79       		.byte	121
+ 336 0131 00       		.byte	0
+ 337 0132 70       		.byte	112
+ 338 0133 00       		.byte	0
+ 339 0134 72       		.byte	114
+ 340 0135 00       		.byte	0
+ 341 0136 65       		.byte	101
+ 342 0137 00       		.byte	0
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 7
+
+
+ 343 0138 73       		.byte	115
+ 344 0139 00       		.byte	0
+ 345 013a 73       		.byte	115
+ 346 013b 00       		.byte	0
+ 347 013c 20       		.byte	32
+ 348 013d 00       		.byte	0
+ 349 013e 53       		.byte	83
+ 350 013f 00       		.byte	0
+ 351 0140 65       		.byte	101
+ 352 0141 00       		.byte	0
+ 353 0142 6D       		.byte	109
+ 354 0143 00       		.byte	0
+ 355 0144 69       		.byte	105
+ 356 0145 00       		.byte	0
+ 357 0146 63       		.byte	99
+ 358 0147 00       		.byte	0
+ 359 0148 6F       		.byte	111
+ 360 0149 00       		.byte	0
+ 361 014a 6E       		.byte	110
+ 362 014b 00       		.byte	0
+ 363 014c 64       		.byte	100
+ 364 014d 00       		.byte	0
+ 365 014e 75       		.byte	117
+ 366 014f 00       		.byte	0
+ 367 0150 63       		.byte	99
+ 368 0151 00       		.byte	0
+ 369 0152 74       		.byte	116
+ 370 0153 00       		.byte	0
+ 371 0154 6F       		.byte	111
+ 372 0155 00       		.byte	0
+ 373 0156 72       		.byte	114
+ 374 0157 00       		.byte	0
+ 375 0158 24       		.byte	36
+ 376 0159 03       		.byte	3
+ 377 015a 43       		.byte	67
+ 378 015b 00       		.byte	0
+ 379 015c 79       		.byte	121
+ 380 015d 00       		.byte	0
+ 381 015e 70       		.byte	112
+ 382 015f 00       		.byte	0
+ 383 0160 72       		.byte	114
+ 384 0161 00       		.byte	0
+ 385 0162 65       		.byte	101
+ 386 0163 00       		.byte	0
+ 387 0164 73       		.byte	115
+ 388 0165 00       		.byte	0
+ 389 0166 73       		.byte	115
+ 390 0167 00       		.byte	0
+ 391 0168 20       		.byte	32
+ 392 0169 00       		.byte	0
+ 393 016a 55       		.byte	85
+ 394 016b 00       		.byte	0
+ 395 016c 53       		.byte	83
+ 396 016d 00       		.byte	0
+ 397 016e 42       		.byte	66
+ 398 016f 00       		.byte	0
+ 399 0170 20       		.byte	32
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 8
+
+
+ 400 0171 00       		.byte	0
+ 401 0172 41       		.byte	65
+ 402 0173 00       		.byte	0
+ 403 0174 75       		.byte	117
+ 404 0175 00       		.byte	0
+ 405 0176 64       		.byte	100
+ 406 0177 00       		.byte	0
+ 407 0178 69       		.byte	105
+ 408 0179 00       		.byte	0
+ 409 017a 6F       		.byte	111
+ 410 017b 00       		.byte	0
+ 411 017c 28       		.byte	40
+ 412 017d 03       		.byte	3
+ 413 017e 43       		.byte	67
+ 414 017f 00       		.byte	0
+ 415 0180 79       		.byte	121
+ 416 0181 00       		.byte	0
+ 417 0182 70       		.byte	112
+ 418 0183 00       		.byte	0
+ 419 0184 72       		.byte	114
+ 420 0185 00       		.byte	0
+ 421 0186 65       		.byte	101
+ 422 0187 00       		.byte	0
+ 423 0188 73       		.byte	115
+ 424 0189 00       		.byte	0
+ 425 018a 73       		.byte	115
+ 426 018b 00       		.byte	0
+ 427 018c 41       		.byte	65
+ 428 018d 00       		.byte	0
+ 429 018e 75       		.byte	117
+ 430 018f 00       		.byte	0
+ 431 0190 64       		.byte	100
+ 432 0191 00       		.byte	0
+ 433 0192 69       		.byte	105
+ 434 0193 00       		.byte	0
+ 435 0194 6F       		.byte	111
+ 436 0195 00       		.byte	0
+ 437 0196 43       		.byte	67
+ 438 0197 00       		.byte	0
+ 439 0198 6F       		.byte	111
+ 440 0199 00       		.byte	0
+ 441 019a 6E       		.byte	110
+ 442 019b 00       		.byte	0
+ 443 019c 74       		.byte	116
+ 444 019d 00       		.byte	0
+ 445 019e 72       		.byte	114
+ 446 019f 00       		.byte	0
+ 447 01a0 6F       		.byte	111
+ 448 01a1 00       		.byte	0
+ 449 01a2 6C       		.byte	108
+ 450 01a3 00       		.byte	0
+ 451 01a4 1C       		.byte	28
+ 452 01a5 03       		.byte	3
+ 453 01a6 5A       		.byte	90
+ 454 01a7 00       		.byte	0
+ 455 01a8 65       		.byte	101
+ 456 01a9 00       		.byte	0
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 9
+
+
+ 457 01aa 72       		.byte	114
+ 458 01ab 00       		.byte	0
+ 459 01ac 6F       		.byte	111
+ 460 01ad 00       		.byte	0
+ 461 01ae 42       		.byte	66
+ 462 01af 00       		.byte	0
+ 463 01b0 61       		.byte	97
+ 464 01b1 00       		.byte	0
+ 465 01b2 6E       		.byte	110
+ 466 01b3 00       		.byte	0
+ 467 01b4 64       		.byte	100
+ 468 01b5 00       		.byte	0
+ 469 01b6 77       		.byte	119
+ 470 01b7 00       		.byte	0
+ 471 01b8 69       		.byte	105
+ 472 01b9 00       		.byte	0
+ 473 01ba 64       		.byte	100
+ 474 01bb 00       		.byte	0
+ 475 01bc 74       		.byte	116
+ 476 01bd 00       		.byte	0
+ 477 01be 68       		.byte	104
+ 478 01bf 00       		.byte	0
+ 479 01c0 2E       		.byte	46
+ 480 01c1 03       		.byte	3
+ 481 01c2 41       		.byte	65
+ 482 01c3 00       		.byte	0
+ 483 01c4 75       		.byte	117
+ 484 01c5 00       		.byte	0
+ 485 01c6 64       		.byte	100
+ 486 01c7 00       		.byte	0
+ 487 01c8 69       		.byte	105
+ 488 01c9 00       		.byte	0
+ 489 01ca 6F       		.byte	111
+ 490 01cb 00       		.byte	0
+ 491 01cc 53       		.byte	83
+ 492 01cd 00       		.byte	0
+ 493 01ce 74       		.byte	116
+ 494 01cf 00       		.byte	0
+ 495 01d0 72       		.byte	114
+ 496 01d1 00       		.byte	0
+ 497 01d2 65       		.byte	101
+ 498 01d3 00       		.byte	0
+ 499 01d4 61       		.byte	97
+ 500 01d5 00       		.byte	0
+ 501 01d6 6D       		.byte	109
+ 502 01d7 00       		.byte	0
+ 503 01d8 69       		.byte	105
+ 504 01d9 00       		.byte	0
+ 505 01da 6E       		.byte	110
+ 506 01db 00       		.byte	0
+ 507 01dc 67       		.byte	103
+ 508 01dd 00       		.byte	0
+ 509 01de 20       		.byte	32
+ 510 01df 00       		.byte	0
+ 511 01e0 53       		.byte	83
+ 512 01e1 00       		.byte	0
+ 513 01e2 70       		.byte	112
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 10
+
+
+ 514 01e3 00       		.byte	0
+ 515 01e4 65       		.byte	101
+ 516 01e5 00       		.byte	0
+ 517 01e6 61       		.byte	97
+ 518 01e7 00       		.byte	0
+ 519 01e8 6B       		.byte	107
+ 520 01e9 00       		.byte	0
+ 521 01ea 65       		.byte	101
+ 522 01eb 00       		.byte	0
+ 523 01ec 72       		.byte	114
+ 524 01ed 00       		.byte	0
+ 525 01ee 00       		.byte	0
+ 526              		.global	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+ 527 01ef 00       		.align	2
+ 528              		.type	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE, %object
+ 529              		.size	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE, 8
+ 530              	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE:
+ 531 01f0 01       		.byte	1
+ 532 01f1 01       		.byte	1
+ 533 01f2 02       		.byte	2
+ 534 01f3 0D       		.byte	13
+ 535 01f4 C000     		.short	192
+ 536 01f6 01       		.byte	1
+ 537 01f7 00       		.space	1
+ 538              		.global	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+ 539              		.align	2
+ 540              		.type	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS, %object
+ 541              		.size	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS, 2
+ 542              	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS:
+ 543 01f8 01       		.byte	1
+ 544 01f9 01       		.byte	1
+ 545              		.global	USBFS_DEVICE0_CONFIGURATION0_TABLE
+ 546 01fa 0000     		.align	2
+ 547              		.type	USBFS_DEVICE0_CONFIGURATION0_TABLE, %object
+ 548              		.size	USBFS_DEVICE0_CONFIGURATION0_TABLE, 40
+ 549              	USBFS_DEVICE0_CONFIGURATION0_TABLE:
+ 550 01fc 01       		.byte	1
+ 551 01fd 000000   		.space	3
+ 552 0200 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_DESCR
+ 553 0204 01       		.byte	1
+ 554 0205 000000   		.space	3
+ 555 0208 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+ 556 020c 00       		.byte	0
+ 557 020d 000000   		.space	3
+ 558 0210 00000000 		.word	0
+ 559 0214 00       		.byte	0
+ 560 0215 000000   		.space	3
+ 561 0218 00000000 		.word	0
+ 562 021c 00       		.byte	0
+ 563 021d 000000   		.space	3
+ 564 0220 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+ 565              		.global	USBFS_DEVICE0_TABLE
+ 566              		.align	2
+ 567              		.type	USBFS_DEVICE0_TABLE, %object
+ 568              		.size	USBFS_DEVICE0_TABLE, 16
+ 569              	USBFS_DEVICE0_TABLE:
+ 570 0224 01       		.byte	1
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 11
+
+
+ 571 0225 000000   		.space	3
+ 572 0228 00000000 		.word	USBFS_DEVICE0_DESCR
+ 573 022c 01       		.byte	1
+ 574 022d 000000   		.space	3
+ 575 0230 00000000 		.word	USBFS_DEVICE0_CONFIGURATION0_TABLE
+ 576              		.global	USBFS_TABLE
+ 577              		.align	2
+ 578              		.type	USBFS_TABLE, %object
+ 579              		.size	USBFS_TABLE, 8
+ 580              	USBFS_TABLE:
+ 581 0234 01       		.byte	1
+ 582 0235 000000   		.space	3
+ 583 0238 00000000 		.word	USBFS_DEVICE0_TABLE
+ 584              		.text
+ 585              	.Letext0:
+ 586              		.file 1 "Generated_Source\\PSoC5\\cytypes.h"
+ 587              		.file 2 "Generated_Source\\PSoC5\\USBFS.h"
+ 588              		.file 3 "Generated_Source\\PSoC5\\USBFS_descr.c"
+ 589              		.section	.debug_info,"",%progbits
+ 590              	.Ldebug_info0:
+ 591 0000 55020000 		.4byte	0x255
+ 592 0004 0400     		.2byte	0x4
+ 593 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 594 000a 04       		.byte	0x4
+ 595 000b 01       		.uleb128 0x1
+ 596 000c F4000000 		.4byte	.LASF32
+ 597 0010 01       		.byte	0x1
+ 598 0011 18020000 		.4byte	.LASF33
+ 599 0015 95000000 		.4byte	.LASF34
+ 600 0019 00000000 		.4byte	.Ldebug_line0
+ 601 001d 02       		.uleb128 0x2
+ 602 001e 01       		.byte	0x1
+ 603 001f 06       		.byte	0x6
+ 604 0020 B4020000 		.4byte	.LASF0
+ 605 0024 02       		.uleb128 0x2
+ 606 0025 01       		.byte	0x1
+ 607 0026 08       		.byte	0x8
+ 608 0027 E6000000 		.4byte	.LASF1
+ 609 002b 02       		.uleb128 0x2
+ 610 002c 02       		.byte	0x2
+ 611 002d 05       		.byte	0x5
+ 612 002e 91020000 		.4byte	.LASF2
+ 613 0032 02       		.uleb128 0x2
+ 614 0033 02       		.byte	0x2
+ 615 0034 07       		.byte	0x7
+ 616 0035 58000000 		.4byte	.LASF3
+ 617 0039 02       		.uleb128 0x2
+ 618 003a 04       		.byte	0x4
+ 619 003b 05       		.byte	0x5
+ 620 003c AB020000 		.4byte	.LASF4
+ 621 0040 02       		.uleb128 0x2
+ 622 0041 04       		.byte	0x4
+ 623 0042 07       		.byte	0x7
+ 624 0043 E2010000 		.4byte	.LASF5
+ 625 0047 02       		.uleb128 0x2
+ 626 0048 08       		.byte	0x8
+ 627 0049 05       		.byte	0x5
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 12
+
+
+ 628 004a 67020000 		.4byte	.LASF6
+ 629 004e 02       		.uleb128 0x2
+ 630 004f 08       		.byte	0x8
+ 631 0050 07       		.byte	0x7
+ 632 0051 01020000 		.4byte	.LASF7
+ 633 0055 03       		.uleb128 0x3
+ 634 0056 04       		.byte	0x4
+ 635 0057 05       		.byte	0x5
+ 636 0058 696E7400 		.ascii	"int\000"
+ 637 005c 02       		.uleb128 0x2
+ 638 005d 04       		.byte	0x4
+ 639 005e 07       		.byte	0x7
+ 640 005f F4010000 		.4byte	.LASF8
+ 641 0063 04       		.uleb128 0x4
+ 642 0064 9B020000 		.4byte	.LASF9
+ 643 0068 01       		.byte	0x1
+ 644 0069 5B       		.byte	0x5b
+ 645 006a 24000000 		.4byte	0x24
+ 646 006e 04       		.uleb128 0x4
+ 647 006f 89010000 		.4byte	.LASF10
+ 648 0073 01       		.byte	0x1
+ 649 0074 5C       		.byte	0x5c
+ 650 0075 32000000 		.4byte	0x32
+ 651 0079 02       		.uleb128 0x2
+ 652 007a 04       		.byte	0x4
+ 653 007b 04       		.byte	0x4
+ 654 007c 6B000000 		.4byte	.LASF11
+ 655 0080 02       		.uleb128 0x2
+ 656 0081 08       		.byte	0x8
+ 657 0082 04       		.byte	0x4
+ 658 0083 82010000 		.4byte	.LASF12
+ 659 0087 02       		.uleb128 0x2
+ 660 0088 01       		.byte	0x1
+ 661 0089 08       		.byte	0x8
+ 662 008a 81020000 		.4byte	.LASF13
+ 663 008e 02       		.uleb128 0x2
+ 664 008f 04       		.byte	0x4
+ 665 0090 07       		.byte	0x7
+ 666 0091 5E020000 		.4byte	.LASF14
+ 667 0095 05       		.uleb128 0x5
+ 668 0096 08       		.byte	0x8
+ 669 0097 02       		.byte	0x2
+ 670 0098 85       		.byte	0x85
+ 671 0099 E6000000 		.4byte	0xe6
+ 672 009d 06       		.uleb128 0x6
+ 673 009e A1020000 		.4byte	.LASF15
+ 674 00a2 02       		.byte	0x2
+ 675 00a3 87       		.byte	0x87
+ 676 00a4 63000000 		.4byte	0x63
+ 677 00a8 00       		.byte	0
+ 678 00a9 06       		.uleb128 0x6
+ 679 00aa 71000000 		.4byte	.LASF16
+ 680 00ae 02       		.byte	0x2
+ 681 00af 88       		.byte	0x88
+ 682 00b0 63000000 		.4byte	0x63
+ 683 00b4 01       		.byte	0x1
+ 684 00b5 06       		.uleb128 0x6
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 13
+
+
+ 685 00b6 CD000000 		.4byte	.LASF17
+ 686 00ba 02       		.byte	0x2
+ 687 00bb 89       		.byte	0x89
+ 688 00bc 63000000 		.4byte	0x63
+ 689 00c0 02       		.byte	0x2
+ 690 00c1 06       		.uleb128 0x6
+ 691 00c2 41000000 		.4byte	.LASF18
+ 692 00c6 02       		.byte	0x2
+ 693 00c7 8A       		.byte	0x8a
+ 694 00c8 63000000 		.4byte	0x63
+ 695 00cc 03       		.byte	0x3
+ 696 00cd 06       		.uleb128 0x6
+ 697 00ce 86020000 		.4byte	.LASF19
+ 698 00d2 02       		.byte	0x2
+ 699 00d3 8B       		.byte	0x8b
+ 700 00d4 6E000000 		.4byte	0x6e
+ 701 00d8 04       		.byte	0x4
+ 702 00d9 06       		.uleb128 0x6
+ 703 00da C0020000 		.4byte	.LASF20
+ 704 00de 02       		.byte	0x2
+ 705 00df 8C       		.byte	0x8c
+ 706 00e0 63000000 		.4byte	0x63
+ 707 00e4 06       		.byte	0x6
+ 708 00e5 00       		.byte	0
+ 709 00e6 04       		.uleb128 0x4
+ 710 00e7 44020000 		.4byte	.LASF21
+ 711 00eb 02       		.byte	0x2
+ 712 00ec 8D       		.byte	0x8d
+ 713 00ed 95000000 		.4byte	0x95
+ 714 00f1 05       		.uleb128 0x5
+ 715 00f2 08       		.byte	0x8
+ 716 00f3 02       		.byte	0x2
+ 717 00f4 9D       		.byte	0x9d
+ 718 00f5 10010000 		.4byte	0x110
+ 719 00f9 07       		.uleb128 0x7
+ 720 00fa 6300     		.ascii	"c\000"
+ 721 00fc 02       		.byte	0x2
+ 722 00fd 9F       		.byte	0x9f
+ 723 00fe 63000000 		.4byte	0x63
+ 724 0102 00       		.byte	0
+ 725 0103 06       		.uleb128 0x6
+ 726 0104 3D020000 		.4byte	.LASF22
+ 727 0108 02       		.byte	0x2
+ 728 0109 A0       		.byte	0xa0
+ 729 010a 10010000 		.4byte	0x110
+ 730 010e 04       		.byte	0x4
+ 731 010f 00       		.byte	0
+ 732 0110 08       		.uleb128 0x8
+ 733 0111 04       		.byte	0x4
+ 734 0112 16010000 		.4byte	0x116
+ 735 0116 09       		.uleb128 0x9
+ 736 0117 04       		.uleb128 0x4
+ 737 0118 75020000 		.4byte	.LASF23
+ 738 011c 02       		.byte	0x2
+ 739 011d A1       		.byte	0xa1
+ 740 011e F1000000 		.4byte	0xf1
+ 741 0122 0A       		.uleb128 0xa
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 14
+
+
+ 742 0123 63000000 		.4byte	0x63
+ 743 0127 32010000 		.4byte	0x132
+ 744 012b 0B       		.uleb128 0xb
+ 745 012c 8E000000 		.4byte	0x8e
+ 746 0130 11       		.byte	0x11
+ 747 0131 00       		.byte	0
+ 748 0132 0C       		.uleb128 0xc
+ 749 0133 00000000 		.4byte	.LASF24
+ 750 0137 03       		.byte	0x3
+ 751 0138 26       		.byte	0x26
+ 752 0139 43010000 		.4byte	0x143
+ 753 013d 05       		.uleb128 0x5
+ 754 013e 03       		.byte	0x3
+ 755 013f 00000000 		.4byte	USBFS_DEVICE0_DESCR
+ 756 0143 0D       		.uleb128 0xd
+ 757 0144 22010000 		.4byte	0x122
+ 758 0148 0A       		.uleb128 0xa
+ 759 0149 63000000 		.4byte	0x63
+ 760 014d 58010000 		.4byte	0x158
+ 761 0151 0B       		.uleb128 0xb
+ 762 0152 8E000000 		.4byte	0x8e
+ 763 0156 66       		.byte	0x66
+ 764 0157 00       		.byte	0
+ 765 0158 0C       		.uleb128 0xc
+ 766 0159 BF010000 		.4byte	.LASF25
+ 767 015d 03       		.byte	0x3
+ 768 015e 39       		.byte	0x39
+ 769 015f 69010000 		.4byte	0x169
+ 770 0163 05       		.uleb128 0x5
+ 771 0164 03       		.byte	0x3
+ 772 0165 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_DESCR
+ 773 0169 0D       		.uleb128 0xd
+ 774 016a 48010000 		.4byte	0x148
+ 775 016e 0A       		.uleb128 0xa
+ 776 016f E6000000 		.4byte	0xe6
+ 777 0173 7E010000 		.4byte	0x17e
+ 778 0177 0B       		.uleb128 0xb
+ 779 0178 8E000000 		.4byte	0x8e
+ 780 017c 00       		.byte	0
+ 781 017d 00       		.byte	0
+ 782 017e 0E       		.uleb128 0xe
+ 783 017f 90010000 		.4byte	.LASF26
+ 784 0183 03       		.byte	0x3
+ 785 0184 2001     		.2byte	0x120
+ 786 0186 90010000 		.4byte	0x190
+ 787 018a 05       		.uleb128 0x5
+ 788 018b 03       		.byte	0x3
+ 789 018c 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+ 790 0190 0D       		.uleb128 0xd
+ 791 0191 6E010000 		.4byte	0x16e
+ 792 0195 0A       		.uleb128 0xa
+ 793 0196 63000000 		.4byte	0x63
+ 794 019a A5010000 		.4byte	0x1a5
+ 795 019e 0B       		.uleb128 0xb
+ 796 019f 8E000000 		.4byte	0x8e
+ 797 01a3 01       		.byte	0x1
+ 798 01a4 00       		.byte	0
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 15
+
+
+ 799 01a5 0E       		.uleb128 0xe
+ 800 01a6 14000000 		.4byte	.LASF27
+ 801 01aa 03       		.byte	0x3
+ 802 01ab 2401     		.2byte	0x124
+ 803 01ad B7010000 		.4byte	0x1b7
+ 804 01b1 05       		.uleb128 0x5
+ 805 01b2 03       		.byte	0x3
+ 806 01b3 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+ 807 01b7 0D       		.uleb128 0xd
+ 808 01b8 95010000 		.4byte	0x195
+ 809 01bc 0A       		.uleb128 0xa
+ 810 01bd 17010000 		.4byte	0x117
+ 811 01c1 CC010000 		.4byte	0x1cc
+ 812 01c5 0B       		.uleb128 0xb
+ 813 01c6 8E000000 		.4byte	0x8e
+ 814 01ca 04       		.byte	0x4
+ 815 01cb 00       		.byte	0
+ 816 01cc 0E       		.uleb128 0xe
+ 817 01cd AA000000 		.4byte	.LASF28
+ 818 01d1 03       		.byte	0x3
+ 819 01d2 2C01     		.2byte	0x12c
+ 820 01d4 DE010000 		.4byte	0x1de
+ 821 01d8 05       		.uleb128 0x5
+ 822 01d9 03       		.byte	0x3
+ 823 01da 00000000 		.4byte	USBFS_DEVICE0_CONFIGURATION0_TABLE
+ 824 01de 0D       		.uleb128 0xd
+ 825 01df BC010000 		.4byte	0x1bc
+ 826 01e3 0A       		.uleb128 0xa
+ 827 01e4 17010000 		.4byte	0x117
+ 828 01e8 F3010000 		.4byte	0x1f3
+ 829 01ec 0B       		.uleb128 0xb
+ 830 01ed 8E000000 		.4byte	0x8e
+ 831 01f1 01       		.byte	0x1
+ 832 01f2 00       		.byte	0
+ 833 01f3 0E       		.uleb128 0xe
+ 834 01f4 D2000000 		.4byte	.LASF29
+ 835 01f8 03       		.byte	0x3
+ 836 01f9 3701     		.2byte	0x137
+ 837 01fb 05020000 		.4byte	0x205
+ 838 01ff 05       		.uleb128 0x5
+ 839 0200 03       		.byte	0x3
+ 840 0201 00000000 		.4byte	USBFS_DEVICE0_TABLE
+ 841 0205 0D       		.uleb128 0xd
+ 842 0206 E3010000 		.4byte	0x1e3
+ 843 020a 0A       		.uleb128 0xa
+ 844 020b 17010000 		.4byte	0x117
+ 845 020f 1A020000 		.4byte	0x21a
+ 846 0213 0B       		.uleb128 0xb
+ 847 0214 8E000000 		.4byte	0x8e
+ 848 0218 00       		.byte	0
+ 849 0219 00       		.byte	0
+ 850 021a 0E       		.uleb128 0xe
+ 851 021b 4C000000 		.4byte	.LASF30
+ 852 021f 03       		.byte	0x3
+ 853 0220 3E01     		.2byte	0x13e
+ 854 0222 2C020000 		.4byte	0x22c
+ 855 0226 05       		.uleb128 0x5
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 16
+
+
+ 856 0227 03       		.byte	0x3
+ 857 0228 00000000 		.4byte	USBFS_TABLE
+ 858 022c 0D       		.uleb128 0xd
+ 859 022d 0A020000 		.4byte	0x20a
+ 860 0231 0A       		.uleb128 0xa
+ 861 0232 63000000 		.4byte	0x63
+ 862 0236 42020000 		.4byte	0x242
+ 863 023a 0F       		.uleb128 0xf
+ 864 023b 8E000000 		.4byte	0x8e
+ 865 023f 7201     		.2byte	0x172
+ 866 0241 00       		.byte	0
+ 867 0242 0C       		.uleb128 0xc
+ 868 0243 7C000000 		.4byte	.LASF31
+ 869 0247 03       		.byte	0x3
+ 870 0248 B7       		.byte	0xb7
+ 871 0249 53020000 		.4byte	0x253
+ 872 024d 05       		.uleb128 0x5
+ 873 024e 03       		.byte	0x3
+ 874 024f 00000000 		.4byte	USBFS_STRING_DESCRIPTORS
+ 875 0253 0D       		.uleb128 0xd
+ 876 0254 31020000 		.4byte	0x231
+ 877 0258 00       		.byte	0
+ 878              		.section	.debug_abbrev,"",%progbits
+ 879              	.Ldebug_abbrev0:
+ 880 0000 01       		.uleb128 0x1
+ 881 0001 11       		.uleb128 0x11
+ 882 0002 01       		.byte	0x1
+ 883 0003 25       		.uleb128 0x25
+ 884 0004 0E       		.uleb128 0xe
+ 885 0005 13       		.uleb128 0x13
+ 886 0006 0B       		.uleb128 0xb
+ 887 0007 03       		.uleb128 0x3
+ 888 0008 0E       		.uleb128 0xe
+ 889 0009 1B       		.uleb128 0x1b
+ 890 000a 0E       		.uleb128 0xe
+ 891 000b 10       		.uleb128 0x10
+ 892 000c 17       		.uleb128 0x17
+ 893 000d 00       		.byte	0
+ 894 000e 00       		.byte	0
+ 895 000f 02       		.uleb128 0x2
+ 896 0010 24       		.uleb128 0x24
+ 897 0011 00       		.byte	0
+ 898 0012 0B       		.uleb128 0xb
+ 899 0013 0B       		.uleb128 0xb
+ 900 0014 3E       		.uleb128 0x3e
+ 901 0015 0B       		.uleb128 0xb
+ 902 0016 03       		.uleb128 0x3
+ 903 0017 0E       		.uleb128 0xe
+ 904 0018 00       		.byte	0
+ 905 0019 00       		.byte	0
+ 906 001a 03       		.uleb128 0x3
+ 907 001b 24       		.uleb128 0x24
+ 908 001c 00       		.byte	0
+ 909 001d 0B       		.uleb128 0xb
+ 910 001e 0B       		.uleb128 0xb
+ 911 001f 3E       		.uleb128 0x3e
+ 912 0020 0B       		.uleb128 0xb
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 17
+
+
+ 913 0021 03       		.uleb128 0x3
+ 914 0022 08       		.uleb128 0x8
+ 915 0023 00       		.byte	0
+ 916 0024 00       		.byte	0
+ 917 0025 04       		.uleb128 0x4
+ 918 0026 16       		.uleb128 0x16
+ 919 0027 00       		.byte	0
+ 920 0028 03       		.uleb128 0x3
+ 921 0029 0E       		.uleb128 0xe
+ 922 002a 3A       		.uleb128 0x3a
+ 923 002b 0B       		.uleb128 0xb
+ 924 002c 3B       		.uleb128 0x3b
+ 925 002d 0B       		.uleb128 0xb
+ 926 002e 49       		.uleb128 0x49
+ 927 002f 13       		.uleb128 0x13
+ 928 0030 00       		.byte	0
+ 929 0031 00       		.byte	0
+ 930 0032 05       		.uleb128 0x5
+ 931 0033 13       		.uleb128 0x13
+ 932 0034 01       		.byte	0x1
+ 933 0035 0B       		.uleb128 0xb
+ 934 0036 0B       		.uleb128 0xb
+ 935 0037 3A       		.uleb128 0x3a
+ 936 0038 0B       		.uleb128 0xb
+ 937 0039 3B       		.uleb128 0x3b
+ 938 003a 0B       		.uleb128 0xb
+ 939 003b 01       		.uleb128 0x1
+ 940 003c 13       		.uleb128 0x13
+ 941 003d 00       		.byte	0
+ 942 003e 00       		.byte	0
+ 943 003f 06       		.uleb128 0x6
+ 944 0040 0D       		.uleb128 0xd
+ 945 0041 00       		.byte	0
+ 946 0042 03       		.uleb128 0x3
+ 947 0043 0E       		.uleb128 0xe
+ 948 0044 3A       		.uleb128 0x3a
+ 949 0045 0B       		.uleb128 0xb
+ 950 0046 3B       		.uleb128 0x3b
+ 951 0047 0B       		.uleb128 0xb
+ 952 0048 49       		.uleb128 0x49
+ 953 0049 13       		.uleb128 0x13
+ 954 004a 38       		.uleb128 0x38
+ 955 004b 0B       		.uleb128 0xb
+ 956 004c 00       		.byte	0
+ 957 004d 00       		.byte	0
+ 958 004e 07       		.uleb128 0x7
+ 959 004f 0D       		.uleb128 0xd
+ 960 0050 00       		.byte	0
+ 961 0051 03       		.uleb128 0x3
+ 962 0052 08       		.uleb128 0x8
+ 963 0053 3A       		.uleb128 0x3a
+ 964 0054 0B       		.uleb128 0xb
+ 965 0055 3B       		.uleb128 0x3b
+ 966 0056 0B       		.uleb128 0xb
+ 967 0057 49       		.uleb128 0x49
+ 968 0058 13       		.uleb128 0x13
+ 969 0059 38       		.uleb128 0x38
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 18
+
+
+ 970 005a 0B       		.uleb128 0xb
+ 971 005b 00       		.byte	0
+ 972 005c 00       		.byte	0
+ 973 005d 08       		.uleb128 0x8
+ 974 005e 0F       		.uleb128 0xf
+ 975 005f 00       		.byte	0
+ 976 0060 0B       		.uleb128 0xb
+ 977 0061 0B       		.uleb128 0xb
+ 978 0062 49       		.uleb128 0x49
+ 979 0063 13       		.uleb128 0x13
+ 980 0064 00       		.byte	0
+ 981 0065 00       		.byte	0
+ 982 0066 09       		.uleb128 0x9
+ 983 0067 26       		.uleb128 0x26
+ 984 0068 00       		.byte	0
+ 985 0069 00       		.byte	0
+ 986 006a 00       		.byte	0
+ 987 006b 0A       		.uleb128 0xa
+ 988 006c 01       		.uleb128 0x1
+ 989 006d 01       		.byte	0x1
+ 990 006e 49       		.uleb128 0x49
+ 991 006f 13       		.uleb128 0x13
+ 992 0070 01       		.uleb128 0x1
+ 993 0071 13       		.uleb128 0x13
+ 994 0072 00       		.byte	0
+ 995 0073 00       		.byte	0
+ 996 0074 0B       		.uleb128 0xb
+ 997 0075 21       		.uleb128 0x21
+ 998 0076 00       		.byte	0
+ 999 0077 49       		.uleb128 0x49
+ 1000 0078 13       		.uleb128 0x13
+ 1001 0079 2F       		.uleb128 0x2f
+ 1002 007a 0B       		.uleb128 0xb
+ 1003 007b 00       		.byte	0
+ 1004 007c 00       		.byte	0
+ 1005 007d 0C       		.uleb128 0xc
+ 1006 007e 34       		.uleb128 0x34
+ 1007 007f 00       		.byte	0
+ 1008 0080 03       		.uleb128 0x3
+ 1009 0081 0E       		.uleb128 0xe
+ 1010 0082 3A       		.uleb128 0x3a
+ 1011 0083 0B       		.uleb128 0xb
+ 1012 0084 3B       		.uleb128 0x3b
+ 1013 0085 0B       		.uleb128 0xb
+ 1014 0086 49       		.uleb128 0x49
+ 1015 0087 13       		.uleb128 0x13
+ 1016 0088 3F       		.uleb128 0x3f
+ 1017 0089 19       		.uleb128 0x19
+ 1018 008a 02       		.uleb128 0x2
+ 1019 008b 18       		.uleb128 0x18
+ 1020 008c 00       		.byte	0
+ 1021 008d 00       		.byte	0
+ 1022 008e 0D       		.uleb128 0xd
+ 1023 008f 26       		.uleb128 0x26
+ 1024 0090 00       		.byte	0
+ 1025 0091 49       		.uleb128 0x49
+ 1026 0092 13       		.uleb128 0x13
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 19
+
+
+ 1027 0093 00       		.byte	0
+ 1028 0094 00       		.byte	0
+ 1029 0095 0E       		.uleb128 0xe
+ 1030 0096 34       		.uleb128 0x34
+ 1031 0097 00       		.byte	0
+ 1032 0098 03       		.uleb128 0x3
+ 1033 0099 0E       		.uleb128 0xe
+ 1034 009a 3A       		.uleb128 0x3a
+ 1035 009b 0B       		.uleb128 0xb
+ 1036 009c 3B       		.uleb128 0x3b
+ 1037 009d 05       		.uleb128 0x5
+ 1038 009e 49       		.uleb128 0x49
+ 1039 009f 13       		.uleb128 0x13
+ 1040 00a0 3F       		.uleb128 0x3f
+ 1041 00a1 19       		.uleb128 0x19
+ 1042 00a2 02       		.uleb128 0x2
+ 1043 00a3 18       		.uleb128 0x18
+ 1044 00a4 00       		.byte	0
+ 1045 00a5 00       		.byte	0
+ 1046 00a6 0F       		.uleb128 0xf
+ 1047 00a7 21       		.uleb128 0x21
+ 1048 00a8 00       		.byte	0
+ 1049 00a9 49       		.uleb128 0x49
+ 1050 00aa 13       		.uleb128 0x13
+ 1051 00ab 2F       		.uleb128 0x2f
+ 1052 00ac 05       		.uleb128 0x5
+ 1053 00ad 00       		.byte	0
+ 1054 00ae 00       		.byte	0
+ 1055 00af 00       		.byte	0
+ 1056              		.section	.debug_aranges,"",%progbits
+ 1057 0000 14000000 		.4byte	0x14
+ 1058 0004 0200     		.2byte	0x2
+ 1059 0006 00000000 		.4byte	.Ldebug_info0
+ 1060 000a 04       		.byte	0x4
+ 1061 000b 00       		.byte	0
+ 1062 000c 0000     		.2byte	0
+ 1063 000e 0000     		.2byte	0
+ 1064 0010 00000000 		.4byte	0
+ 1065 0014 00000000 		.4byte	0
+ 1066              		.section	.debug_line,"",%progbits
+ 1067              	.Ldebug_line0:
+ 1068 0000 59000000 		.section	.debug_str,"MS",%progbits,1
+ 1068      02005300 
+ 1068      00000201 
+ 1068      FB0E0D00 
+ 1068      01010101 
+ 1069              	.LASF24:
+ 1070 0000 55534246 		.ascii	"USBFS_DEVICE0_DESCR\000"
+ 1070      535F4445 
+ 1070      56494345 
+ 1070      305F4445 
+ 1070      53435200 
+ 1071              	.LASF27:
+ 1072 0014 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS\000"
+ 1072      535F4445 
+ 1072      56494345 
+ 1072      305F434F 
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 20
+
+
+ 1072      4E464947 
+ 1073              	.LASF18:
+ 1074 0041 61747472 		.ascii	"attributes\000"
+ 1074      69627574 
+ 1074      657300
+ 1075              	.LASF30:
+ 1076 004c 55534246 		.ascii	"USBFS_TABLE\000"
+ 1076      535F5441 
+ 1076      424C4500 
+ 1077              	.LASF3:
+ 1078 0058 73686F72 		.ascii	"short unsigned int\000"
+ 1078      7420756E 
+ 1078      7369676E 
+ 1078      65642069 
+ 1078      6E7400
+ 1079              	.LASF11:
+ 1080 006b 666C6F61 		.ascii	"float\000"
+ 1080      7400
+ 1081              	.LASF16:
+ 1082 0071 616C7453 		.ascii	"altSetting\000"
+ 1082      65747469 
+ 1082      6E6700
+ 1083              	.LASF31:
+ 1084 007c 55534246 		.ascii	"USBFS_STRING_DESCRIPTORS\000"
+ 1084      535F5354 
+ 1084      52494E47 
+ 1084      5F444553 
+ 1084      43524950 
+ 1085              	.LASF34:
+ 1086 0095 433A5C53 		.ascii	"C:\\SoundSystem.cydsn\000"
+ 1086      6F756E64 
+ 1086      53797374 
+ 1086      656D2E63 
+ 1086      7964736E 
+ 1087              	.LASF28:
+ 1088 00aa 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_TABLE\000"
+ 1088      535F4445 
+ 1088      56494345 
+ 1088      305F434F 
+ 1088      4E464947 
+ 1089              	.LASF17:
+ 1090 00cd 61646472 		.ascii	"addr\000"
+ 1090      00
+ 1091              	.LASF29:
+ 1092 00d2 55534246 		.ascii	"USBFS_DEVICE0_TABLE\000"
+ 1092      535F4445 
+ 1092      56494345 
+ 1092      305F5441 
+ 1092      424C4500 
+ 1093              	.LASF1:
+ 1094 00e6 756E7369 		.ascii	"unsigned char\000"
+ 1094      676E6564 
+ 1094      20636861 
+ 1094      7200
+ 1095              	.LASF32:
+ 1096 00f4 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1096      4320342E 
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 21
+
+
+ 1096      392E3320 
+ 1096      32303135 
+ 1096      30333033 
+ 1097 0127 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1097      20726576 
+ 1097      6973696F 
+ 1097      6E203232 
+ 1097      31323230 
+ 1098 015a 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1098      66756E63 
+ 1098      74696F6E 
+ 1098      2D736563 
+ 1098      74696F6E 
+ 1099              	.LASF12:
+ 1100 0182 646F7562 		.ascii	"double\000"
+ 1100      6C6500
+ 1101              	.LASF10:
+ 1102 0189 75696E74 		.ascii	"uint16\000"
+ 1102      313600
+ 1103              	.LASF26:
+ 1104 0190 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE\000"
+ 1104      535F4445 
+ 1104      56494345 
+ 1104      305F434F 
+ 1104      4E464947 
+ 1105              	.LASF25:
+ 1106 01bf 55534246 		.ascii	"USBFS_DEVICE0_CONFIGURATION0_DESCR\000"
+ 1106      535F4445 
+ 1106      56494345 
+ 1106      305F434F 
+ 1106      4E464947 
+ 1107              	.LASF5:
+ 1108 01e2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1108      20756E73 
+ 1108      69676E65 
+ 1108      6420696E 
+ 1108      7400
+ 1109              	.LASF8:
+ 1110 01f4 756E7369 		.ascii	"unsigned int\000"
+ 1110      676E6564 
+ 1110      20696E74 
+ 1110      00
+ 1111              	.LASF7:
+ 1112 0201 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1112      206C6F6E 
+ 1112      6720756E 
+ 1112      7369676E 
+ 1112      65642069 
+ 1113              	.LASF33:
+ 1114 0218 47656E65 		.ascii	"Generated_Source\\PSoC5\\USBFS_descr.c\000"
+ 1114      72617465 
+ 1114      645F536F 
+ 1114      75726365 
+ 1114      5C50536F 
+ 1115              	.LASF22:
+ 1116 023d 705F6C69 		.ascii	"p_list\000"
+ 1116      737400
+ARM GAS  C:\Users\JOSANT~1\AppData\Local\Temp\ccTDVtTX.s 			page 22
+
+
+ 1117              	.LASF21:
+ 1118 0244 545F5553 		.ascii	"T_USBFS_EP_SETTINGS_BLOCK\000"
+ 1118      4246535F 
+ 1118      45505F53 
+ 1118      45545449 
+ 1118      4E47535F 
+ 1119              	.LASF14:
+ 1120 025e 73697A65 		.ascii	"sizetype\000"
+ 1120      74797065 
+ 1120      00
+ 1121              	.LASF6:
+ 1122 0267 6C6F6E67 		.ascii	"long long int\000"
+ 1122      206C6F6E 
+ 1122      6720696E 
+ 1122      7400
+ 1123              	.LASF23:
+ 1124 0275 545F5553 		.ascii	"T_USBFS_LUT\000"
+ 1124      4246535F 
+ 1124      4C555400 
+ 1125              	.LASF13:
+ 1126 0281 63686172 		.ascii	"char\000"
+ 1126      00
+ 1127              	.LASF19:
+ 1128 0286 62756666 		.ascii	"bufferSize\000"
+ 1128      65725369 
+ 1128      7A6500
+ 1129              	.LASF2:
+ 1130 0291 73686F72 		.ascii	"short int\000"
+ 1130      7420696E 
+ 1130      7400
+ 1131              	.LASF9:
+ 1132 029b 75696E74 		.ascii	"uint8\000"
+ 1132      3800
+ 1133              	.LASF15:
+ 1134 02a1 696E7465 		.ascii	"interface\000"
+ 1134      72666163 
+ 1134      6500
+ 1135              	.LASF4:
+ 1136 02ab 6C6F6E67 		.ascii	"long int\000"
+ 1136      20696E74 
+ 1136      00
+ 1137              	.LASF0:
+ 1138 02b4 7369676E 		.ascii	"signed char\000"
+ 1138      65642063 
+ 1138      68617200 
+ 1139              	.LASF20:
+ 1140 02c0 624D6973 		.ascii	"bMisc\000"
+ 1140      6300
+ 1141              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
