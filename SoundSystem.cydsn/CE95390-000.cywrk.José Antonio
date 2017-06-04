@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\TopDesign</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Pins</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Analog</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Clocks</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Interrupts</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\DMA</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\System</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Directives</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Flash Security</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\EEPROM</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cyre</v>
+<v>CE95390-000\SoundSystem\Header Files</v>
+<v>CE95390-000\SoundSystem\Header Files\device.h</v>
+<v>CE95390-000\SoundSystem\Source Files</v>
+<v>CE95390-000\SoundSystem\Source Files\main.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Clock_1</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Clock_1\Clock_1.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Clock_1\Clock_1.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyBootAsmKeil.a51</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyDmac.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyDmac.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyFlash.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyFlash.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyLib.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyLib.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cymem.a51</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cypins.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cyPm.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cyPm.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CySpc.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CySpc.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cytypes.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cyutils.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\KeilStart.a51</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\PSoC3_8051.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\PSoC3_8051.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD\LCD.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD\LCD.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD\LCD_PM.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD_LCDPort</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD_LCDPort\LCD_LCDPort.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD_LCDPort\LCD_LCDPort.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\LCD_LCDPort\LCD_LCDPort_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Speaker</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Speaker\Speaker.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Speaker\Speaker.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Speaker\Speaker_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_audio.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_audio.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_boot.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_cdc.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_cdc.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_cdc.inf</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_cls.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_descr.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_drv.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_episr.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_hid.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_hid.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_midi.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_midi.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_pm.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_pvt.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_std.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS\USBFS_vnd.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dm</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dm\USBFS_Dm.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dm\USBFS_Dm.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dm\USBFS_Dm_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dp</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dp\USBFS_Dp.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dp\USBFS_Dp.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_Dp\USBFS_Dp_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_ep2</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_ep2\USBFS_ep2_dma.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\USBFS_ep2\USBFS_ep2_dma.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDAC8</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDAC8\VDAC8.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDAC8\VDAC8.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDAC8\VDAC8_PM.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDACoutDMA</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDACoutDMA\VDACoutDMA_dma.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDACoutDMA\VDACoutDMA_dma.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDACoutDMA_done_isr</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDACoutDMA_done_isr\VDACoutDMA_done_isr.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\VDACoutDMA_done_isr\VDACoutDMA_done_isr.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cycodeshareexport.ld</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cycodeshareimport.ld</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cycodeshareimport.scat</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cydevice.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cydevice_trm.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cydevicekeil.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cydevicekeil_trm.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cydisabledsheets.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cyfitter.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cyfitter_cfg.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cyfitter_cfg.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cyfitterkeil.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\project.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Clock_1</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Clock_1\Clock_1.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Clock_1\Clock_1.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\interrupcionDMA</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\interrupcionDMA\interrupcionDMA.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\interrupcionDMA\interrupcionDMA.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\interrupcionDMA\interrupcionDMA_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD\LCD.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD\LCD.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD\LCD_PM.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD_LCDPort</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD_LCDPort\LCD_LCDPort.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD_LCDPort\LCD_LCDPort.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\LCD_LCDPort\LCD_LCDPort_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\leyendoDelUSB</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\leyendoDelUSB\leyendoDelUSB.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\leyendoDelUSB\leyendoDelUSB.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\leyendoDelUSB\leyendoDelUSB_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\outindexinIndex</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\outindexinIndex\outindexinIndex.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\outindexinIndex\outindexinIndex.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\outindexinIndex\outindexinIndex_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Speaker</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Speaker\Speaker.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Speaker\Speaker.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\Speaker\Speaker_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_audio.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_audio.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_boot.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_cdc.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_cdc.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_cdc.inf</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_cls.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_descr.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_drv.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_episr.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_hid.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_hid.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_midi.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_midi.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_pm.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_pvt.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_std.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS\USBFS_vnd.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dm</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dm\USBFS_Dm.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dm\USBFS_Dm.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dm\USBFS_Dm_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dp</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dp\USBFS_Dp.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dp\USBFS_Dp.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_Dp\USBFS_Dp_aliases.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_ep2</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_ep2\USBFS_ep2_dma.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\USBFS_ep2\USBFS_ep2_dma.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDAC8</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDAC8\VDAC8.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDAC8\VDAC8.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDAC8\VDAC8_PM.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDACoutDMA</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDACoutDMA\VDACoutDMA_dma.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDACoutDMA\VDACoutDMA_dma.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDACoutDMA_done_isr</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDACoutDMA_done_isr\VDACoutDMA_done_isr.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\VDACoutDMA_done_isr\VDACoutDMA_done_isr.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydevice.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cyfitter.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\cymetadata.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC5\project.h</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\TopDesign</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Pins</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Analog</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Clocks</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Interrupts</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\DMA</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\System</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Directives</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\Flash Security</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cydwr\EEPROM</v>
+<v>CE95390-000\SoundSystem\SoundSystem.cyre</v>
+<v>CE95390-000\SoundSystem\Header Files</v>
+<v>CE95390-000\SoundSystem\Header Files\device.h</v>
+<v>CE95390-000\SoundSystem\Source Files</v>
+<v>CE95390-000\SoundSystem\Source Files\main.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Clock_1</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Clock_1\Clock_1.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\Clock_1\Clock_1.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyBootAsmKeil.a51</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyDmac.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyDmac.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyFlash.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyFlash.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyLib.c</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\CyLib.h</v>
+<v>CE95390-000\SoundSystem\Generated_Source\PSoC3\cy_boot\cymem.a51</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\TopDesign</v>
+<v>CE95390-000\SoundSystem\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\TopDesign</v>
+<v>CE95390-000\SoundSystem\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\CortexM3</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\interrupcionDMA.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD_LCDPort.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD_PM.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\leyendoDelUSB.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\outindexinIndex.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\Speaker.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_audio.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_boot.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_cdc.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_cls.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_descr.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_Dm.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_Dp.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_drv.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_ep2_dma.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_episr.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_hid.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_midi.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_pm.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_std.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_vnd.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\VDAC8.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\VDAC8_PM.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\VDACoutDMA_dma.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\VDACoutDMA_done_isr.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\SoundSystem.elf</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\SoundSystem.hex</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\SoundSystem.map</v>
+<v>CE95390-000\SoundSystem\SoundSystem.gpdsc</v>
+<v>CE95390-000\SoundSystem\SoundSystem.rpt</v>
+<v>CE95390-000\SoundSystem\SoundSystem_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\CortexM3</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\cyutils.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\interrupcionDMA.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD_LCDPort.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD_PM.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\leyendoDelUSB.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\outindexinIndex.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\Speaker.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_audio.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_boot.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_cdc.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_cls.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_descr.lst</v>
+<v>CE95390-000\SoundSystem\CortexM3\ARM_GCC_493\Debug\Listing Files\USBFS_Dm.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\PSoC 5LP Architecture TRM</v>
+<v>CE95390-000\SoundSystem\CY8C58LP Family Datasheet</v>
+<v>CE95390-000\SoundSystem\System Reference Guides</v>
+<v>CE95390-000\SoundSystem\System Reference Guides\cy_boot_v4_11</v>
+<v>CE95390-000\SoundSystem\CharLCD_v2_0.pdf</v>
+<v>CE95390-000\SoundSystem\cy_clock_v2_20.pdf</v>
+<v>CE95390-000\SoundSystem\cy_dma_v1_70.pdf</v>
+<v>CE95390-000\SoundSystem\cy_isr_v1_70.pdf</v>
+<v>CE95390-000\SoundSystem\cy_pins_v2_20</v>
+<v>CE95390-000\SoundSystem\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>CE95390-000\SoundSystem\cy_pins_v2_5.pdf</v>
+<v>CE95390-000\SoundSystem\USBFS_v2_70.pdf</v>
+<v>CE95390-000\SoundSystem\VDAC8_v1_90.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>CE95390-000</v>
+<v>CE95390-000\SoundSystem</v>
+<v>CE95390-000\SoundSystem\PSoC 5LP Architecture TRM</v>
+<v>CE95390-000\SoundSystem\CY8C58LP Family Datasheet</v>
+<v>CE95390-000\SoundSystem\System Reference Guides</v>
+<v>CE95390-000\SoundSystem\System Reference Guides\cy_boot_v4_11</v>
+<v>CE95390-000\SoundSystem\CharLCD_v2_0.pdf</v>
+<v>CE95390-000\SoundSystem\cy_clock_v2_20.pdf</v>
+<v>CE95390-000\SoundSystem\cy_dma_v1_70.pdf</v>
+<v>CE95390-000\SoundSystem\cy_isr_v1_70.pdf</v>
+<v>CE95390-000\SoundSystem\cy_pins_v2_20</v>
+<v>CE95390-000\SoundSystem\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>CE95390-000\SoundSystem\cy_pins_v2_5.pdf</v>
+<v>CE95390-000\SoundSystem\USBFS_v2_70.pdf</v>
+<v>CE95390-000\SoundSystem\VDAC8_v1_90.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\SoundSystem.cydwr" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\main.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="949, 435" SelectedTabbedMdiWindow="bf01d3d8-856d-49bb-a0e6-009bd97865b1"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="59db1e5a-6538-43d3-a30c-bea115674cbb" /><DocumentWindow Key="c7ff8b93-6dda-4a0f-9846-7bd859d0449a" Guid="bf01d3d8-856d-49bb-a0e6-009bd97865b1" /><DocumentWindow Key="63d1fd6d-94f1-4c32-ae22-61dd56d197b7" Guid="b0f45ce7-8b7a-412a-8691-213192faf3d9" /><DocumentWindow Key="850396d2-9c71-4cb4-829f-bb0ca405229d" Guid="1860a6c9-41c2-4615-b03d-3e627818a7df" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

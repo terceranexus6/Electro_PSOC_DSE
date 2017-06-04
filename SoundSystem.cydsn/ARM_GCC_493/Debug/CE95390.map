@@ -1,0 +1,1464 @@
+Archive member included because of file (symbol)
+
+.\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+                              .\ARM_GCC_493\Debug\Cm3Start.o (cyfitter_cfg)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                              .\ARM_GCC_493\Debug\main.o (USBFS_Start)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS.o) (USBFS_EP)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS.o) (USBFS_EP_2_ISR)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o) (USBFS_HandleStandardRqst)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o) (USBFS_HandleVendorRqst)
+.\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                              .\ARM_GCC_493\Debug\main.o (VDAC8_Start)
+.\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+                              .\ARM_GCC_493\Debug\main.o (VDACoutDMA_DmaInitialize)
+.\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                              .\ARM_GCC_493\Debug\main.o (VDACoutDMA_done_isr_StartEx)
+.\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                              .\ARM_GCC_493\Debug\main.o (LCD_Start)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS.o) (USBFS_ep2_DmaInitialize)
+.\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                              .\ARM_GCC_493\Debug\Cm3Start.o (CyDmacConfigure)
+.\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                              .\ARM_GCC_493\Debug\Cm3Start.o (CyResetStatus)
+.\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(CyLib.o) (CyPmReadStatus)
+.\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o) (CyDelayCycles)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o) (USBFS_DispatchClassRqst)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o) (USBFS_STRING_DESCRIPTORS)
+.\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(cyPm.o) (CyFlash_SetWaitCycles)
+.\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o) (CySpcStart)
+.\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o) (USBFS_DispatchAUDIOClassRqst)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o (exit)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o) (_global_impure_ptr)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o (__libc_init_array)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+                              .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o) (memcpy)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o (memset)
+
+Allocating common symbols
+Common symbol       size              file
+
+USBFS_deviceAddress
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_ep0Mode       0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_interfaceSetting
+                    0x2               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+soundBuffer         0x140             .\ARM_GCC_493\Debug\main.o
+USBFS_currentTD     0xc               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_device        0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_DmaChan       0x9               .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+USBFS_interfaceNumber
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_ep0Toggle     0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+VDACoutDMA_TD       0xa               .\ARM_GCC_493\Debug\main.o
+USBFS_deviceStatus  0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+VDACoutDMA_Chan     0x1               .\ARM_GCC_493\Debug\main.o
+USBFS_configurationChanged
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_configuration
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_DmaTd         0x9               .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+USBFS_transferState
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_interfaceStatus
+                    0x2               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_interfaceClass
+                    0x4               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_currentVolume
+                    0x2               .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+USBFS_EP            0x6c              .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_interfaceSetting_last
+                    0x2               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_lastPacketSize
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_currentSampleFrequency
+                    0x1b              .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+dieTemperature      0x2               .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+USBFS_frequencyChanged
+                    0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+USBFS_currentMute   0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+USBFS_ep0Count      0x1               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+USBFS_transferByteCount
+                    0x2               .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+ .data          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .text          0x00000000       0x74 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\main.o
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\main.o
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\cymetadata.o
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\cymetadata.o
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\cymetadata.o
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\Cm3Start.o
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\Cm3Start.o
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\Cm3Start.o
+ .text._exit    0x00000000       0x28 .\ARM_GCC_493\Debug\Cm3Start.o
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.SetAnalogRoutingPumps
+                0x00000000       0x28 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_Stop
+                0x00000000       0xb4 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_CheckActivity
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_Stop_DMA
+                0x00000000       0x64 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_LoadInEP
+                0x00000000      0x1ac .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_DisableOutEP
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_Force
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_GetEPAckState
+                0x00000000       0x48 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_SetPowerStatus
+                0x00000000       0x40 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text.USBFS_RWUEnabled
+                0x00000000       0x30 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .text.USBFS_TerminateEP
+                0x00000000       0xb8 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .text.VDAC8_Stop
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .text.VDACoutDMA_DmaRelease
+                0x00000000       0x14 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_Start
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_Stop
+                0x00000000       0x14 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_Interrupt
+                0x00000000        0xc .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_GetVector
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_GetPriority
+                0x00000000       0x24 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_GetState
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_SetPending
+                0x00000000       0x18 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text.VDACoutDMA_done_isr_ClearPending
+                0x00000000       0x18 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_Stop
+                0x00000000       0x18 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_PutChar
+                0x00000000       0x18 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_PrintInt8
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_PrintInt16
+                0x00000000       0x28 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_PrintInt32
+                0x00000000       0x30 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_PrintU32Number
+                0x00000000       0xa4 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .rodata        0x00000000       0x10 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .text.USBFS_ep2_DmaRelease
+                0x00000000       0x14 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmacError
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmacClearError
+                0x00000000       0x24 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmacErrorAddress
+                0x00000000       0x18 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaChAlloc
+                0x00000000       0x64 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaChFree
+                0x00000000       0x4c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaClearPendingDrq
+                0x00000000       0x64 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaChSetRequest
+                0x00000000       0x58 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaChGetRequest
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaChStatus
+                0x00000000       0x60 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaTdFree
+                0x00000000       0x54 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaTdFreeCount
+                0x00000000       0x1c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaTdGetConfiguration
+                0x00000000       0x88 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaTdGetAddress
+                0x00000000       0x6c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text.CyDmaChRoundRobin
+                0x00000000       0x70 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyPLL_OUT_Start
+                0x00000000       0xb0 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyPLL_OUT_Stop
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyPLL_OUT_SetPQ
+                0x00000000       0x90 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyPLL_OUT_SetSource
+                0x00000000       0x54 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_Start
+                0x00000000       0x94 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_Stop
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyUSB_PowerOnCheck
+                0x00000000       0x60 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_SetTrimValue
+                0x00000000      0x108 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_SetFreq
+                0x00000000      0x1ac .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_SetSource
+                0x00000000       0x8c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_EnableDoubler
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIMO_DisableDoubler
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyMasterClk_SetSource
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyMasterClk_SetDivider
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyBusClk_Internal_SetDivider
+                0x00000000       0x78 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyBusClk_SetDivider
+                0x00000000       0xb4 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyUsbClk_SetSource
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_Start1K
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_Stop1K
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_Start100K
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_Stop100K
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_Enable33K
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_Disable33K
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_SetSource
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyILO_SetPowerMode
+                0x00000000       0x4c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_32KHZ_Start
+                0x00000000       0x84 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_32KHZ_Stop
+                0x00000000       0x50 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_32KHZ_ReadStatus
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_32KHZ_SetPowerMode
+                0x00000000       0xb4 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_Start
+                0x00000000       0xd0 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_Stop
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_EnableErrStatus
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_DisableErrStatus
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_ReadStatus
+                0x00000000       0x28 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_EnableFaultRecovery
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_DisableFaultRecovery
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_SetStartup
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_SetFbVoltage
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyXTAL_SetWdVoltage
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CySoftwareReset
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyDelayFreq
+                0x00000000       0x7c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyWdtStart
+                0x00000000       0x8c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyWdtClear
+                0x00000000       0x18 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdLvDigitEnable
+                0x00000000       0xb4 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdLvAnalogEnable
+                0x00000000       0xb0 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdLvDigitDisable
+                0x00000000       0x48 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdLvAnalogDisable
+                0x00000000       0x48 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdHvAnalogEnable
+                0x00000000       0x5c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdHvAnalogDisable
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdStickyStatus
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyVdRealTimeStatus
+                0x00000000       0x2c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyDisableInts
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyEnableInts
+                0x00000000       0x28 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyFlushCache
+                0x00000000       0x70 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIntSetSysVector
+                0x00000000       0x4c .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIntGetSysVector
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIntGetVector
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIntGetPriority
+                0x00000000       0x38 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text.CyIntGetState
+                0x00000000       0x44 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .bss           0x00000000       0x44 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .rodata        0x00000000       0x10 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmSaveClocks
+                0x00000000      0x284 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmRestoreClocks
+                0x00000000      0x300 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmAltAct
+                0x00000000       0xb8 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmSleep
+                0x00000000      0x170 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHibernate
+                0x00000000      0x140 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmReadStatus
+                0x00000000       0x58 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHibSaveSet
+                0x00000000       0xd4 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHibRestore
+                0x00000000       0x68 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmCtwSetInterval
+                0x00000000       0x90 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmOppsSet
+                0x00000000       0x40 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmFtwSetInterval
+                0x00000000       0x90 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHibSlpSaveSet
+                0x00000000      0x280 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHibSlpRestore
+                0x00000000      0x188 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHviLviSaveDisable
+                0x00000000       0xd4 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .text.CyPmHviLviRestore
+                0x00000000       0x54 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .bss           0x00000000        0x4 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyFlash_Start
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyFlash_Stop
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CySetTempInt
+                0x00000000       0x7c .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CySetTemp
+                0x00000000       0x24 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CySetFlashEEBuffer
+                0x00000000       0x54 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyWriteRowData
+                0x00000000       0x9c .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyWriteRowConfig
+                0x00000000       0x8c .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyWriteRowFull
+                0x00000000       0xec .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyFlash_SetWaitCycles
+                0x00000000       0x90 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyEEPROM_Start
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyEEPROM_Stop
+                0x00000000       0x34 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyEEPROM_ReadReserve
+                0x00000000       0x30 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text.CyEEPROM_ReadRelease
+                0x00000000       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ COMMON         0x00000000        0x2 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .data          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .bss           0x00000000        0x8 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcStart
+                0x00000000       0x44 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcStop
+                0x00000000       0x44 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcReadData
+                0x00000000       0x58 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcLoadMultiByte
+                0x00000000       0xd4 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcLoadRow
+                0x00000000       0x8c .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcWriteRow
+                0x00000000       0x98 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcEraseSector
+                0x00000000       0x70 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcGetTemp
+                0x00000000       0x64 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcLock
+                0x00000000       0x68 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text.CySpcUnlock
+                0x00000000       0x50 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .text          0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+ .bss           0x00000000        0x0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x28 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .data.impure_data
+                0x00000000       0x60 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .rodata.str1.1
+                0x00000000        0x2 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00040000         xr
+ram              0x1fff8000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+START GROUP
+LOAD .\ARM_GCC_493\Debug\main.o
+LOAD .\ARM_GCC_493\Debug\cymetadata.o
+LOAD .\ARM_GCC_493\Debug\Cm3Start.o
+LOAD .\ARM_GCC_493\Debug\CE95390.a
+LOAD C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_493\Debug\CyComponentLibrary.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libc_nano.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libc_nano.a
+END GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libnosys.a
+END GROUP
+                0x00000000                CY_APPL_ORIGIN = 0x0
+                0x00000100                CY_FLASH_ROW_SIZE = 0x100
+                0x00000020                CY_ECC_ROW_SIZE = 0x20
+                0x00000000                CY_EE_IN_BTLDR = 0x0
+                0x00000000                CY_APPL_LOADABLE = 0x0
+                0x00000800                CY_EE_SIZE = 0x800
+                0x00000001                CY_APPL_NUM = 0x1
+                0x00000001                CY_APPL_MAX = 0x1
+                0x00000040                CY_METADATA_SIZE = 0x40
+                0x1fff8388                PROVIDE (__cy_heap_start, _end)
+                0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
+                0x20008000                PROVIDE (__cy_stack, (ORIGIN (ram) + 0x10000))
+                0x20007800                PROVIDE (__cy_heap_end, (__cy_stack - 0x800))
+
+.cybootloader   0x00000000        0x0
+ *(.cybootloader)
+                0x00000000                appl1_start = CY_APPL_ORIGIN?CY_APPL_ORIGIN:ALIGN (CY_FLASH_ROW_SIZE)
+                0x0001ff00                appl2_start = (appl1_start + ALIGN ((((0x40000 - appl1_start) - (0x2 * CY_FLASH_ROW_SIZE)) / 0x2), CY_FLASH_ROW_SIZE))
+                0x00000000                appl_start = (CY_APPL_NUM == 0x1)?appl1_start:appl2_start
+                0x00000000                ecc_offset = ((appl_start / CY_FLASH_ROW_SIZE) * CY_ECC_ROW_SIZE)
+                0x00000000                ee_offset = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?((CY_EE_SIZE / CY_APPL_MAX) * (CY_APPL_NUM - 0x1)):0x0
+                0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
+                0x00000000                PROVIDE (CY_ECC_OFFSET, ecc_offset)
+
+.text           0x00000000     0x3412
+ CREATE_OBJECT_SYMBOLS
+                0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
+ *(.romvectors)
+ .romvectors    0x00000000       0x10 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x00000000                RomVectors
+                0x00000001                ASSERT ((. != __cy_interrupt_vector), No interrupt vector)
+                0x00000001                ASSERT (CY_APPL_ORIGIN?(SIZEOF (.cybootloader) <= CY_APPL_ORIGIN):0x1, Wrong image location)
+                0x00000010                PROVIDE (__cy_reset, Reset)
+ *(.text.Reset)
+ .text.Reset    0x00000010       0x18 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x00000010                Reset
+                0x00000001                ASSERT ((. != __cy_reset), No reset code)
+ *(.dma_init)
+                0x00000001                ASSERT ((((appl_start + .) <= 0x10000) || 0x1), DMA Init must be within the first 64k of flash)
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x00000028       0x5c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .text.DMA_done
+                0x00000084       0x5c .\ARM_GCC_493\Debug\main.o
+                0x00000084                DMA_done
+ .text.main     0x000000e0      0x214 .\ARM_GCC_493\Debug\main.o
+                0x000000e0                main
+ .text.IntDefaultHandler
+                0x000002f4        0x8 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x000002f4                IntDefaultHandler
+ .text.Start_c  0x000002fc       0x94 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x000002fc                Start_c
+ .text.initialize_psoc
+                0x00000390       0x90 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x00000390                initialize_psoc
+ .text.CYMEMZERO
+                0x00000420       0x1c .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.CYCONFIGCPY
+                0x0000043c       0x1c .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.CYCONFIGCPYCODE
+                0x00000458       0x1c .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.CyClockStartupError
+                0x00000474        0xc .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.cfg_write_bytes32
+                0x00000480       0x74 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.ClockSetup
+                0x000004f4      0x104 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.AnalogSetDefault
+                0x000005f8       0x58 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .text.cyfitter_cfg
+                0x00000650      0x13c .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+                0x00000650                cyfitter_cfg
+ .text.USBFS_Start
+                0x0000078c       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x0000078c                USBFS_Start
+ .text.USBFS_Init
+                0x000007c4      0x198 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x000007c4                USBFS_Init
+ .text.USBFS_InitComponent
+                0x0000095c       0xe8 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x0000095c                USBFS_InitComponent
+ .text.USBFS_ReInitComponent
+                0x00000a44       0x68 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000a44                USBFS_ReInitComponent
+ .text.USBFS_GetConfiguration
+                0x00000aac       0x18 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000aac                USBFS_GetConfiguration
+ .text.USBFS_IsConfigurationChanged
+                0x00000ac4       0x34 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000ac4                USBFS_IsConfigurationChanged
+ .text.USBFS_GetInterfaceSetting
+                0x00000af8       0x24 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000af8                USBFS_GetInterfaceSetting
+ .text.USBFS_GetEPState
+                0x00000b1c       0x2c .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000b1c                USBFS_GetEPState
+ .text.USBFS_GetEPCount
+                0x00000b48       0x6c .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000b48                USBFS_GetEPCount
+ .text.USBFS_InitEP_DMA
+                0x00000bb4       0xb8 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000bb4                USBFS_InitEP_DMA
+ .text.USBFS_ReadOutEP
+                0x00000c6c      0x11c .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000c6c                USBFS_ReadOutEP
+ .text.USBFS_EnableOutEP
+                0x00000d88       0x60 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x00000d88                USBFS_EnableOutEP
+ .text.USBFS_EP_0_ISR
+                0x00000de8       0xf8 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00000de8                USBFS_EP_0_ISR
+ .text.USBFS_HandleSetup
+                0x00000ee0       0x88 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00000ee0                USBFS_HandleSetup
+ .text.USBFS_HandleIN
+                0x00000f68       0x4c .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00000f68                USBFS_HandleIN
+ .text.USBFS_HandleOUT
+                0x00000fb4       0x58 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00000fb4                USBFS_HandleOUT
+ .text.USBFS_LoadEP0
+                0x0000100c       0xd4 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x0000100c                USBFS_LoadEP0
+ .text.USBFS_InitControlRead
+                0x000010e0       0x74 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x000010e0                USBFS_InitControlRead
+ .text.USBFS_InitZeroLengthControlTransfer
+                0x00001154       0x44 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00001154                USBFS_InitZeroLengthControlTransfer
+ .text.USBFS_ControlReadDataStage
+                0x00001198        0xc .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00001198                USBFS_ControlReadDataStage
+ .text.USBFS_ControlReadStatusStage
+                0x000011a4       0x40 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x000011a4                USBFS_ControlReadStatusStage
+ .text.USBFS_InitControlWrite
+                0x000011e4       0x68 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x000011e4                USBFS_InitControlWrite
+ .text.USBFS_ControlWriteDataStage
+                0x0000124c       0xb8 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x0000124c                USBFS_ControlWriteDataStage
+ .text.USBFS_ControlWriteStatusStage
+                0x00001304       0x20 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00001304                USBFS_ControlWriteStatusStage
+ .text.USBFS_InitNoDataControlTransfer
+                0x00001324       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x00001324                USBFS_InitNoDataControlTransfer
+ .text.USBFS_NoDataControlStatusStage
+                0x0000135c       0x48 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x0000135c                USBFS_NoDataControlStatusStage
+ .text.USBFS_UpdateStatusBlock
+                0x000013a4       0x40 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x000013a4                USBFS_UpdateStatusBlock
+ .text.USBFS_InitializeStatusBlock
+                0x000013e4       0x34 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x000013e4                USBFS_InitializeStatusBlock
+ .text.USBFS_EP_2_ISR
+                0x00001418       0x54 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+                0x00001418                USBFS_EP_2_ISR
+ .text.USBFS_SOF_ISR
+                0x0000146c        0xc .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+                0x0000146c                USBFS_SOF_ISR
+ .text.USBFS_BUS_RESET_ISR
+                0x00001478        0xc .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+                0x00001478                USBFS_BUS_RESET_ISR
+ .text.USBFS_ARB_ISR
+                0x00001484      0x124 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+                0x00001484                USBFS_ARB_ISR
+ .text.USBFS_HandleStandardRqst
+                0x000015a8      0x46c .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x000015a8                USBFS_HandleStandardRqst
+ .text.USBFS_ConfigReg
+                0x00001a14      0x18c .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x00001a14                USBFS_ConfigReg
+ .text.USBFS_Config
+                0x00001ba0      0x308 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x00001ba0                USBFS_Config
+ .text.USBFS_ConfigAltChanged
+                0x00001ea8      0x27c .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x00001ea8                USBFS_ConfigAltChanged
+ .text.USBFS_GetConfigTablePtr
+                0x00002124       0x54 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x00002124                USBFS_GetConfigTablePtr
+ .text.USBFS_GetDeviceTablePtr
+                0x00002178       0x24 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x00002178                USBFS_GetDeviceTablePtr
+ .text.USBFS_GetInterfaceClassTablePtr
+                0x0000219c       0x4c .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x0000219c                USBFS_GetInterfaceClassTablePtr
+ .text.USBFS_SetEndpointHalt
+                0x000021e8       0xe0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x000021e8                USBFS_SetEndpointHalt
+ .text.USBFS_ClearEndpointHalt
+                0x000022c8      0x144 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x000022c8                USBFS_ClearEndpointHalt
+ .text.USBFS_ValidateAlternateSetting
+                0x0000240c       0x78 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                0x0000240c                USBFS_ValidateAlternateSetting
+ .text.USBFS_HandleVendorRqst
+                0x00002484       0x3c .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+                0x00002484                USBFS_HandleVendorRqst
+ .text.VDAC8_Init
+                0x000024c0       0x28 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x000024c0                VDAC8_Init
+ .text.VDAC8_Enable
+                0x000024e8       0x34 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x000024e8                VDAC8_Enable
+ .text.VDAC8_Start
+                0x0000251c       0x28 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x0000251c                VDAC8_Start
+ .text.VDAC8_SetSpeed
+                0x00002544       0x40 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x00002544                VDAC8_SetSpeed
+ .text.VDAC8_SetRange
+                0x00002584       0x40 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x00002584                VDAC8_SetRange
+ .text.VDAC8_SetValue
+                0x000025c4       0x20 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x000025c4                VDAC8_SetValue
+ .text.VDAC8_DacTrim
+                0x000025e4       0x3c .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x000025e4                VDAC8_DacTrim
+ .text.VDACoutDMA_DmaInitialize
+                0x00002620       0x68 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+                0x00002620                VDACoutDMA_DmaInitialize
+ .text.VDACoutDMA_done_isr_StartEx
+                0x00002688       0x24 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                0x00002688                VDACoutDMA_done_isr_StartEx
+ .text.VDACoutDMA_done_isr_SetVector
+                0x000026ac       0x24 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                0x000026ac                VDACoutDMA_done_isr_SetVector
+ .text.VDACoutDMA_done_isr_SetPriority
+                0x000026d0       0x24 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                0x000026d0                VDACoutDMA_done_isr_SetPriority
+ .text.VDACoutDMA_done_isr_Enable
+                0x000026f4       0x18 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                0x000026f4                VDACoutDMA_done_isr_Enable
+ .text.VDACoutDMA_done_isr_Disable
+                0x0000270c       0x18 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                0x0000270c                VDACoutDMA_done_isr_Disable
+ .text.LCD_Init
+                0x00002724       0x6c .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x00002724                LCD_Init
+ .text.LCD_Enable
+                0x00002790       0x18 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x00002790                LCD_Enable
+ .text.LCD_Start
+                0x000027a8       0x20 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x000027a8                LCD_Start
+ .text.LCD_Position
+                0x000027c8       0x6c .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x000027c8                LCD_Position
+ .text.LCD_PrintString
+                0x00002834       0x38 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x00002834                LCD_PrintString
+ .text.LCD_WriteData
+                0x0000286c       0x34 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x0000286c                LCD_WriteData
+ .text.LCD_WriteControl
+                0x000028a0       0x34 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x000028a0                LCD_WriteControl
+ .text.LCD_IsReady
+                0x000028d4      0x158 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x000028d4                LCD_IsReady
+ .text.LCD_WrDatNib
+                0x00002a2c       0x78 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.LCD_WrCntrlNib
+                0x00002aa4       0x60 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .text.USBFS_ep2_DmaInitialize
+                0x00002b04       0x68 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+                0x00002b04                USBFS_ep2_DmaInitialize
+ .text.CyDmacConfigure
+                0x00002b6c       0x5c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002b6c                CyDmacConfigure
+ .text.CyDmaChEnable
+                0x00002bc8       0x8c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002bc8                CyDmaChEnable
+ .text.CyDmaChDisable
+                0x00002c54       0x64 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002c54                CyDmaChDisable
+ .text.CyDmaChPriority
+                0x00002cb8       0x60 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002cb8                CyDmaChPriority
+ .text.CyDmaChSetExtendedAddress
+                0x00002d18       0x7c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002d18                CyDmaChSetExtendedAddress
+ .text.CyDmaChSetInitialTd
+                0x00002d94       0x3c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002d94                CyDmaChSetInitialTd
+ .text.CyDmaChSetConfiguration
+                0x00002dd0       0xa0 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002dd0                CyDmaChSetConfiguration
+ .text.CyDmaTdAllocate
+                0x00002e70       0x5c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002e70                CyDmaTdAllocate
+ .text.CyDmaTdSetConfiguration
+                0x00002ecc       0x80 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002ecc                CyDmaTdSetConfiguration
+ .text.CyDmaTdSetAddress
+                0x00002f4c       0x5c .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                0x00002f4c                CyDmaTdSetAddress
+ .text.CyHalt   0x00002fa8       0x18 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x00002fa8                CyHalt
+ .text.CyDelay  0x00002fc0       0x44 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x00002fc0                CyDelay
+ .text.CyDelayUs
+                0x00003004       0x24 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x00003004                CyDelayUs
+ .text.CyIntSetVector
+                0x00003028       0x50 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x00003028                CyIntSetVector
+ .text.CyIntSetPriority
+                0x00003078       0x44 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x00003078                CyIntSetPriority
+ *fill*         0x000030bc        0x4 
+ .text          0x000030c0       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+                0x000030c0                CyDelayCycles
+                0x000030d0                CyEnterCriticalSection
+                0x000030d8                CyExitCriticalSection
+ .text.USBFS_DispatchClassRqst
+                0x000030e0       0x8c .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+                0x000030e0                USBFS_DispatchClassRqst
+ .text.USBFS_DispatchAUDIOClassRqst
+                0x0000316c      0x234 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+                0x0000316c                USBFS_DispatchAUDIOClassRqst
+ .text.__libc_init_array
+                0x000033a0       0x4c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+                0x000033a0                __libc_init_array
+ .text.memcpy   0x000033ec       0x16 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+                0x000033ec                memcpy
+ .text.memset   0x00003402       0x10 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+                0x00003402                memset
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.bootloader)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ *(.gcc_except_table)
+
+.v4_bx          0x00003414        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x00003414        0x0
+ .iplt          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x00003414        0x4
+ *(.eh_frame)
+ .eh_frame      0x00003414        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .eh_frame      0x00003414        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+                0x00003418                PROVIDE (__exidx_start, .)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x00003418                __exidx_end = .
+
+.rodata         0x00003418      0x348
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x00003418       0x2c .\ARM_GCC_493\Debug\main.o
+ .rodata        0x00003444       0xac .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .rodata        0x000034f0      0x23c .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+                0x000034f0                USBFS_DEVICE0_DESCR
+                0x00003504                USBFS_DEVICE0_CONFIGURATION0_DESCR
+                0x0000356c                USBFS_STRING_DESCRIPTORS
+                0x000036e0                USBFS_DEVICE0_CONFIGURATION0_EP_SETTINGS_TABLE
+                0x000036e8                USBFS_DEVICE0_CONFIGURATION0_INTERFACE_CLASS
+                0x000036ec                USBFS_DEVICE0_CONFIGURATION0_TABLE
+                0x00003714                USBFS_DEVICE0_TABLE
+                0x00003724                USBFS_TABLE
+                0x0000372c                . = ALIGN (0x4)
+ *(.init)
+ .init          0x0000372c        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+                0x0000372c                _init
+ .init          0x00003730        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+                0x00003738                . = ALIGN (0x4)
+                0x00003738                __preinit_array_start = .
+ *(.preinit_array)
+                0x00003738                __preinit_array_end = .
+                0x00003738                . = ALIGN (0x4)
+                0x00003738                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x00003738        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .init_array    0x0000373c        0x4 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x00003740                __init_array_end = .
+                0x00003740                . = ALIGN (0x4)
+ *(.fini)
+ .fini          0x00003740        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+                0x00003740                _fini
+ .fini          0x00003744        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+                0x0000374c                . = ALIGN (0x4)
+                0x0000374c                __fini_array_start = .
+ *(.fini_array)
+ .fini_array    0x0000374c        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x00003750                __fini_array_end = .
+                0x00003750                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x00003750                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x00003750                . = ALIGN (0x4)
+                0x00003750                __cy_regions = .
+                0x00003750        0x4 LONG 0x3760 __cy_region_init_ram
+                0x00003754        0x4 LONG 0x1fff8108 __cy_region_start_data
+                0x00003758        0x4 LONG 0x30 __cy_region_init_size_ram
+                0x0000375c        0x4 LONG 0x250 __cy_region_zero_size_ram
+                0x00003760                __cy_regions_end = .
+                0x00003760                . = ALIGN (0x8)
+                0x00003760                _etext = .
+
+.ramvectors     0x1fff8000      0x100
+                0x1fff8000                __cy_region_start_ram = .
+ *(.ramvectors)
+ .ramvectors    0x1fff8000      0x100 .\ARM_GCC_493\Debug\Cm3Start.o
+                0x1fff8000                CyRamVectors
+
+.noinit         0x1fff8100        0x5
+ *(.noinit)
+ .noinit        0x1fff8100        0x4 .\ARM_GCC_493\Debug\Cm3Start.o
+ .noinit        0x1fff8104        0x1 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x1fff8104                CyResetStatus
+
+.data           0x1fff8108       0x30 load address 0x00003760
+                0x1fff8108                __cy_region_start_data = .
+ *(.jcr)
+ .jcr           0x1fff8108        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .jcr           0x1fff8108        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x1fff810c        0x1 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+                0x1fff810c                VDACoutDMA_DmaHandle
+ .data          0x1fff810d        0x1 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+                0x1fff810d                USBFS_ep2_DmaHandle
+ *fill*         0x1fff810e        0x2 
+ .data          0x1fff8110        0x8 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .data          0x1fff8118       0x10 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                0x1fff8118                cydelay_freq_hz
+                0x1fff811c                cydelay_freq_khz
+                0x1fff8120                cydelay_freq_mhz
+                0x1fff8124                cydelay_32k_ms
+ .data          0x1fff8128        0xc .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+                0x1fff8128                USBFS_minimumVolume
+                0x1fff812c                USBFS_maximumVolume
+                0x1fff8130                USBFS_resolutionVolume
+                0x1fff8138                . = ALIGN (0x8)
+ *fill*         0x1fff8134        0x4 
+ *(.ram)
+                0x1fff8138                _edata = .
+
+.igot.plt       0x1fff8138        0x0 load address 0x00003790
+ .igot.plt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+
+.bss            0x1fff8138      0x250 load address 0x00003790
+                0x1fff8138                PROVIDE (__bss_start__, .)
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x1fff8138       0x1c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .bss           0x1fff8154        0x6 .\ARM_GCC_493\Debug\main.o
+                0x1fff8154                outIndex
+                0x1fff8156                inIndex
+                0x1fff8158                syncDMA
+                0x1fff8159                syncDMA_counter
+ .bss           0x1fff815a        0x1 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x1fff815a                USBFS_initVar
+ *fill*         0x1fff815b        0x1 
+ .bss           0x1fff815c        0x4 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .bss           0x1fff8160        0x1 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                0x1fff8160                VDAC8_initVar
+ .bss           0x1fff8161        0x2 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                0x1fff8161                LCD_enableState
+                0x1fff8162                LCD_initVar
+ *(COMMON)
+ *fill*         0x1fff8163        0x1 
+ COMMON         0x1fff8164      0x14b .\ARM_GCC_493\Debug\main.o
+                0x1fff8164                soundBuffer
+                0x1fff82a4                VDACoutDMA_TD
+                0x1fff82ae                VDACoutDMA_Chan
+ *fill*         0x1fff82af        0x1 
+ COMMON         0x1fff82b0       0x15 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                0x1fff82b0                USBFS_DmaChan
+                0x1fff82bc                USBFS_DmaTd
+ *fill*         0x1fff82c5        0x3 
+ COMMON         0x1fff82c8       0x96 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                0x1fff82c8                USBFS_deviceAddress
+                0x1fff82c9                USBFS_ep0Mode
+                0x1fff82cc                USBFS_interfaceSetting
+                0x1fff82d0                USBFS_currentTD
+                0x1fff82dc                USBFS_device
+                0x1fff82dd                USBFS_interfaceNumber
+                0x1fff82de                USBFS_ep0Toggle
+                0x1fff82df                USBFS_deviceStatus
+                0x1fff82e0                USBFS_configurationChanged
+                0x1fff82e1                USBFS_configuration
+                0x1fff82e2                USBFS_transferState
+                0x1fff82e4                USBFS_interfaceStatus
+                0x1fff82e8                USBFS_interfaceClass
+                0x1fff82ec                USBFS_EP
+                0x1fff8358                USBFS_interfaceSetting_last
+                0x1fff835a                USBFS_lastPacketSize
+                0x1fff835b                USBFS_ep0Count
+                0x1fff835c                USBFS_transferByteCount
+ *fill*         0x1fff835e        0x2 
+ COMMON         0x1fff8360       0x21 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+                0x1fff8360                USBFS_currentVolume
+                0x1fff8364                USBFS_currentSampleFrequency
+                0x1fff837f                USBFS_frequencyChanged
+                0x1fff8380                USBFS_currentMute
+                0x1fff8388                . = ALIGN (0x8)
+ *fill*         0x1fff8381        0x7 
+ *(.ram.b)
+                0x1fff8388                _end = .
+                0x1fff8388                __end = .
+                0x1fff8388                PROVIDE (end, .)
+                0x1fff8388                PROVIDE (__bss_end__, .)
+                0x00003760                __cy_region_init_ram = LOADADDR (.data)
+                0x00000030                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x00000250                __cy_region_zero_size_ram = (_end - _edata)
+
+.heap           0x1fff8388       0x80 load address 0x00003790
+                0x1fff8388                . = _end
+                0x1fff8408                . = (. + 0x80)
+ *fill*         0x1fff8388       0x80 
+                0x1fff8408                __cy_heap_limit = .
+
+.stack          0x20007800      0x800
+                0x20007800                __cy_stack_limit = .
+                0x20008000                . = (. + 0x800)
+ *fill*         0x20007800      0x800 
+                0x00000001                ASSERT ((__cy_stack_limit >= __cy_heap_limit), region RAM overflowed with stack)
+
+.cyloadermeta
+ *(.cyloadermeta)
+
+.cyloadablemeta
+ *(.cyloadablemeta)
+
+.cyconfigecc    0x80000000        0x4
+ *(.cyconfigecc)
+ .cyconfigecc   0x80000000        0x4 .\ARM_GCC_493\Debug\cymetadata.o
+                0x80000000                cy_meta_configecc
+
+.cycustnvl      0x90000000        0x4
+ *(.cycustnvl)
+ .cycustnvl     0x90000000        0x4 .\ARM_GCC_493\Debug\cymetadata.o
+                0x90000000                cy_meta_custnvl
+
+.cywolatch      0x90100000        0x4
+ *(.cywolatch)
+ .cywolatch     0x90100000        0x4 .\ARM_GCC_493\Debug\cymetadata.o
+                0x90100000                cy_meta_wonvl
+
+.cyeeprom       0x90200000        0x0
+ *(.cyeeprom)
+                0x00000001                ASSERT ((. <= ((0x90200000 + ee_offset) + ee_size)), .cyeeprom data will not fit in EEPROM)
+
+.cyflashprotect
+                0x90400000      0x100
+ *(.cyflashprotect)
+ .cyflashprotect
+                0x90400000      0x100 .\ARM_GCC_493\Debug\cymetadata.o
+                0x90400000                cy_meta_flashprotect
+
+.cymeta         0x90500000        0xc
+ *(.cymeta)
+ .cymeta        0x90500000        0xc .\ARM_GCC_493\Debug\cymetadata.o
+                0x90500000                cy_metadata
+
+.rel.dyn        0x00003790        0x0 load address 0x9050000c
+ .rel.iplt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x9a0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x28 .\ARM_GCC_493\Debug\main.o
+ .debug_aranges
+                0x00000028       0x18 .\ARM_GCC_493\Debug\cymetadata.o
+ .debug_aranges
+                0x00000040       0x40 .\ARM_GCC_493\Debug\Cm3Start.o
+ .debug_aranges
+                0x00000080       0x60 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .debug_aranges
+                0x000000e0       0xc0 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .debug_aranges
+                0x000001a0       0x98 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .debug_aranges
+                0x00000238       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .debug_aranges
+                0x00000270       0x70 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .debug_aranges
+                0x000002e0       0x20 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .debug_aranges
+                0x00000300       0x58 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .debug_aranges
+                0x00000358       0x28 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .debug_aranges
+                0x00000380       0x80 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .debug_aranges
+                0x00000400       0x98 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .debug_aranges
+                0x00000498       0x28 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .debug_aranges
+                0x000004c0       0xd8 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .debug_aranges
+                0x00000598      0x218 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .debug_aranges
+                0x000007b0       0x90 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .debug_aranges
+                0x00000840       0x20 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .debug_aranges
+                0x00000860       0x20 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .debug_aranges
+                0x00000880       0x18 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .debug_aranges
+                0x00000898       0x80 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .debug_aranges
+                0x00000918       0x68 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .debug_aranges
+                0x00000980       0x20 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x4f75
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x1be .\ARM_GCC_493\Debug\main.o
+ .debug_info    0x000001be      0x139 .\ARM_GCC_493\Debug\cymetadata.o
+ .debug_info    0x000002f7      0x2bc .\ARM_GCC_493\Debug\Cm3Start.o
+ .debug_info    0x000005b3      0x445 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .debug_info    0x000009f8      0x679 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .debug_info    0x00001071      0x4ec .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .debug_info    0x0000155d      0x1d5 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .debug_info    0x00001732      0x6d6 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .debug_info    0x00001e08       0xc7 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .debug_info    0x00001ecf      0x183 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .debug_info    0x00002052      0x112 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .debug_info    0x00002164      0x236 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .debug_info    0x0000239a      0x3b4 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .debug_info    0x0000274e      0x112 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .debug_info    0x00002860      0x8ae .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .debug_info    0x0000310e      0xb90 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .debug_info    0x00003c9e      0x534 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .debug_info    0x000041d2       0x5f .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .debug_info    0x00004231      0x19a .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .debug_info    0x000043cb      0x259 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .debug_info    0x00004624      0x387 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .debug_info    0x000049ab      0x3a2 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .debug_info    0x00004d4d      0x228 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+
+.debug_abbrev   0x00000000     0x192e
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xc9 .\ARM_GCC_493\Debug\main.o
+ .debug_abbrev  0x000000c9       0x5d .\ARM_GCC_493\Debug\cymetadata.o
+ .debug_abbrev  0x00000126      0x173 .\ARM_GCC_493\Debug\Cm3Start.o
+ .debug_abbrev  0x00000299      0x19f .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .debug_abbrev  0x00000438      0x1d9 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .debug_abbrev  0x00000611      0x16c .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .debug_abbrev  0x0000077d       0xfd .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .debug_abbrev  0x0000087a      0x1a8 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .debug_abbrev  0x00000a22       0x67 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .debug_abbrev  0x00000a89       0xeb .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .debug_abbrev  0x00000b74       0x8b .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .debug_abbrev  0x00000bff      0x17f .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .debug_abbrev  0x00000d7e      0x120 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .debug_abbrev  0x00000e9e       0x8b .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .debug_abbrev  0x00000f29      0x187 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .debug_abbrev  0x000010b0      0x205 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .debug_abbrev  0x000012b5      0x16e .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .debug_abbrev  0x00001423       0x14 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00001437       0xb8 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .debug_abbrev  0x000014ef       0xb0 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .debug_abbrev  0x0000159f      0x170 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .debug_abbrev  0x0000170f      0x15d .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .debug_abbrev  0x0000186c       0xc2 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+
+.debug_line     0x00000000     0x2817
+ *(.debug_line)
+ .debug_line    0x00000000      0x1ed .\ARM_GCC_493\Debug\main.o
+ .debug_line    0x000001ed       0x51 .\ARM_GCC_493\Debug\cymetadata.o
+ .debug_line    0x0000023e      0x1a7 .\ARM_GCC_493\Debug\Cm3Start.o
+ .debug_line    0x000003e5      0x1f2 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .debug_line    0x000005d7      0x307 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .debug_line    0x000008de      0x210 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .debug_line    0x00000aee       0xd9 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .debug_line    0x00000bc7      0x3c9 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .debug_line    0x00000f90       0x6a .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .debug_line    0x00000ffa       0xee .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .debug_line    0x000010e8       0x7d .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .debug_line    0x00001165      0x14e .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .debug_line    0x000012b3      0x202 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .debug_line    0x000014b5       0x7c .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .debug_line    0x00001531      0x2b5 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .debug_line    0x000017e6      0x707 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .debug_line    0x00001eed      0x36d .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .debug_line    0x0000225a       0x66 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .debug_line    0x000022c0       0x95 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .debug_line    0x00002355       0x5d .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .debug_line    0x000023b2      0x1c6 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .debug_line    0x00002578      0x1ac .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .debug_line    0x00002724       0xf3 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+
+.debug_frame    0x00000000     0x24ec
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x50 .\ARM_GCC_493\Debug\main.o
+ .debug_frame   0x00000050       0xac .\ARM_GCC_493\Debug\Cm3Start.o
+ .debug_frame   0x000000fc      0x16c .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .debug_frame   0x00000268      0x34c .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .debug_frame   0x000005b4      0x23c .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .debug_frame   0x000007f0       0x9c .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .debug_frame   0x0000088c      0x1c4 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .debug_frame   0x00000a50       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .debug_frame   0x00000a88      0x130 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .debug_frame   0x00000bb8       0x58 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .debug_frame   0x00000c10      0x1e8 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .debug_frame   0x00000df8      0x260 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .debug_frame   0x00001058       0x58 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .debug_frame   0x000010b0      0x3d0 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .debug_frame   0x00001480      0x9a8 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .debug_frame   0x00001e28      0x218 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .debug_frame   0x00002040       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .debug_frame   0x00002078      0x1f8 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .debug_frame   0x00002270      0x1a8 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .debug_frame   0x00002418       0x38 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+ .debug_frame   0x00002450       0x28 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x00002478       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x000024a4       0x28 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x000024cc       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+
+.debug_str      0x00000000     0x2388
+ *(.debug_str)
+ .debug_str     0x00000000      0x1ab .\ARM_GCC_493\Debug\main.o
+                                0x1ec (size before relaxing)
+ .debug_str     0x000001ab       0x75 .\ARM_GCC_493\Debug\cymetadata.o
+                                0x1b9 (size before relaxing)
+ .debug_str     0x00000220      0x10b .\ARM_GCC_493\Debug\Cm3Start.o
+                                0x275 (size before relaxing)
+ .debug_str     0x0000032b      0x196 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+                                0x31d (size before relaxing)
+ .debug_str     0x000004c1      0x339 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+                                0x4ad (size before relaxing)
+ .debug_str     0x000007fa      0x2af .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+                                0x554 (size before relaxing)
+ .debug_str     0x00000aa9       0x79 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+                                0x238 (size before relaxing)
+ .debug_str     0x00000b22      0x230 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+                                0x541 (size before relaxing)
+ .debug_str     0x00000d52       0x3a .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+                                0x192 (size before relaxing)
+ .debug_str     0x00000d8c       0xa3 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+                                0x1ee (size before relaxing)
+ .debug_str     0x00000e2f       0xa7 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+                                0x1f2 (size before relaxing)
+ .debug_str     0x00000ed6      0x1c2 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+                                0x32d (size before relaxing)
+ .debug_str     0x00001098      0x177 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+                                0x2d4 (size before relaxing)
+ .debug_str     0x0000120f       0x68 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+                                0x1ee (size before relaxing)
+ .debug_str     0x00001277      0x35e .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+                                0x4e0 (size before relaxing)
+ .debug_str     0x000015d5      0x5ef .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+                                0x7db (size before relaxing)
+ .debug_str     0x00001bc4      0x36f .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+                                0x4ea (size before relaxing)
+ .debug_str     0x00001f33       0x3b .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+                                0x22e (size before relaxing)
+ .debug_str     0x00001f6e       0xef .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+                                0x2c2 (size before relaxing)
+ .debug_str     0x0000205d      0x146 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+                                0x2c8 (size before relaxing)
+ .debug_str     0x000021a3       0xfc .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+                                0x28c (size before relaxing)
+ .debug_str     0x0000229f       0xe9 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+                                0x2ad (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_ranges   0x00000000      0x810
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x18 .\ARM_GCC_493\Debug\main.o
+ .debug_ranges  0x00000018       0x30 .\ARM_GCC_493\Debug\Cm3Start.o
+ .debug_ranges  0x00000048       0x50 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .debug_ranges  0x00000098       0xb0 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .debug_ranges  0x00000148       0x88 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .debug_ranges  0x000001d0       0x28 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .debug_ranges  0x000001f8       0x60 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .debug_ranges  0x00000258       0x10 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .debug_ranges  0x00000268       0x48 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .debug_ranges  0x000002b0       0x18 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .debug_ranges  0x000002c8       0x70 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .debug_ranges  0x00000338       0x88 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .debug_ranges  0x000003c0       0x18 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .debug_ranges  0x000003d8       0xc8 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .debug_ranges  0x000004a0      0x208 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .debug_ranges  0x000006a8       0x80 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .debug_ranges  0x00000728       0x10 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .debug_ranges  0x00000738       0x70 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .debug_ranges  0x000007a8       0x58 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .debug_ranges  0x00000800       0x10 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+
+.comment        0x00000000       0x70
+ .comment       0x00000000       0x70 .\ARM_GCC_493\Debug\main.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\cymetadata.o
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\Cm3Start.o
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .comment       0x00000000       0x71 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+.ARM.attributes
+                0x00000000       0x29
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crti.o
+ .ARM.attributes
+                0x0000001d       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x1b c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m/crt0.o
+ .ARM.attributes
+                0x00000065       0x33 .\ARM_GCC_493\Debug\main.o
+ .ARM.attributes
+                0x00000098       0x33 .\ARM_GCC_493\Debug\cymetadata.o
+ .ARM.attributes
+                0x000000cb       0x33 .\ARM_GCC_493\Debug\Cm3Start.o
+ .ARM.attributes
+                0x000000fe       0x33 .\ARM_GCC_493\Debug\CE95390.a(cyfitter_cfg.o)
+ .ARM.attributes
+                0x00000131       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS.o)
+ .ARM.attributes
+                0x00000164       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_drv.o)
+ .ARM.attributes
+                0x00000197       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_episr.o)
+ .ARM.attributes
+                0x000001ca       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_std.o)
+ .ARM.attributes
+                0x000001fd       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_vnd.o)
+ .ARM.attributes
+                0x00000230       0x33 .\ARM_GCC_493\Debug\CE95390.a(VDAC8.o)
+ .ARM.attributes
+                0x00000263       0x33 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_dma.o)
+ .ARM.attributes
+                0x00000296       0x33 .\ARM_GCC_493\Debug\CE95390.a(VDACoutDMA_done_isr.o)
+ .ARM.attributes
+                0x000002c9       0x33 .\ARM_GCC_493\Debug\CE95390.a(LCD.o)
+ .ARM.attributes
+                0x000002fc       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_ep2_dma.o)
+ .ARM.attributes
+                0x0000032f       0x33 .\ARM_GCC_493\Debug\CE95390.a(CyDmac.o)
+ .ARM.attributes
+                0x00000362       0x33 .\ARM_GCC_493\Debug\CE95390.a(CyLib.o)
+ .ARM.attributes
+                0x00000395       0x33 .\ARM_GCC_493\Debug\CE95390.a(cyPm.o)
+ .ARM.attributes
+                0x000003c8       0x21 .\ARM_GCC_493\Debug\CE95390.a(CyBootAsmGnu.o)
+ .ARM.attributes
+                0x000003e9       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_cls.o)
+ .ARM.attributes
+                0x0000041c       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_descr.o)
+ .ARM.attributes
+                0x0000044f       0x33 .\ARM_GCC_493\Debug\CE95390.a(CyFlash.o)
+ .ARM.attributes
+                0x00000482       0x33 .\ARM_GCC_493\Debug\CE95390.a(CySpc.o)
+ .ARM.attributes
+                0x000004b5       0x33 .\ARM_GCC_493\Debug\CE95390.a(USBFS_audio.o)
+ .ARM.attributes
+                0x000004e8       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x00000515       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000542       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x0000056f       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x0000059c       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x000005c9       0x2d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtend.o
+ .ARM.attributes
+                0x000005f6       0x1d c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7-m/crtn.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(.\ARM_GCC_493\Debug\CE95390.elf elf32-littlearm)
